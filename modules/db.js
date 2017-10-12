@@ -168,6 +168,8 @@ const Date = sequelize.define('date', {
 
 
 
+
+
 // LAISSER A LA FIN
 // force: true will drop the table if it already exists
 sequelize.sync({force: true}).then(() => {
