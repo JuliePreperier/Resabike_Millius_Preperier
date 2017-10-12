@@ -16,16 +16,20 @@ const PersonContact = sequelize.define('personcontact', {
         type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true
     },
     firstName: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
     },
     lastName: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
     },
     telephon: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
     },
     email: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
     }
 });
 
@@ -34,10 +38,12 @@ const Login = sequelize.define('login', {
         type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true
     },
     username: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
     },
     password: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
     }
 });
 
@@ -46,7 +52,8 @@ const Role = sequelize.define('role', {
         type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true
     },
     roleName: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
     }
 });
 
@@ -55,7 +62,8 @@ const Zone = sequelize.define('zone', {
         type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true
     },
     zoneName: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
     }
 });
 
@@ -64,23 +72,21 @@ const Line = sequelize.define('line', {
         type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true
     },
     lineName: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
     },
     fromStation: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
     },
     toStation: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
     }
 }) ;
 
 const LineStation = sequelize.define('linestation', {
-    id_line: {
-        type: Sequelize.INTEGER
-    },
-    id_station: {
-        type: Sequelize.INTEGER
-    }
+
 });
 
 const Station = sequelize.define('station', {
@@ -88,10 +94,12 @@ const Station = sequelize.define('station', {
         type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true
     },
     stationName: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
     },
     stopId: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
     }
 });
 
@@ -100,20 +108,17 @@ const Journey = sequelize.define('journey', {
         type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true
     },
     journeyNumber: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
     },
     bus: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
     }
 });
 
 const JourneyReservation = sequelize.define('journeyreservation', {
-    id_journey: {
-        type: Sequelize.INTEGER
-    },
-    id_reservation: {
-        type: Sequelize.INTEGER
-    }
+
 });
 
 const Reservation = sequelize.define('reservation', {
@@ -121,31 +126,44 @@ const Reservation = sequelize.define('reservation', {
         type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true
     },
     firstName: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
     },
     lastName: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
     },
     telephon: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
     },
     email: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
     },
     numberBikes: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false
     },
     groupName: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
     },
     from: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
     },
     to: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
     },
     remarks: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: true
+    },
+    isConfirmed: {
+        type: Sequelize.BOOLEAN,
+        allowNull: false
     }
 });
 
@@ -154,21 +172,29 @@ const Date = sequelize.define('date', {
         type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true
     },
     day: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
     },
     month: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
     },
     year: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false
     }
 });
 
-
-
-
-
-
+PersonContact.hasOne(Zone, {foreignKey: {name:'id_personContact', allowNull: false}});
+Zone.hasMany(Login, {foreignKey: {name: 'id_zone', allowNull: false}});
+Role.hasMany(Login, {foreignKey: {name:'id_role', allowNull: false}});
+Zone.hasMany(Line, {foreignKey: {name:'id_zone', allowNull: false}});
+Line.hasMany(Journey, {foreignKey: {name: 'id_line', allowNull: false}});
+Journey.hasMany(JourneyReservation, {foreignKey: {name:'id_journey', allowNull: false}});
+Reservation.hasMany(JourneyReservation, {foreignKey: {name:'id_reservation', allowNull: false}});
+Date.hasMany(Reservation, {foreignKey: {name:'id_date', allowNull: false}});
+Line.hasMany(LineStation, {foreignKey: {name:'id_line', allowNull: false}});
+Station.hasMany(LineStation, {foreignKey: {name:'id_station', allowNull: false}});
 
 // LAISSER A LA FIN
 // force: true will drop the table if it already exists
