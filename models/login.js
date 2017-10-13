@@ -1,21 +1,23 @@
 module.exports = (sequelize, DataTypes) => {
-    var Login = sequelize.define('login', {
+    var Login = sequelize.define('Login', {
         id_login: {
-            type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true
         },
         username: {
-            type: Sequelize.STRING,
+            type: DataTypes.STRING,
             allowNull: false
         },
         password: {
-            type: Sequelize.STRING,
+            type: DataTypes.STRING,
             allowNull: false
         }
     });
 
     Login.associate = (models) => {
-        Login.belongsTo(models.Zone);
-        Login.belongsTo(models.Role);
+        Login.belongsTo(models.Zone, {foreignKey: {name: 'id_zone', allowNull: false}});
+        Login.belongsTo(models.Role, {foreignKey: {name:'id_role', allowNull: false}});
     }
 
     return Login

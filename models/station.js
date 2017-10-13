@@ -1,14 +1,14 @@
 module.exports = (sequelize, DataTypes) => {
-    var Station = sequelize.define('station', {
+    var Station = sequelize.define('Station', {
         id_station: {
-            type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true
+            type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true
         },
         stationName: {
-            type: Sequelize.STRING,
+            type: DataTypes.STRING,
             allowNull: false
         },
         stopId: {
-            type: Sequelize.STRING,
+            type: DataTypes.STRING,
             allowNull: false
         }
     });

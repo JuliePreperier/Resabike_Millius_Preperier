@@ -1,27 +1,27 @@
 module.exports = (sequelize, DataTypes) => {
 
-    const Date = sequelize.define('date', {
+    var Date = sequelize.define('Date', {
         id_date: {
-            type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true
         },
         day: {
-            type: Sequelize.STRING,
+            type: DataTypes.STRING,
             allowNull: false
         },
         month: {
-            type: Sequelize.STRING,
+            type: DataTypes.STRING,
             allowNull: false
         },
         year: {
-            type: Sequelize.STRING,
+            type: DataTypes.STRING,
             allowNull: false
         }
     });
     Date.associate = (models) => {
         Date.hasMany(models.Reservation, {foreignKey: {name:'id_date', allowNull: false}});
     }
-
-
 
     return Date
 };

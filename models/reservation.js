@@ -1,51 +1,51 @@
 module.exports = (sequelize, DataTypes) => {
-    var Reservation = sequelize.define('reservation', {
+    var Reservation = sequelize.define('Reservation', {
         id_reservation: {
-            type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true
+            type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true
         },
         firstName: {
-            type: Sequelize.STRING,
+            type: DataTypes.STRING,
             allowNull: false
         },
         lastName: {
-            type: Sequelize.STRING,
+            type: DataTypes.STRING,
             allowNull: false
         },
         telephon: {
-            type: Sequelize.STRING,
+            type: DataTypes.STRING,
             allowNull: false
         },
         email: {
-            type: Sequelize.STRING,
+            type: DataTypes.STRING,
             allowNull: false
         },
         numberBikes: {
-            type: Sequelize.INTEGER,
+            type: DataTypes.INTEGER,
             allowNull: false
         },
         groupName: {
-            type: Sequelize.STRING,
+            type: DataTypes.STRING,
             allowNull: false
         },
         from: {
-            type: Sequelize.STRING,
+            type: DataTypes.STRING,
             allowNull: false
         },
         to: {
-            type: Sequelize.STRING,
+            type: DataTypes.STRING,
             allowNull: false
         },
         remarks: {
-            type: Sequelize.STRING,
+            type: DataTypes.STRING,
             allowNull: true
         },
         isConfirmed: {
-            type: Sequelize.BOOLEAN,
+            type: DataTypes.BOOLEAN,
             allowNull: false
         }
     });
     Reservation.associate = (models) => {
-        Reservation.belongsTo(models.Date);
+        Reservation.belongsTo(models.Date, {foreignKey: {name:'id_date', allowNull: false}});
         Reservation.hasMany(models.JourneyReservation, {foreignKey: {name:'id_reservation', allowNull: false}});
     }
 

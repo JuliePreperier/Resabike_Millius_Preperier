@@ -1,33 +1,24 @@
 module.exports = (sequelize, DataTypes) => {
-    var Journey = sequelize.define('journey', {
+    var Journey = sequelize.define('Journey', {
         id_journey: {
-            type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true
         },
         journeyNumber: {
-            type: Sequelize.STRING,
+            type: DataTypes.STRING,
             allowNull: false
         },
         bus: {
-            type: Sequelize.STRING,
+            type: DataTypes.STRING,
             allowNull: false
         }
     });
     Journey.associate = (models) => {
         Journey.hasMany(models.JourneyReservation, {foreignKey: {name:'id_journey', allowNull: false}});
-        Journey.belongsTo(models.Line);
+        Journey.belongsTo(models.Line, {foreignKey: {name: 'id_line', allowNull: false}});
     }
 
 
     return Journey
-};
-
-module.exports = (sequelize, DataTypes) => {
-    var JourneyReservation = sequelize.define('journeyreservation', {});
-
-    JourneyReservation.associate = (models) => {
-        JourneyReservation.belongsTo(models.Reservation);
-        JourneyReservation.belongsTo(models.Journey);
-    }
-
-    return JourneyReservation
 };

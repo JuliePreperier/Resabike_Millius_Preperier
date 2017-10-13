@@ -1,23 +1,25 @@
 module.exports = (sequelize, DataTypes) => {
-    var Line = sequelize.define('line', {
+    var Line = sequelize.define('Line', {
         id_line: {
-            type: Sequelize.INTEGER, primaryKey: true, autoIncrement: true
+            type: DataTypes.INTEGER,
+            primaryKey: true,
+            autoIncrement: true
         },
         lineName: {
-            type: Sequelize.STRING,
+            type: DataTypes.STRING,
             allowNull: false
         },
         fromStation: {
-            type: Sequelize.STRING,
+            type: DataTypes.STRING,
             allowNull: false
         },
         toStation: {
-            type: Sequelize.STRING,
+            type: DataTypes.STRING,
             allowNull: false
         }
     });
     Line.associate = (models) => {
-        Line.belongsTo(models.Zone);
+        Line.belongsTo(models.Zone, {foreignKey: {name:'id_zone', allowNull: false}});
         Line.hasMany(models.Journey, {foreignKey: {name: 'id_line', allowNull: false}});
         Line.hasMany(models.LineStation, {foreignKey: {name:'id_line', allowNull: false}});
     }
@@ -27,12 +29,3 @@ module.exports = (sequelize, DataTypes) => {
     return Line
 };
 
-module.exports = (sequelize, DataTypes) => {
-    var LineStation = sequelize.define('linestation', {});
-    LineStation.associate = (models) => {
-        LineStation.belongsTo(models.Line);
-        LineStation.belongsTo(models.Station);
-    }
-
-    return LineStation
-};
