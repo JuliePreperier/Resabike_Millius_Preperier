@@ -85,6 +85,9 @@ const Line = sequelize.define('line', {
     }
 }) ;
 
+const LineStation = sequelize.define('linestation', {
+
+});
 
 const Station = sequelize.define('station', {
     id_station: {
@@ -112,6 +115,10 @@ const Journey = sequelize.define('journey', {
         type: Sequelize.STRING,
         allowNull: false
     }
+});
+
+const JourneyReservation = sequelize.define('journeyreservation', {
+
 });
 
 const Reservation = sequelize.define('reservation', {
@@ -183,13 +190,11 @@ Zone.hasMany(Login, {foreignKey: {name: 'id_zone', allowNull: false}});
 Role.hasMany(Login, {foreignKey: {name:'id_role', allowNull: false}});
 Zone.hasMany(Line, {foreignKey: {name:'id_zone', allowNull: false}});
 Line.hasMany(Journey, {foreignKey: {name: 'id_line', allowNull: false}});
+Journey.hasMany(JourneyReservation, {foreignKey: {name:'id_journey', allowNull: false}});
+Reservation.hasMany(JourneyReservation, {foreignKey: {name:'id_reservation', allowNull: false}});
 Date.hasMany(Reservation, {foreignKey: {name:'id_date', allowNull: false}});
-
-Line.belongsToMany(Station,{ through: 'lineStation', foreignKey: {name:'idStation', AllowNull:false}});
-Station.belongsToMany(Line,{ through: 'lineStation', foreignKey: {name:'idLine', AllowNull:false}});
-
-Journey.belongsToMany(Reservation,{ through: 'JourneyReservation', foreignKey: {name:'idReservation', AllowNull:false}});
-Reservation.belongsToMany(Journey,{ through: 'JourneyReservation', foreignKey: {name:'idJourney', AllowNull:false}});
+Line.hasMany(LineStation, {foreignKey: {name:'id_line', allowNull: false}});
+Station.hasMany(LineStation, {foreignKey: {name:'id_station', allowNull: false}});
 
 // LAISSER A LA FIN
 // force: true will drop the table if it already exists
