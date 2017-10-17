@@ -1,12 +1,24 @@
 extends layout
 
+
+
 block content
+
+
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js')
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js')
+  script(src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js')
+  link(href='/stylesheets/jquery-ui.min.css', rel='stylesheet')
+  script(src='/javascripts/apiCompletion.js')
+
+
+
   h1= title
   p Welcome to #{title}
 
-  form(action='/users/login', method='POST')
-    input(type='text', name='login', placeholder='Type your username here', autofocus)
+
+
+  form(action='/users/login', method='GET')
+    input(type='text',  placeholder='Type your username here', id='station', autofocus, onkeydown='autocomp(this.id)')
     br
-    input(type='text', name='password', placeholder='Type your password here')
-    br
-    button(type='submit') Login
+
