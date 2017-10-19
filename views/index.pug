@@ -9,6 +9,7 @@ block content
   script(src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js')
   script(src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js')
   link(href='/stylesheets/jquery-ui.min.css', rel='stylesheet')
+  script(src='/javascripts/apiJourneyReturn.js')
   script(src='/javascripts/apiCompletion.js')
 
 
@@ -18,7 +19,27 @@ block content
 
 
 
-  form(action='/users/login', method='GET')
-    input(type='text',  placeholder='Type your username here', id='station', autofocus, onkeydown='autocomp(this.id)')
-    br
-
+  input(type='text',  placeholder='Type your username here', id='from', autofocus, onkeydown='autocomp(this.id)')
+  br
+  br
+  input(type='text',  placeholder='Type your username here', id='to', autofocus, onkeydown='autocomp(this.id)')
+  br
+  br
+  button(onclick='search()') rechercher
+  br
+  br
+  table(align="center", id='stationboard')
+    colgroup
+      col(width="250")
+      col(width="250")
+      col(width="250")
+      col(width="250")
+      col(width="250")
+    thead
+      tr
+        th(align="left") De
+        th(align="left") A 
+        th(align="left") Départ
+        th(align="left") Arrivée
+        th(align="left") Durée
+    tbody
