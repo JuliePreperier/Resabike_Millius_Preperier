@@ -1,13 +1,23 @@
 var express = require('express');
-var models = require('../models');
 var router = express.Router();
+var models = require('../models');
+var PersonContactModule = require('../modules/PersonContact');
+var zoneModule = require('../modules/zone');
+var loginModule = require('../modules/login');
 
-router.get('/', (req,res,next) =>{
-    res.render('zone'); // nom du pug
+
+/* GET zone page . */
+router.get('/', function(req, res, next) {
+    res.render('zone');
 });
 
 /* POST new zone */
-router.post('/', (req, res, next) => {
-
-    res.redirect('/todos');
+router.post('/', function(req, res, next){
+    zoneModule.insertZone(req.body).then((zone) =>{
+        loginModule.insertLoginFromSuperAdmin(req.body,zone).then(() =>{
+            res.redirect('/');
+        })
+    })
 });
+
+module.exports = router;

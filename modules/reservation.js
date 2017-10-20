@@ -16,7 +16,7 @@ module.exports= {
                 to: body.to,
                 remarks: body.remarks,
                 isConfirmed: body.isConfirmed,
-                id_date: date.id
+                id_date: date.id_date
             }).then(function(reservation){
                 resolve(reservation)
             })
@@ -26,7 +26,7 @@ module.exports= {
     deleteReservation(body){
         return new Promise(function(resolve, reject){
             models.Reservation.destroy({
-                where:{id: body.id}
+                where:{id_reservation: body.id_reservation}
             }).then(function(nbRow){
                 resolve(nbRow)
             })
@@ -46,9 +46,11 @@ module.exports= {
                     to: body.to,
                     remarks: body.remarks,
                     isConfirmed: body.isConfirmed,
-                    id_date: body.date.id},
-                {where:{id: body.id}}
-            )
+                    id_date: body.date.id_date},
+                {where:{id_reservation: body.id_reservation}}
+            ).then(function(reservation){
+                resolve(reservation)
+            })
         })
     }
 }

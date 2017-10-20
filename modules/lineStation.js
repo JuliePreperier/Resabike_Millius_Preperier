@@ -6,8 +6,8 @@ module.exports= {
     insertLineStation(station, line){
         return new Promise(function(resolve, reject){
             models.LineStation.create({
-                id_line: line.id,
-                id_station: stations.id
+                id_line: line.id_line,
+                id_station: stations.id_line
             }).then(function(linestation){
                 resolve(linestation)
             })

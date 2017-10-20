@@ -8,7 +8,7 @@ module.exports= {
             models.Journey.create({
                 journeyNumber: body.journeyNumber,
                 bus: body.bus,
-                id_line: line.id
+                id_line: line.id_line
             }).then(function(journey){
                 resolve(journey)
             })
@@ -18,7 +18,7 @@ module.exports= {
     deleteJourney(body){
         return new Promise(function(resolve, reject){
             models.Journey.destroy({
-                where:{id: body.id}
+                where:{id_journey: body.id_journey}
             }).then(function(nbRow){
                 resolve(nbRow)
             })
@@ -27,11 +27,13 @@ module.exports= {
 
     updateJourney(body){
         return new Promise(function(resolve, reject){
-            models.Date.update({
+            models.Journey.update({
                     journeyNumber: body.journeyNumber,
                     bus: body.bus},
-                {where:{id: body.id}}
-            )
+                {where:{id_journey: body.id_journey}}
+            ).then(function(journey){
+                resolve(journey)
+            })
         })
     }
 }

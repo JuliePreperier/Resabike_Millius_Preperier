@@ -2,11 +2,10 @@ var models = require('../models');
 
 module.exports= {
     /* -- ZONE --*/
-    insertZone(body, personcontact){
+    insertZone(body){
         return new Promise(function (resolve, reject) {
             models.Zone.create({
-                zoneName: body.zoneName,
-                id_personContact: personcontact.id
+                zoneName: body.zoneName
             }).then(function(zone){
                 resolve(zone)
             })
@@ -16,7 +15,7 @@ module.exports= {
     deleteZone(body){
         return new Promise(function(resolve, reject){
             models.Zone.destroy({
-                where:{id: body.id}
+                where:{id_zone: body.id_zone}
             }).then(function(nbRow){
                 resolve(nbRow)
             })
@@ -27,9 +26,11 @@ module.exports= {
         return new Promise(function(resolve, reject){
             models.Zone.update({
                     zoneName: body.zoneName,
-                    id_personContact: body.personcontact.id},
-                {where:{id: body.id}}
-            )
+                    id_personContact: body.personcontact.id_personContact},
+                {where:{id_zone: body.id_zone}}
+            ).then(function(zone){
+                resolve(zone)
+            })
         })
     }
 }

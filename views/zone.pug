@@ -16,20 +16,12 @@ block content
 
 block content
   h1 nouvelle zone
-  form(action='/zone/new', method='POST')
+  form(action='/zone', method='POST')
     input(type='text', name='zoneName', placeholder='Entrez le nom de la zone', autofocus)
     br
-    input(type='text', name='login', placeholder='Entrez le login')
+    input(type='text', name='username', placeholder='Entrez le login')
     br
     input(type='text', name='password', placeholder='Password here')
-    br
-    input(type='text', name='lastname', placeholder='lastname here')
-    br
-    input(type='text', name='firstname', placeholder='firstname here')
-    br
-    input(type='text', name='telephon', placeholder='telephon here')
-    br
-    input(type='text', name='email', placeholder='email here')
     br
     button(type='submit') Sign up
 

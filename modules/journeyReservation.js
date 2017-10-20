@@ -8,8 +8,8 @@ module.exports= {
     insertJourneyReservation(journey, reservation) {
         return new Promise(function (resolve, reject) {
             models.JourneyReservation.create({
-                id_reservation: reservation.id,
-                id_journey: journey.id
+                id_reservation: reservation.id_reservation,
+                id_journey: journey.id_journey
             }).then(function (journeyreservation) {
                 resolve(journeyreservation)
             })

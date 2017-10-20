@@ -9,7 +9,7 @@ module.exports= {
             models.Role.create({
                 roleName: body.roleName
             }).then(function (role) {
-                resolve(station)
+                resolve(role)
             })
         })
     },
@@ -17,7 +17,7 @@ module.exports= {
     deleteRole(body) {
         return new Promise(function (resolve, reject) {
             models.Role.destroy({
-                where: {id: body.id}
+                where: {id_role: body.id_role}
             }).then(function (nbRow) {
                 resolve(nbRow)
             })
@@ -29,8 +29,10 @@ module.exports= {
             models.Role.update({
                     roleName: body.roleName
                 },
-                {where: {id: body.id}}
-            )
+                {where: {id_role: body.id_role}}
+            ).then(function (role) {
+                resolve(role)
+            })
         })
     }
 }

@@ -17,7 +17,7 @@ module.exports= {
     deleteStation(body){
         return new Promise(function(resolve, reject){
             models.Station.destroy({
-                where:{id: body.id}
+                where:{id_station: body.id_station}
             }).then(function(nbRow){
                 resolve(nbRow)
             })
@@ -29,8 +29,10 @@ module.exports= {
             models.Station.update({
                     stationName: body.stationName,
                     stopId: body.stopId},
-                {where:{id: body.id}}
-            )
+                {where:{id_station: body.id_station}}
+            ).then(function(station){
+                resolve(station)
+            })
         })
     }
 }

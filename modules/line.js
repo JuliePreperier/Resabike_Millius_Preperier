@@ -10,7 +10,7 @@ module.exports= {
                 lineName: body.lineName,
                 fromStation: body.fromStation,
                 toStation: body.toStation,
-                id_zone: zone.id
+                id_zone: zone.id_zone
             }).then(function (line) {
                 resolve(line)
             })
@@ -20,7 +20,7 @@ module.exports= {
     deleteLine(body) {
         return new Promise(function (resolve, reject) {
             models.Line.destroy({
-                where: {id: body.id}
+                where: {id_line: body.id_line}
             }).then(function (nbRow) {
                 resolve(nbRow)
             })
@@ -34,8 +34,10 @@ module.exports= {
                     fromStation: body.fromStation,
                     toStation: body.toStation
                 },
-                {where: {id: body.id}}
-            )
+                {where: {id_line: body.id_line}}
+            ).then(function (line) {
+                resolve(line)
+            })
         })
     }
 }

@@ -8,7 +8,7 @@ module.exports= {
             models.Login.create({
                 username: body.username,
                 password: body.password,
-                id_zone: zone.id,
+                id_zone: zone.id_zone,
                 id_role: '2' // ICI IL FAUDRA METTRE LE BON ID: ROLE = ZONE ADMIN
             }).then(function(login){
                 resolve(login)
@@ -21,7 +21,7 @@ module.exports= {
             models.Login.create({
                 username: body.username,
                 password: body.password,
-                id_zone: zone.id,
+                id_zone: zone.id_zone,
                 id_role: '3' // ICI IL FAUDRA METTRE LE BON ID: ROLE = BUS DRIVER
             }).then(function(login){
                 resolve(login)
@@ -32,7 +32,7 @@ module.exports= {
     deleteLogin(body){
         return new Promise(function(resolve, reject){
             models.Login.destroy({
-                where:{id: body.id}
+                where:{id_login: body.id_login}
             }).then(function(nbRow){
                 resolve(nbRow)
             })
@@ -44,9 +44,11 @@ module.exports= {
             models.Login.update({
                     username: body.username,
                     password: body.password,
-                    id_zone: body.zone.id},
-                {where:{id: body.id}}
-            )
+                    id_zone: body.zone.id_zone},
+                {where:{id_login: body.id_login}}
+            ).then(function(login){
+                resolve(login)
+            })
         })
     }
 }

@@ -4,13 +4,14 @@ module.exports= {
 
     /* -- PERSONCONTACT --*/
 
-    insertPersonContact(body) {
+    insertPersonContact(body, zone) {
         return new Promise(function (resolve, reject) {
             models.PersonContact.create({
                 lastName: body.lastName,
                 firstName: body.firstName,
                 email: body.email,
-                telephon: body.telephon
+                telephon: body.telephon,
+                id_zone: zone.id_zone
             }).then(function (personcontact) {
                 resolve(personcontact) // c'est ce qu'il va se passer si c'est juste
             })
@@ -20,7 +21,7 @@ module.exports= {
     deletePersonContact(body) {
         return new Promise(function (resolve, reject) {
             models.PersonContact.destroy({
-                where: {id: body.id}
+                where: {id_personContact: body.id_personContact}
             }).then(function (nbRow) {
                 resolve(nbRow)
             })
@@ -35,8 +36,10 @@ module.exports= {
                     email: body.email,
                     telephon: body.telephon
                 },
-                {where: {id: body.id}}
-            )
+                {where: {id_personContact: body.id_personContact}}
+            ).then(function(personContact){
+                resolve(personContact)
+            })
         })
     }
 }
