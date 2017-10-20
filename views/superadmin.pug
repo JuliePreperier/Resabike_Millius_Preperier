@@ -1,4 +1,4 @@
-extends layout
+
 
 block content
     head
@@ -18,10 +18,10 @@ block content
                     i.material-icons menu
                 ul#nav-mobile.right.hide-on-med-and-down
                     li
-                        a(href="sass.html") Login
+                        a(href="/login") Login
                 ul#mobile-demo.side-nav
                     li
-                        a(href="sass.html") Login
+                        a(href="/login") Login
             .nav-content
                 ul.tabs.tabs-transparent.tabs-fixed-width
                     li.tab
@@ -33,18 +33,34 @@ block content
                     li.tab
                         a(href="#test4") Rechercher
         #test1.col.s12
-
-            h1 nouvelle zone
+        #test2.col.s12
+            h3 Nouvelle zone
                 form(action='/superadmin/newZone', method='POST')
                     input(type='text', name='zoneName', placeholder='Entrez le nom de la zone', autofocus)
                     br
                     input(type='text', name='username', placeholder='Entrez le login')
                     br
-                    input(type='text', name='password', placeholder='Password here')
+                    input(type='text', name='password', placeholder='Entrez un mot de passe')
                     br
-                    button(type='submit') Sign up
-        #test2.col.s12 Test 2
-        #test3.col.s12 Test 3
+                    button.btn.waves-effect.waves-light(type="submit", name="action") Enregistrer
+                    br
+                    br
+            h3 Zones existantes
+
+
+        #test3.col.s12
+            h3 Nouvelle ligne
+                form(action='/superadmin/newLine', method='POST')
+                    input(type='text', name='lineName', placeholder='Entrez le nom de la ligne', autofocus)
+                    br
+                    input(type='text', name='fromStation', placeholder='Entrez la station de départ')
+                    br
+                    input(type='text', name='toStation', placeholder='Entrez la station arrivée')
+                    br
+                    button.btn.waves-effect.waves-light(type="submit", name="action") Enregistrer
+                    br
+                    br
+            h3 Lignes existantes
         #test4.col.s12 Test 4
 
 
