@@ -2,6 +2,8 @@
 
 block content
     head
+        //autocompletion script
+        script(src='/javascripts/apiCompletion.js')
         //Import Google Icon Font
         link(href='https://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')
         //Import materialize.css
@@ -9,6 +11,7 @@ block content
 
         //Let browser know website is optimized for mobile
         meta(name='viewport', content='width=device-width, initial-scale=1.0')
+
 
     body(bgcolor="#fffde7")
         nav.nav-extended.amber.lighten-1
@@ -53,9 +56,11 @@ block content
                 form(action='/superadmin/newLine', method='POST')
                     input(type='text', name='lineName', placeholder='Entrez le nom de la ligne', autofocus)
                     br
-                    input(type='text', name='fromStation', placeholder='Entrez la station de départ')
+                    input(type='text', name='fromStation', placeholder='Entrez la station de départ', id='from', onkeydown='autocomp(this.id)')
                     br
-                    input(type='text', name='toStation', placeholder='Entrez la station arrivée')
+                    input(type='text', name='toStation', placeholder='Entrez la station arrivée', id='to', onkeydown='autocomp(this.id)')
+                    br
+                    input(type='text', name='id_zone', placeholder='Entrez zone concernée')
                     br
                     button.btn.waves-effect.waves-light(type="submit", name="action") Enregistrer
                     br

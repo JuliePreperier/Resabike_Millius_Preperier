@@ -32,5 +32,17 @@ module.exports= {
                 resolve(zone)
             })
         })
+    },
+
+    getZone(body){
+        return new Promise(function (resolve, reject){
+            models.Zone.findAll({
+                where: {
+                    id_zone: body.id_zone
+                }
+            }).then(function(zone){
+                resolve(zone)
+            })
+        })
     }
 }

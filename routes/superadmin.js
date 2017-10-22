@@ -3,6 +3,7 @@ var router = express.Router();
 var models = require('../models');
 var zoneModule = require('../modules/zone');
 var loginModule = require('../modules/login');
+var lineModule = require('../modules/line');
 
 /* GET superadmin page . */
 router.get('/', function(req, res, next) {
@@ -17,6 +18,17 @@ router.post('/newZone', function(req, res, next){
         })
     })
 });
+
+
+/*POST new Line*/
+router.post('/newLine', function(req, res, next){
+    zoneModule.getZone(req.body).then((zone) =>{
+        lineModule.insertLine(req.body, zone).then(() =>{
+            res.redirect('/superadmin');
+        })
+    })
+});
+
 
 
 module.exports = router;

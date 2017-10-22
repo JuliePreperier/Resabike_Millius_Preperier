@@ -10,7 +10,7 @@ module.exports= {
                 lineName: body.lineName,
                 fromStation: body.fromStation,
                 toStation: body.toStation,
-                id_zone: zone.id_zone
+                id_zone: zone[0].id_zone
             }).then(function (line) {
                 resolve(line)
             })
@@ -39,5 +39,7 @@ module.exports= {
                 resolve(line)
             })
         })
-    }
+    },
+
+
 }
