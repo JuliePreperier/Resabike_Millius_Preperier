@@ -34,5 +34,25 @@ module.exports= {
                 resolve(role)
             })
         })
+    },
+
+    getOneRole(body){
+        return new Promise(function (resolve, reject){
+            models.Role.findOne({
+                where: {
+                    id_role: body.id_role
+                }
+            }).then(function(role){
+                resolve(role)
+            })
+        })
+    },
+
+    getAllRole(){
+        return new Promise(function (resolve, reject){
+            models.Role.findAll().then(function(roles){
+                resolve(roles)
+            })
+        })
     }
 }

@@ -38,5 +38,25 @@ module.exports= {
                 resolve(date)
             })
         })
+    },
+
+    getOneDate(body){
+        return new Promise(function (resolve, reject){
+            models.Date.findOne({
+                where: {
+                    id_date: body.id_date
+                }
+            }).then(function(date){
+                resolve(date)
+            })
+        })
+    },
+
+    getAllDate(){
+        return new Promise(function (resolve, reject){
+            models.Date.findAll().then(function(dates){
+                resolve(dates)
+            })
+        })
     }
 }

@@ -34,14 +34,22 @@ module.exports= {
         })
     },
 
-    getZone(body){
+    getOneZone(body){
         return new Promise(function (resolve, reject){
-            models.Zone.findAll({
+            models.Zone.findOne({
                 where: {
                     id_zone: body.id_zone
                 }
             }).then(function(zone){
                 resolve(zone)
+            })
+        })
+    },
+
+    getAllZone(){
+        return new Promise(function (resolve, reject){
+            models.Zone.findAll().then(function(zones){
+                resolve(zones)
             })
         })
     }

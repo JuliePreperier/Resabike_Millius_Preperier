@@ -41,5 +41,25 @@ module.exports= {
                 resolve(personContact)
             })
         })
+    },
+
+    getOnePersonContact(body){
+        return new Promise(function (resolve, reject){
+            models.PersonContact.findOne({
+                where: {
+                    id_personContact: body.id_personContact
+                }
+            }).then(function(personContact){
+                resolve(personContact)
+            })
+        })
+    },
+
+    getAllPersonContact(){
+        return new Promise(function (resolve, reject){
+            models.PersonContact.findAll().then(function(personContacts){
+                resolve(personContacts)
+            })
+        })
     }
 }

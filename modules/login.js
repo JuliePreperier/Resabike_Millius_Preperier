@@ -50,5 +50,25 @@ module.exports= {
                 resolve(login)
             })
         })
+    },
+
+    getOneLogin(body){
+        return new Promise(function (resolve, reject){
+            models.Login.findOne({
+                where: {
+                    id_login: body.id_login
+                }
+            }).then(function(login){
+                resolve(login)
+            })
+        })
+    },
+
+    getAllLogin(){
+        return new Promise(function (resolve, reject){
+            models.Login.findAll().then(function(logins){
+                resolve(logins)
+            })
+        })
     }
 }

@@ -5,9 +5,14 @@ var zoneModule = require('../modules/zone');
 var loginModule = require('../modules/login');
 var lineModule = require('../modules/line');
 
+
 /* GET superadmin page . */
 router.get('/', function(req, res, next) {
-    res.render('superadmin');
+    zoneModule.getAllZone().then((zones) => {
+        lineModule.getAllLine().then((lines) => {
+            res.render('superadmin', {zones: zones, lines: lines});
+        })
+    })
 });
 
 /* POST new zone */
@@ -22,10 +27,10 @@ router.post('/newZone', function(req, res, next){
 
 /*POST new Line*/
 router.post('/newLine', function(req, res, next){
-    zoneModule.getZone(req.body).then((zone) =>{
+    zoneModule.getOneZone(req.body).then((zone) =>{
         lineModule.insertLine(req.body, zone).then(() =>{
-            res.redirect('/superadmin');
-        })
+                res.redirect('/superadmin');
+            })
     })
 });
 

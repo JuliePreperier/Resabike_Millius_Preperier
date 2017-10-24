@@ -52,5 +52,25 @@ module.exports= {
                 resolve(reservation)
             })
         })
+    },
+
+    getOneReservation(body){
+        return new Promise(function (resolve, reject){
+            models.Reservation.findOne({
+                where: {
+                    id_reservation: body.id_reservation
+                }
+            }).then(function(reservation){
+                resolve(reservation)
+            })
+        })
+    },
+
+    getAllReservation(){
+        return new Promise(function (resolve, reject){
+            models.Reservation.findAll().then(function(reservations){
+                resolve(reservations)
+            })
+        })
     }
 }

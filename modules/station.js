@@ -34,5 +34,25 @@ module.exports= {
                 resolve(station)
             })
         })
+    },
+
+    getOneStation(body){
+        return new Promise(function (resolve, reject){
+            models.Station.findOne({
+                where: {
+                    id_station: body.id_station
+                }
+            }).then(function(station){
+                resolve(station)
+            })
+        })
+    },
+
+    getAllStation(){
+        return new Promise(function (resolve, reject){
+            models.Station.findAll().then(function(stations){
+                resolve(stations)
+            })
+        })
     }
 }

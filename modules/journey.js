@@ -35,5 +35,25 @@ module.exports= {
                 resolve(journey)
             })
         })
+    },
+
+    getOneJourney(body){
+        return new Promise(function (resolve, reject){
+            models.Journey.findOne({
+                where: {
+                    id_journey: body.id_journey
+                }
+            }).then(function(journey){
+                resolve(journey)
+            })
+        })
+    },
+
+    getAllJourney(){
+        return new Promise(function (resolve, reject){
+            models.Journey.findAll().then(function(journeys){
+                resolve(journeys)
+            })
+        })
     }
 }
