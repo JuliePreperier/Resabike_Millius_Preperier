@@ -32,11 +32,13 @@ router.post('/newLine', function(req, res, next){
     zoneModule.getOneZone(req.body).then((zone) =>{
         lineModule.insertLine(req.body, zone).then((line) => {
             apiSearch.searchLine(line.fromStation, line.toStation).then((stations) =>{
-                console.log(stations.connections[0].legs[1].stops)                          // LOGS
+                console.log(stations.connections[0].legs[1].stops)
                 stations.connections[0].legs[1].stops.forEach((stop) =>{
-                    stationModule.insertStation(stop).then((station) =>{
-                        lineStationModule.insertLineStation(station,line)
-                    });
+                    stationModule.insertStation(stop,line).then(() =>{ // PEU PAS AJOUTER DANS LA TABLE DE JOINTURE !!! PROBLEME PROMISE
+                        res.redirect('/superadmin');
+                    }) /*.then((station) =>{
+                        lineStationModule.insertLineStation(station,line)*
+                    });*/
                 })
             })
         })
