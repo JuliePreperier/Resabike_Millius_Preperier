@@ -1,9 +1,11 @@
 var express = require('express');
 var router = express.Router();
-var models = require('../models');
 var zoneModule = require('../modules/zone');
 var loginModule = require('../modules/login');
 var lineModule = require('../modules/line');
+var apiSearch = require('../modules/apiJourneyReturnAdmin');
+var stationModule = require('../modules/station');
+var lineStationModule = require('../modules/lineStation');
 
 
 /* GET superadmin page . */
@@ -28,9 +30,16 @@ router.post('/newZone', function(req, res, next){
 /*POST new Line*/
 router.post('/newLine', function(req, res, next){
     zoneModule.getOneZone(req.body).then((zone) =>{
-        lineModule.insertLine(req.body, zone).then(() =>{
-                res.redirect('/superadmin');
+        lineModule.insertLine(req.body, zone).then((line) => {
+            apiSearch.searchLine(line.fromStation, line.toStation).then((stations) =>{
+                console.log(stations.connections[0].legs[1].stops)                          // LOGS
+                stations.connections[0].legs[1].stops.forEach((stop) =>{
+                    stationModule.insertStation(stop).then((station) =>{
+                        lineStationModule.insertLineStation(station,line)
+                    });
+                })
             })
+        })
     })
 });
 

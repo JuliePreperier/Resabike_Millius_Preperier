@@ -1,15 +1,18 @@
 var models = require('../models');
+var lineStationModule = require('../modules/lineStation');
 
 module.exports= {
     /* -- STATION --*/
 
-    insertStation(body){
+    insertStation(body, line){
         return new Promise(function(resolve, reject){
             models.Station.create({
-                stationName: body.stationName,
-                stopId: body.stopId
+                stationName: body.name,
+                stopId: body.stopid
             }).then(function(station){
-                resolve(station)
+                lineStationModule.insertLineStation(station,line).then((lineStation) =>{
+                    resolve(lineStation)
+                })
             })
         })
     },
