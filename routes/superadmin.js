@@ -21,7 +21,7 @@ router.get('/', function(req, res, next) {
 */
 
 router.get('/superadmin_lignes', (req,res,next)=>{
-    zoneModule.getAllLine().then((lines) => {
+    lineModule.getAllLine().then((lines) => {
         res.render('superadmin_lignes',{lines: lines});
     })
 });
@@ -33,7 +33,7 @@ router.get('/superadmin_zones', (req,res,next)=>{
 });
 
 /* POST new zone */
-router.post('/newZone', function(req, res, next){
+router.post('/superadmin_zones', function(req, res, next){
     zoneModule.insertZone(req.body).then((zone) =>{
         loginModule.insertLoginFromSuperAdmin(req.body,zone).then(() =>{
             res.redirect('/superadmin/superadmin_zones');
@@ -41,7 +41,7 @@ router.post('/newZone', function(req, res, next){
     })
 });
 
-router.post('/newLine', function(req,res, next){
+router.post('/superadmin_lignes', function(req,res, next){
     zoneModule.getOneZone(req.body).then((zone) =>{
         apiSearch.searchLine(req.body).then((stations) =>{
             lineModule.insertLine(stations.connections[0], zone).then((line) =>{
