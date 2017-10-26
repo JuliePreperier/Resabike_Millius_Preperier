@@ -6,7 +6,7 @@ var lineModule = require('../modules/line');
 var apiSearch = require('../modules/apiJourneyReturnAdmin');
 var stationModule = require('../modules/station');
 var lineStationModule = require('../modules/lineStation');
-
+var models = require('../models');
 
 
 /* GET superadmin page . */
@@ -64,6 +64,13 @@ router.post('/superadmin_lignes', function(req,res, next){
         })
     })
 });
+
+/*DELETE zone*/
+router.delete('/line',(req, res)=>{
+    let idLine = req.body.id_line;
+    models.Line.destroy({where: {id_line:idLine}})
+});
+
 
 
 module.exports = router;

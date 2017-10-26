@@ -14,6 +14,8 @@ html
         nav
             div.nav-wrapper
                 a.brand-logo(href="#") ResaBike
+                a.button-collapse(href="#", data-activates="mobile-demo")
+                    i.material-icons menu
                 ul#nav-mobile.right.hide-on-med-and-down
                     li
                         a(href="/superadmin/superadmin_reservations") Réservations
@@ -22,7 +24,16 @@ html
                     li
                         a(href="/superadmin/superadmin_lignes") Gestion lignes
                     li
-                        a(href="/login") Login
+                        a(href="/login") Logout
+                ul#mobile-demo.side-nav
+                    li
+                        a(href="/superadmin/superadmin_reservations") Réservations
+                    li
+                        a(href="/superadmin/superadmin_zones") Gestion zones
+                    li
+                        a(href="/superadmin/superadmin_lignes") Gestion lignes
+                    li
+                        a(href="/login") Logout
         block content
 
 
@@ -34,3 +45,5 @@ html
         script(src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js')
         link(href='/stylesheets/jquery-ui.min.css', rel='stylesheet')
         script(type='text/javascript', src='/javascripts/selectquery.js')
+
+
