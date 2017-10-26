@@ -44,23 +44,28 @@ router.post('/superadmin_zones', function(req, res, next){
 router.post('/superadmin_lignes', function(req,res, next){
     zoneModule.getOneZone(req.body).then((zone) =>{
         apiSearch.searchLine(req.body).then((stations) =>{
-            lineModule.insertFindOrCreateLine(stations.connections[0], zone).then((line) =>{
-                stationModule.insertFindOrCreateStation(stations.connections[0].legs[0]).then((stationDep) =>{
-                    lineStationModule.insertLineStation(stationDep,line).then(() =>{
-                        stations.connections[0].legs[1].stops.forEach((stop) =>{
-                            stationModule.insertFindOrCreateStation(stop).then((station) =>{
-                                lineStationModule.insertLineStation(station, line)
+            if(stations.connections[0].legs.length<=2){
+                lineModule.insertFindOrCreateLine(stations.connections[0], zone).then((line) =>{
+                    stationModule.insertFindOrCreateStation(stations.connections[0].legs[0]).then((stationDep) =>{
+                        lineStationModule.insertLineStation(stationDep,line).then(() =>{
+                            stations.connections[0].legs[0].stops.forEach((stop) =>{
+                                stationModule.insertFindOrCreateStation(stop).then((station) =>{
+                                    lineStationModule.insertLineStation(station, line)
+                                })
                             })
-                        })
-                    }).then(() =>{
-                        stationModule.insertFindOrCreateStation(stations.connections[0].legs[2]).then((stationsArr) =>{
-                            lineStationModule.insertLineStation(stationsArr, line).then(() =>{
-                                res.redirect('/superadmin/superadmin_lignes')
+                        }).then(() =>{
+                            stationModule.insertFindOrCreateStation(stations.connections[0].legs[1]).then((stationsArr) =>{
+                                lineStationModule.insertLineStation(stationsArr, line).then(() =>{
+                                    res.redirect('/superadmin/superadmin_lignes')
+                                })
                             })
                         })
                     })
                 })
-            })
+            }
+            else{
+                res.redirect('/superadmin/superadmin_zones')
+            }
         })
     })
 });

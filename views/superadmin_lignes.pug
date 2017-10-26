@@ -1,6 +1,7 @@
 extends layout_superadmin
 
 block content
+    script(src='/javascripts/superadminquery.js')
     h3 Nouvelle ligne
         form(action='/superadmin/superadmin_lignes', method='POST')
             input(type='text', name='fromStation', placeholder='Entrez la station de départ', id='from', onkeydown='autocomp(this.id)')
@@ -16,5 +17,4 @@ block content
         each line in lines
             .zone
                 input(type='text', value=line.lineName)
-                <!-- Mettre qqch pour afficher correctement =) -->
                 button.btn.waves-effect.waves-light(onclick=`deleteLine1('${line.id_line}')`) delete

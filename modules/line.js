@@ -21,7 +21,7 @@ module.exports= {
         return new Promise(function (resolve, reject) {
             models.Line.findOrCreate({
                 where: {
-                    lineName: body.legs[1].line
+                    lineName: body.legs[0].line
                 },
                 defaults: {
                     fromStation: body.from,
