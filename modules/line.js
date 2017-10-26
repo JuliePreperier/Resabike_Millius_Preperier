@@ -17,6 +17,23 @@ module.exports= {
         })
     },
 
+    insertFindOrCreateLine(body, zone){
+        return new Promise(function (resolve, reject) {
+            models.Line.findOrCreate({
+                where: {
+                    lineName: body.legs[1].line
+                },
+                defaults: {
+                    fromStation: body.from,
+                    toStation: body.to,
+                    id_zone: zone.id_zone
+                }
+            }).then(function (line){
+                resolve(line)
+            })
+        })
+    },
+
     deleteLine(body) {
         return new Promise(function (resolve, reject) {
             models.Line.destroy({

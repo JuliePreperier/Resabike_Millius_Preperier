@@ -15,6 +15,21 @@ module.exports= {
         })
     },
 
+    insertFindOrCreateStation(body){
+        return new Promise(function(resolve, reject){
+            models.Station.findOrCreate({
+                where: {
+                    stationName: body.name
+                },
+                defaults: {
+                    stopId: body.stopid
+                }
+            }).then(function(station){
+                resolve(station)
+            })
+        })
+    },
+
     deleteStation(body){
         return new Promise(function(resolve, reject){
             models.Station.destroy({
