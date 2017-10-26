@@ -74,6 +74,7 @@ router.post('/superadmin_lignes', function(req,res, next){
 router.delete('/line',(req, res)=>{
     let idLine = req.body.id_line;
     models.Line.destroy({where: {id_line:idLine}})
+    res.send('ok')
 });
 
 

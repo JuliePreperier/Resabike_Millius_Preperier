@@ -1,3 +1,10 @@
 function deleteLine1(id){
-    superagent.delete(`/superadmin/line`).send({id_line: id})
+    console.log(id)
+    $.ajax({
+        url: "/superadmin/line",
+        method: 'delete',
+        data: {id_line: id}
+    }).done(function(res) {
+       console.log(res)
+    });
 }
