@@ -7,7 +7,7 @@ module.exports= {
         return new Promise(function(resolve, reject){
             models.LineStation.create({
                 id_line: line.id_line,
-                id_station: stations.id_line
+                id_station: station.id_station
             }).then(function(linestation){
                 resolve(linestation)
             })

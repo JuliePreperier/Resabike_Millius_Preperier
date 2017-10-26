@@ -4,15 +4,13 @@ var lineStationModule = require('../modules/lineStation');
 module.exports= {
     /* -- STATION --*/
 
-    insertStation(body, line){
+    insertStation(body){
         return new Promise(function(resolve, reject){
             models.Station.create({
                 stationName: body.name,
                 stopId: body.stopid
             }).then(function(station){
-                lineStationModule.insertLineStation(station,line).then((lineStation) =>{
-                    resolve(lineStation)
-                })
+                resolve(station)
             })
         })
     },
