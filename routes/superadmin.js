@@ -21,9 +21,12 @@ router.get('/', function(req, res, next) {
 */
 
 router.get('/superadmin_lignes', (req,res,next)=>{
-    lineModule.getAllLine().then((lines) => {
-        res.render('superadmin_lignes',{lines: lines});
+    zoneModule.getAllZone().then((zones)=>{
+        lineModule.getAllLine().then((lines) => {
+            res.render('superadmin_lignes',{lines: lines, zones: zones});
+        })
     })
+
 });
 
 router.get('/superadmin_zones', (req,res,next)=>{
