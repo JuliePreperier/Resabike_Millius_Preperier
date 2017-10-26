@@ -1,5 +1,5 @@
-function caca() {
-    $(document).ready(function () {
-        $('select').material_select();
-    });
-}
+
+$(document).ready(function () {
+    console.log("ok");
+    $('select').material_select();
+});
