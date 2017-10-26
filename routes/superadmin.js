@@ -9,6 +9,7 @@ var lineStationModule = require('../modules/lineStation');
 
 
 /* GET superadmin page . */
+/*
 router.get('/', function(req, res, next) {
     zoneModule.getAllZone().then((zones) => {
         lineModule.getAllLine().then((lines) => {
@@ -16,33 +17,28 @@ router.get('/', function(req, res, next) {
         })
     })
 });
+*/
+
+router.get('/superadmin_lignes', (req,res,next)=>{
+    zoneModule.getAllLine().then((lines) => {
+        res.render('superadmin_lignes',{lines: lines});
+    })
+});
+
+router.get('/superadmin_zones', (req,res,next)=>{
+    zoneModule.getAllZone().then((zones) => {
+        res.render('superadmin_zones',{zones: zones});
+    })
+});
 
 /* POST new zone */
 router.post('/newZone', function(req, res, next){
     zoneModule.insertZone(req.body).then((zone) =>{
         loginModule.insertLoginFromSuperAdmin(req.body,zone).then(() =>{
-            res.redirect('/superadmin');
+            res.redirect('/superadmin/superadmin_zones');
         })
     })
 });
-
-/*POST new Line*/
-/*router.post('/newLine', function(req, res, next){
-    zoneModule.getOneZone(req.body).then((zone) =>{
-        lineModule.insertLine(req.body, zone).then((line) => {
-            apiSearch.searchLine(line.fromStation, line.toStation).then((stations) =>{
-                console.log(stations.connections[0].legs[1].stops)
-                stations.connections[0].legs[1].stops.forEach((stop) =>{
-                    stationModule.insertStation(stop).then((station) =>{
-                        lineStationModule.insertLineStation(station,line)
-                    })
-                })
-            }).then(() =>{
-                res.redirect('/superadmin')
-            })
-        })
-    })
-});*/
 
 router.post('/newLine', function(req,res, next){
     zoneModule.getOneZone(req.body).then((zone) =>{

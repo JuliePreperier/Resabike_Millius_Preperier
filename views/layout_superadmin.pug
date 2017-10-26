@@ -1,0 +1,36 @@
+doctype html
+html
+    head
+        //autocompletion script
+        script(src='/javascripts/apiCompletion.js')
+        //Import Google Icon Font
+        link(href='https://fonts.googleapis.com/icon?family=Material+Icons', rel='stylesheet')
+        //Import materialize.css
+        link(type='text/css', rel='stylesheet', href='/stylesheets/materialize.min.css',  media='screen,projection')
+        //Let browser know website is optimized for mobile
+        meta(name='viewport', content='width=device-width, initial-scale=1.0')
+
+    body(bgcolor="#fffde7")
+        nav
+            div.nav-wrapper
+                a.brand-logo(href="#") ResaBike
+                ul#nav-mobile.right.hide-on-med-and-down
+                    li
+                        a(href="/superadmin/superadmin_reservations") Réservations
+                    li
+                        a(href="/superadmin/superadmin_zones") Gestion zones
+                    li
+                        a(href="/superadmin/superadmin_lignes") Gestion lignes
+                    li
+                        a(href="/login") Login
+        block content
+
+
+        //Import jQuery before materialize.js
+        script(type='text/javascript', src='https://code.jquery.com/jquery-3.2.1.min.js')
+        script(type='text/javascript', src='/javascripts/materialize.min.js')
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js')
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js')
+        script(src='https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.13.0/moment.min.js')
+        link(href='/stylesheets/jquery-ui.min.css', rel='stylesheet')
+        script(type='text/javascript', src='/javascripts/selectquery.js')
