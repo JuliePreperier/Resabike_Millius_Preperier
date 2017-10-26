@@ -65,8 +65,6 @@ block content
         #test3.col.s12
             h3 Nouvelle ligne
                 form(action='/superadmin/newLine', method='POST')
-                    input(type='text', name='lineName', placeholder='Entrez le nom de la ligne', autofocus)
-                    br
                     input(type='text', name='fromStation', placeholder='Entrez la station de départ', id='from', onkeydown='autocomp(this.id)')
                     br
                     input(type='text', name='toStation', placeholder='Entrez la station arrivée', id='to', onkeydown='autocomp(this.id)')

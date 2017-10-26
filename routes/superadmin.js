@@ -26,9 +26,8 @@ router.post('/newZone', function(req, res, next){
     })
 });
 
-
 /*POST new Line*/
-router.post('/newLine', function(req, res, next){
+/*router.post('/newLine', function(req, res, next){
     zoneModule.getOneZone(req.body).then((zone) =>{
         lineModule.insertLine(req.body, zone).then((line) => {
             apiSearch.searchLine(line.fromStation, line.toStation).then((stations) =>{
@@ -43,8 +42,31 @@ router.post('/newLine', function(req, res, next){
             })
         })
     })
-});
+});*/
 
+router.post('/newLine', function(req,res, next){
+    zoneModule.getOneZone(req.body).then((zone) =>{
+        apiSearch.searchLine(req.body).then((stations) =>{
+            lineModule.insertLine(stations.connections[0], zone).then((line) =>{
+                stationModule.insertStation(stations.connections[0].legs[0]).then((stationDep) =>{
+                    lineStationModule.insertLineStation(stationDep,line).then(() =>{
+                        stations.connections[0].legs[1].stops.forEach((stop) =>{
+                            stationModule.insertStation(stop).then((station) =>{
+                                lineStationModule.insertLineStation(station, line)
+                            })
+                        })
+                    }).then(() =>{
+                        stationModule.insertStation(stations.connections[0].legs[2]).then((stationsArr) =>{
+                            lineStationModule.insertLineStation(stationsArr, line).then(() =>{
+                                res.redirect('/superadmin')
+                            })
+                        })
+                    })
+                })
+            })
+        })
+    })
+});
 
 
 module.exports = router;
