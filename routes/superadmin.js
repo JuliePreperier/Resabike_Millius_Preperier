@@ -55,7 +55,7 @@ router.post('/newLine', function(req,res, next){
                     }).then(() =>{
                         stationModule.insertStation(stations.connections[0].legs[2]).then((stationsArr) =>{
                             lineStationModule.insertLineStation(stationsArr, line).then(() =>{
-                                res.redirect('/superadmin')
+                                res.redirect('/superadmin/superadmin_lignes')
                             })
                         })
                     })
