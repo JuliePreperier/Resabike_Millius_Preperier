@@ -27,10 +27,12 @@ router.get('/superadmin_zones', (req,res,next)=>{
 
 /* POST new zone */
 router.post('/superadmin_zones', function(req, res, next){
-    zoneModule.insertZone(req.body).then((zone) =>{
-        loginModule.insertLoginFromSuperAdmin(req.body,zone).then(() =>{
-            personContactModule.insertEmptyPersonContact(zone).then(() =>{
-                res.redirect('/superadmin/superadmin_zones');
+    zoneModule.insertZone(req.body).then((zone) =>{ //insertion d'une nouvelle zone dans DB
+        loginModule.insertLoginFromSuperAdmin(req.body,zone).then(() =>{ // insertion d'un zone admin login dans DB pour la zone créée
+            personContactModule.insertEmptyPersonContact(zone).then(() =>{ // insertion d'une personContact vide dans DB pour la zone créée
+                loginModule.insertdefaultLoginDriver(zone).then(() =>{ // insertion d'un login bus driver par defaut dans la DB pour la zone créée
+                    res.redirect('/superadmin/superadmin_zones');
+                })
             })
         })
     })

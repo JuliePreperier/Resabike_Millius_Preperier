@@ -16,11 +16,11 @@ module.exports= {
         })
     },
 
-    insertLoginFromZoneAdmin(body, zone){
+    insertdefaultLoginDriver(zone){ // insere un login de bus driver par défaut lors de la création de la zone par le super admin
         return new Promise(function(resolve, reject){
             models.Login.create({
-                username: body.username,
-                password: body.password,
+                username: 'chauffeur'+zone.id_zone,
+                password: '1234',
                 id_zone: zone.id_zone,
                 id_role: '3' // ICI IL FAUDRA METTRE LE BON ID: ROLE = BUS DRIVER
             }).then(function(login){
