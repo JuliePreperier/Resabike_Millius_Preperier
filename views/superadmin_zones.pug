@@ -14,9 +14,56 @@ block content
             br
             br
     h3 Zones existantes
-        each zone in zones
-            .zone
-                input(type='text', value=zone.zoneName)
-                button.right.btn.waves-effect.waves-light(onclick='deleteZone(' + zone.id_zone + ')') delete
-                <!-- Mettre qqch pour afficher correctement =) -->
+    table.highlight
+        thead
+            tr
+                th Zone
+                th Login personne contact
+                th
+                th
+
+        tbody
+            each zone in zones
+                tr
+                    .zone
+                        td
+                            value=zone.zoneName
+                        td
+
+                        td
+                            button.right.btn.waves-effect.waves-light(onclick='deleteZone(' + zone.id_zone + ')') Delete
+                            // Modal Trigger
+                            a.waves-effect.waves-light.right.btn.modal-trigger(href="#modal1") Details/Modifier
+                            // Modal Structure
+                            #modal1.modal
+                                .modal-content
+                                    h4 Modification de la zone
+                                    p
+                                        h5 Détails zone
+                                        label(for='zoneName') Nom zone
+                                        input(type='text', name='zoneName', placeholder=zone.zoneName, autofocus)
+                                        br
+                                        label(for='username') Login
+                                        //input(type='text', name='username', placeholder=login.username, autofocus)
+                                        br
+                                        label(for='password') Password
+                                        //input(type='text', name='password', placeholder=login.password, autofocus)
+                                        br
+                                        h5 Détails personne contact
+                                        label(for='firstName') Prénom
+                                        //input(type='text', name='firstName', placeholder=personeContact.firstName, autofocus)
+                                        br
+                                        label(for='lastName') Nom de famille
+                                        //input(type='text', name='lastName', placeholder=personeContact.lastName, autofocus)
+                                        br
+                                        label(for='telephon') N° téléphone
+                                        //input(type='text', name='telephon', placeholder=personeContact.telephon, autofocus)
+                                        br
+                                        label(for='email') Email
+                                        //input(type='text', name='email', placeholder=personeContact.email, autofocus)
+                                        br
+                                .modal-footer
+                                    a.modal-action.modal-close.waves-effect.waves-green.btn-flat(href="#!") Enregistrer
+
+
 
