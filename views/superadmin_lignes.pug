@@ -8,14 +8,14 @@ block content
             br
             input(type='text', name='toStation', placeholder='Entrez la station arrivée', class="autocomplete recherche")
             br
-            input(type='text', name='id_zone', placeholder='Entrez zone concernée')
-            //.input-field.col.s12
-                select
+            //input(type='text', name='id_zone', placeholder='Entrez zone concernée')
+            .input-field.col.s12
+                select(name='id_zone')
                     option(value="", disabled="", selected="") Choisir zone concernée
                     each zone in zones
                         .zone
                             option(value=zone.id_zone)
-                                value=zone.zoneName
+                                label=zone.zoneName
 
             br
             button.btn.waves-effect.waves-light(type="submit", name="action") Enregistrer
@@ -32,18 +32,18 @@ block content
                 th
 
         tbody
-            tr
             each line in lines
-                .zone
-                    td
-                        value=line.lineName
-                    td
-                        value=line.fromStation
-                    td
-                        value=line.toStation
-                    td
-                        value=line.zoneLine.zoneName
-                    td
-                        button.right.btn.waves-effect.waves-light(onclick='deleteLine(' + line.id_line + ')') Delete
+                tr
+                    .zone
+                        td
+                            value=line.lineName
+                        td
+                            value=line.fromStation
+                        td
+                            value=line.toStation
+                        td
+                            value=line.zoneLine.zoneName
+                        td
+                            button.right.btn.waves-effect.waves-light(onclick='deleteLine(' + line.id_line + ')') Delete
 
 

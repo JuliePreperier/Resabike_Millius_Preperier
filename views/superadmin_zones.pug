@@ -19,7 +19,7 @@ block content
             tr
                 th Zone
                 th Login personne contact
-                th
+                th Chauffeur de bus
                 th
 
         tbody
@@ -30,6 +30,8 @@ block content
                             value=zone.zoneName
                         td
                             value=zone.zoneLogin[0].username
+                        //td
+                            value=zone.zoneLogin[1].username
                         td
                             button.right.btn.waves-effect.waves-light(onclick='deleteZone(' + zone.id_zone + ')') Delete
                             // Modal Trigger
