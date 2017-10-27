@@ -92,6 +92,4 @@ router.delete('/zones',(req, res)=>{
 
 
 
-
-
 module.exports = router;
