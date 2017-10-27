@@ -15,13 +15,25 @@ block content
                     each zone in zones
                         .zone
                             option(value=zone.id_zone)
+                                zone.zoneName
 
             br
             button.btn.waves-effect.waves-light(type="submit", name="action") Enregistrer
             br
             br
     h3 Lignes existantes
-        each line in lines
-            .zone
-                input(type='text', value=line.lineName)
-                button.btn.waves-effect.waves-light(onclick='deleteLine1('+line.id_line+')') delete
+    table.highlight
+        thead
+            tr
+                th Ligne
+                th Station-départ
+                th Station-arrivée
+                th Nom zone
+        tbody
+            tr
+            each line in lines
+                .zone
+                    td
+                        input(type='text', value=line.lineName)
+                        button.btn.waves-effect.waves-light(onclick='deleteLine1(' + line.id_line + ')') delete
+
