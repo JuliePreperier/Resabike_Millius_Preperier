@@ -84,11 +84,11 @@ router.delete('/line',(req, res)=>{
     })
 });
 
-/*DELETE line*/
+/*DELETE line
 router.delete('/zones',(req, res)=>{
     let idZone = req.body.id_zone;
     zoneModule.deleteZone()
-});
+});*/
 
 
 
