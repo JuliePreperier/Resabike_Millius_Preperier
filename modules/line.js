@@ -98,6 +98,22 @@ module.exports= {
                 resolve(lines)
             })
         })
+    },
+
+    getAllLineWithZone(){
+        return new Promise(function(resolve, reject){
+            models.Line.findAll({
+                include: [{
+                    model: models.Zone,
+                    as: 'zone',
+                    where: {
+                        id_zone: {$col: 'Line.id_zone'}
+                    }
+                }]
+            }).then(function(lines){
+                resolve(lines)
+            })
+        })
     }
 
 }

@@ -8,12 +8,11 @@ var stationModule = require('../modules/station');
 var lineStationModule = require('../modules/lineStation');
 var personContactModule = require('../modules/personContact');
 
-
 /* GET superadmin page . */
 
 router.get('/superadmin_lignes', (req,res,next)=>{
     zoneModule.getAllZone().then((zones)=>{
-        lineModule.getAllLine().then((lines) => {
+        lineModule.getAllLineWithZone().then((lines) => {
             res.render('superadmin_lignes',{lines: lines, zones: zones});
         })
     })

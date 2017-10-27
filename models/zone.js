@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     Zone.associate = (models) => {
-        Zone.hasOne(models.PersonContact, {foreignKey: {name:'id_zone', allowNull: false}});
+        Zone.hasOne(models.PersonContact, {foreignKey: {name:'id_zone', allowNull: false}, as:'zone'});
         Zone.hasMany(models.Login, {foreignKey: {name: 'id_zone', allowNull: false}});
         Zone.hasMany(models.Line, {foreignKey: {name:'id_zone', allowNull: false}});
     }

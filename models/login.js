@@ -16,8 +16,8 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     Login.associate = (models) => {
-        Login.belongsTo(models.Zone, {foreignKey: {name: 'id_zone', allowNull: false}});
-        Login.belongsTo(models.Role, {foreignKey: {name:'id_role', allowNull: false}});
+        Login.belongsTo(models.Zone, {foreignKey: {name: 'id_zone', allowNull: false}, as:'zone'});
+        Login.belongsTo(models.Role, {foreignKey: {name:'id_role', allowNull: false}, as:'role'});
     }
 
     return Login
