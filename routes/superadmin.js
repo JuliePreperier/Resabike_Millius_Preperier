@@ -20,7 +20,7 @@ router.get('/superadmin_lignes', (req,res,next)=>{
 });
 
 router.get('/superadmin_zones', (req,res,next)=>{
-    zoneModule.getAllZone().then((zones) => {
+    zoneModule.getAllZoneWithInfos().then((zones) => {
         res.render('superadmin_zones',{zones: zones});
     })
 });
@@ -29,7 +29,9 @@ router.get('/superadmin_zones', (req,res,next)=>{
 router.post('/superadmin_zones', function(req, res, next){
     zoneModule.insertZone(req.body).then((zone) =>{
         loginModule.insertLoginFromSuperAdmin(req.body,zone).then(() =>{
-            res.redirect('/superadmin/superadmin_zones');
+            personContactModule.insertEmptyPersonContact(zone).then(() =>{
+                res.redirect('/superadmin/superadmin_zones');
+            })
         })
     })
 });

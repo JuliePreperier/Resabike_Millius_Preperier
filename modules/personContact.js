@@ -18,6 +18,20 @@ module.exports= {
         })
     },
 
+    insertEmptyPersonContact(zone) {
+        return new Promise(function (resolve, reject) {
+            models.PersonContact.create({
+                lastName: '',
+                firstName: '',
+                email: '',
+                telephon: '',
+                id_zone: zone.id_zone
+            }).then(function (personcontact) {
+                resolve(personcontact) // c'est ce qu'il va se passer si c'est juste
+            })
+        })
+    },
+
     deletePersonContact(body) {
         return new Promise(function (resolve, reject) {
             models.PersonContact.destroy({

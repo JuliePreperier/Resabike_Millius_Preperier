@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
         }
     });
     Station.associate = (models) => {
-        Station.hasMany(models.LineStation, {foreignKey: {name:'id_station', allowNull: false}});
+        Station.hasMany(models.LineStation, {foreignKey: {name:'id_station', allowNull: false}, as:'stationLineStation'});
     }
 
 

@@ -55,5 +55,26 @@ module.exports= {
         })
     },
 
+    getAllZoneWithInfos(){
+        return new Promise(function (resolve, reject){
+            models.Zone.findAll({
+                include: [{
+                    model: models.Login,
+                    as: 'zoneLogin',
+                    where: {
+                        id_zone: {$col: 'Zone.id_zone'}
+                    },
+                },{
+                    model: models.PersonContact,
+                    as: 'zonePersonContact',
+                    where: {
+                        id_zone: {$col: 'Zone.id_zone'}
+                    }
+                }]
+            }).then(function(zones){
+                resolve(zones)
+            })
+        })
+    }
 
 }

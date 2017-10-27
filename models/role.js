@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     Role.associate = (models) => {
-        Role.hasMany(models.Login, {foreignKey: {name:'id_role', allowNull: false}});
+        Role.hasMany(models.Login, {foreignKey: {name:'id_role', allowNull: false}, as:'roleLogin'});
     }
 
 

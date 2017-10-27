@@ -7,23 +7,23 @@ module.exports = (sequelize, DataTypes) =>{
         },
         firstName: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
         },
         lastName: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
         },
         telephon: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
         },
         email: {
             type: DataTypes.STRING,
-            allowNull: false
+            allowNull: true
         }
     });
     PersonContact.associate = (models) => {
-        PersonContact.belongsTo(models.Zone, {foreignKey: {name:'id_zone', allowNull: false}, as:'zone'});
+        PersonContact.belongsTo(models.Zone, {foreignKey: {name:'id_zone', allowNull: false}, as:'zonePersonContact'});
     }
 
 

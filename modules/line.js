@@ -105,7 +105,7 @@ module.exports= {
             models.Line.findAll({
                 include: [{
                     model: models.Zone,
-                    as: 'zone',
+                    as: 'zoneLine',
                     where: {
                         id_zone: {$col: 'Line.id_zone'}
                     }
