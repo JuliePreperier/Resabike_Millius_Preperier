@@ -37,7 +37,7 @@ block content
                             // Modal Trigger
                             a.waves-effect.waves-light.right.btn.modal-trigger(href="#modal1") Details/Modifier
                             // Modal Structure
-                            #modal1.modal
+                            #modal1.modal.modal-fixed-footer
                                 .modal-content
                                     h4 Modification de la zone
                                     p
@@ -63,6 +63,13 @@ block content
                                         br
                                         label(for='email') Email
                                         input(type='text', name='email', placeholder=zone.zonePersonContact.email, autofocus)
+                                        br
+                                        h5 Détails chauffeur de bus
+                                        label(for='username') Login
+                                        input(type='text', name='username', placeholder=zone.zoneLogin[1].username, autofocus)
+                                        br
+                                        label(for='password') Password
+                                        input(type='text', name='password', placeholder=zone.zoneLogin[1].password, autofocus)
                                         br
                                 .modal-footer
                                     a.modal-action.modal-close.waves-effect.waves-green.btn-flat(href="#!") Enregistrer
