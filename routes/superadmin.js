@@ -9,17 +9,7 @@ var lineStationModule = require('../modules/lineStation');
 var personContactModule = require('../modules/personContact');
 
 
-
 /* GET superadmin page . */
-/*
-router.get('/', function(req, res, next) {
-    zoneModule.getAllZone().then((zones) => {
-        lineModule.getAllLine().then((lines) => {
-            res.render('superadmin', {zones: zones, lines: lines});
-        })
-    })
-});
-*/
 
 router.get('/superadmin_lignes', (req,res,next)=>{
     zoneModule.getAllZone().then((zones)=>{
@@ -75,32 +65,32 @@ router.post('/superadmin_lignes', function(req,res, next){
 });
 
 /*DELETE line*/
-router.delete('/line',(req, res)=>{
+router.delete('/superadmin_lignes',(req, res)=>{
     let idLine = req.body.id_line;
     lineModule.deleteLine(idLine).then(() =>{
-        lineStationModule.deleteLineStationWithLine(idLine).then(() =>{
-            res.redirect('/superadmin/superadmin_lignes');
-        })
+        lineStationModule.deleteLineStationWithLine(idLine)
+    }).then(()=>{
+        res.send(idLine);
     })
 });
 
 /*DELETE zone*/
-router.delete('/zones',(req, res)=>{
+router.delete('/superadmin_zones',(req, res)=>{
     let idZone = req.body.id_zone;
-    zoneModule.deleteZone(idZone).then(() =>{
-        loginModule.deleteLoginWithZone(idZone).then(() =>{
-            lineModule.findLineWithZone(idZone).then((lines) =>{
-                lines.forEach((line) =>{
-                    lineStationModule.deleteLineStationWithLine(line.id_line)
-                })
-            }).then(() =>{
-                lineModule.deleteLineWithZone(idZone).then(() =>{
-                    personContactModule.deletePersonContactWithZone(idZone).then(() =>{
-                        res.redirect('/superadmin/superadmin_zones');
-                    })
+    loginModule.deleteLoginWithZone(idZone).then(() =>{
+        lineModule.findLineWithZone(idZone).then((lines) =>{
+            lines.forEach((line) =>{
+                lineStationModule.deleteLineStationWithLine(line.id_line)
+            })
+        }).then(() =>{
+            lineModule.deleteLineWithZone(idZone).then(() =>{
+                personContactModule.deletePersonContactWithZone(idZone).then(() =>{
+                    zoneModule.deleteZone(idZone)
                 })
             })
         })
+    }).then(()=>{
+        res.send(idZone);
     })
 });
 

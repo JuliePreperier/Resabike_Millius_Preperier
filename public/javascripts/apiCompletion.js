@@ -3,9 +3,6 @@ $(document).ready(function() {
         var list = {};
         var input = $(this).val();
         getData(input, list);
-        $('input.recherche').change(function() {
-            $(this).val(Object.keys(list)[0]);
-        })
     })
     Materialize.updateTextFields();
 })
