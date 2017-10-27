@@ -14,10 +14,20 @@ module.exports= {
         })
     },
 
-    deleteLineStation(body){
+    deleteLineStationWithLine(idLine){
         return new Promise(function(resolve, reject){
             models.LineStation.destroy({
-                where:{id_line: body.id_line, id_station: body.id_station}
+                where:{id_line: idLine}
+            }).then(function(nbRow){
+                resolve(nbRow)
+            })
+        })
+    },
+
+    deleteLineStationWithStation(idStation){
+        return new Promise(function(resolve, reject){
+            models.LineStation.destroy({
+                where:{id_station: idStation}
             }).then(function(nbRow){
                 resolve(nbRow)
             })

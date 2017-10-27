@@ -28,6 +28,16 @@ module.exports= {
         })
     },
 
+    deletePersonContactWithZone(idZone) {
+        return new Promise(function (resolve, reject) {
+            models.PersonContact.destroy({
+                where: {id_zone: idZone}
+            }).then(function (nbRow) {
+                resolve(nbRow)
+            })
+        })
+    },
+
     updatePersonContact(body) {
         return new Promise(function (resolve, reject) {
             models.PersonContact.update({
