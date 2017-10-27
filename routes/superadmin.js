@@ -84,11 +84,25 @@ router.delete('/line',(req, res)=>{
     })
 });
 
-/*DELETE line
+/*DELETE zone*/
 router.delete('/zones',(req, res)=>{
     let idZone = req.body.id_zone;
-    zoneModule.deleteZone()
-});*/.
+    zoneModule.deleteZone(idZone).then(() =>{
+        loginModule.deleteLoginWithZone(idZone).then(() =>{
+            lineModule.findLineWithZone(idZone).then((lines) =>{
+                lines.forEach((line) =>{
+                    lineStationModule.deleteLineStationWithLine(line.id_line)
+                })
+            }).then(() =>{
+                lineModule.deleteLineWithZone(idZone).then(() =>{
+                    personContactModule.deletePersonContactWithZone(idZone).then(() =>{
+                        res.redirect('/superadmin/superadmin_zones');
+                    })
+                })
+            })
+        })
+    })
+});
 
 
 

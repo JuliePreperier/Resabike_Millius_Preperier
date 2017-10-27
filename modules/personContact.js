@@ -65,6 +65,18 @@ module.exports= {
         })
     },
 
+    findPersonContactWithZone(idZone){
+        return new Promise(function (resolve, reject){
+            models.PersonContact.findOne({
+                where: {
+                    id_zone: idZone
+                }
+            }).then(function(personContact){
+                resolve(personContact)
+            })
+        })
+    },
+
     getAllPersonContact(){
         return new Promise(function (resolve, reject){
             models.PersonContact.findAll().then(function(personContacts){
