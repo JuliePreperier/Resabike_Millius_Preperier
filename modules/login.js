@@ -39,6 +39,16 @@ module.exports= {
         })
     },
 
+    deleteLoginWithZone(idZone){
+        return new Promise(function(resolve, reject){
+            models.Login.destroy({
+                where:{id_zone: idZone}
+            }).then(function(nbRow){
+                resolve(nbRow)
+            })
+        })
+    },
+
     updateLogin(body){
         return new Promise(function(resolve, reject){
             models.Login.update({

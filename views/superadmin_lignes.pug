@@ -1,12 +1,12 @@
 extends layout_superadmin
 
 block content
-    script(src='/javascripts/superadminquery.js')
+
     h3 Nouvelle ligne
         form(action='/superadmin/superadmin_lignes', method='POST')
-            input(type='text', name='fromStation', placeholder='Entrez la station de départ', id='from', onkeydown='autocomp(this.id)')
+            input(type='text', name='fromStation', placeholder='Entrez la station de départ', class="autocomplete recherche")
             br
-            input(type='text', name='toStation', placeholder='Entrez la station arrivée', id='to', onkeydown='autocomp(this.id)')
+            input(type='text', name='toStation', placeholder='Entrez la station arrivée', class="autocomplete recherche")
             br
             input(type='text', name='id_zone', placeholder='Entrez zone concernée')
             .input-field.col.s12
@@ -24,4 +24,4 @@ block content
         each line in lines
             .zone
                 input(type='text', value=line.lineName)
-                button.btn.waves-effect.waves-light(onclick='deleteLine1('+line.id_line+')') delete
+                button.btn.waves-effect.waves-light(onclick='deleteLine('+line.id_line+')') delete

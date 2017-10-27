@@ -12,15 +12,16 @@ module.exports= {
         })
     },
 
-    deleteZone(body){
+    deleteZone(idZone){
         return new Promise(function(resolve, reject){
             models.Zone.destroy({
-                where:{id_zone: body.id_zone}
+                where:{id_zone: idZone}
             }).then(function(nbRow){
                 resolve(nbRow)
             })
         })
     },
+
 
     updateZone(body){
         return new Promise(function(resolve, reject){

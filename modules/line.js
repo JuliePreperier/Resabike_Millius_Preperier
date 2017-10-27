@@ -34,10 +34,20 @@ module.exports= {
         })
     },
 
-    deleteLine(body) {
+    deleteLine(idLine) {
         return new Promise(function (resolve, reject) {
             models.Line.destroy({
-                where: {id_line: body.id_line}
+                where: {id_line: idLine}
+            }).then(function (nbRow) {
+                resolve(nbRow)
+            })
+        })
+    },
+
+    deleteLineWithZone(idZone) {
+        return new Promise(function (resolve, reject) {
+            models.Line.destroy({
+                where: {id_zone: idZone}
             }).then(function (nbRow) {
                 resolve(nbRow)
             })

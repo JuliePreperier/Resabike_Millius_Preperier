@@ -6,7 +6,8 @@ var lineModule = require('../modules/line');
 var apiSearch = require('../modules/apiJourneyReturnAdmin');
 var stationModule = require('../modules/station');
 var lineStationModule = require('../modules/lineStation');
-var models = require('../models');
+var personContactModule = require('../modules/personContact');
+
 
 
 /* GET superadmin page . */
@@ -70,11 +71,20 @@ router.post('/superadmin_lignes', function(req,res, next){
     })
 });
 
-/*DELETE zone*/
+/*DELETE line*/
 router.delete('/line',(req, res)=>{
     let idLine = req.body.id_line;
-    models.Line.destroy({where: {id_line:idLine}})
-    res.send('ok')
+    lineModule.deleteLine(idLine).then(() =>{
+        lineStationModule.deleteLineStationWithLine(idLine).then(() =>{
+            res.redirect('/superadmin/superadmin_lignes');
+        })
+    })
+});
+
+/*DELETE line*/
+router.delete('/zones',(req, res)=>{
+    let idZone = req.body.id_zone;
+    zoneModule.deleteZone()
 });
 
 

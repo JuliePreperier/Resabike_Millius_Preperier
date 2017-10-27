@@ -1,4 +1,4 @@
-function deleteLine1(id){
+function deleteLine(id){
     console.log(id)
     $.ajax({
         url: "/superadmin/line",
