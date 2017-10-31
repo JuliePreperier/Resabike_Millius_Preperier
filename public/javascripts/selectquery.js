@@ -4,6 +4,7 @@ $(document).ready(function () {
     $(".button-collapse").sideNav();
     $('.modal#modaleditzone').modal({
         ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
+            var idZone = trigger.data("idzone");
             var zoneName = trigger.data("zonename");
             var zoneUsername = trigger.data("zoneusername");
             var zonePassword = trigger.data("zonepassword");
@@ -13,6 +14,7 @@ $(document).ready(function () {
             var email = trigger.data("email");
             var busdriverUsername = trigger.data("busdriverusername");
             var busdriverPassword = trigger.data("busdriverpassword");
+            modal.find('input[id="idZone"]').val(idZone);
             modal.find('input[id="zoneName"]').val(zoneName);
             modal.find('input[id="zoneUsername"]').val(zoneUsername);
             modal.find('input[id="zonePassword"]').val(zonePassword);

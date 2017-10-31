@@ -99,7 +99,7 @@ router.delete('/superadmin_zones',(req, res)=>{
 
 /*Update infos*/
 router.put('/superadmin_zones',(req, res) =>{
-    zoneModule.updateZoneFromModal(req.id_zone, req.zoneName).then((zone) =>{
+    zoneModule.updateZoneFromModal(req.body.idZone, req.body.zoneName).then((zone) =>{
         res.redirect('/superadmin/superadmin_zones')
     })
 });

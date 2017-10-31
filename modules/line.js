@@ -100,6 +100,7 @@ module.exports= {
         })
     },
 
+
     getAllLineWithZone(){
         return new Promise(function(resolve, reject){
             models.Line.findAll({

@@ -58,6 +58,18 @@ module.exports= {
         })
     },
 
+    getOneZoneWithId(idZone){
+        return new Promise(function (resolve, reject){
+            models.Zone.findOne({
+                where: {
+                    id_zone: idZone
+                }
+            }).then(function(zone){
+                resolve(zone)
+            })
+        })
+    },
+
     findZone(idZone){
         return new Promise(function (resolve, reject){
             models.Zone.findOne({
