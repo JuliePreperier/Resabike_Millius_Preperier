@@ -30,26 +30,28 @@ block content
                             value=zone.zoneName
                         td
                             value=zone.zoneLogin[0].username
-                        //td
+                        td
                             value=zone.zoneLogin[1].username
                         td
                             button.right.btn.waves-effect.waves-light(onclick='deleteZone(' + zone.id_zone + ')') Delete
                             // Modal Trigger
-                            a.waves-effect.waves-light.right.btn.modal-trigger(href="#modal1") Details/Modifier
+                            a.waves-effect.waves-light.right.btn.modal-trigger(href="#modaleditzone", data-zoneName=zone.zoneName, data-zoneUsername=zone.zoneLogin[0].username, data-zonePassword=zone.zoneLogin[0].password, data-firstname=zone.zonePersonContact.firstName, data-lastname=zone.zonePersonContact.lastName, data-telephon=zone.zonePersonContact.telephon, data-email=zone.zonePersonContact.email, data-busdriverUsername=zone.zoneLogin[1].username, data-busdriverPassword=zone.zoneLogin[1].password) Details/Modifier
                             // Modal Structure
-                            #modal1.modal.modal-fixed-footer
+                            #modaleditzone.modal.modal-fixed-footer
                                 .modal-content
+                                    alert("test")
+
                                     h4 Modification de la zone
                                     p
                                         h5 Détails zone
                                         label(for='zoneName') Nom zone
-                                        input(type='text', name='zoneName', placeholder=zone.zoneName, autofocus)
+                                        input(type='text', id="zoneName", autofocus)
                                         br
                                         label(for='username') Login
-                                        input(type='text', name='username', placeholder=zone.zoneLogin[0].username, autofocus)
+                                        input(type='text', id="zoneUsername", autofocus)
                                         br
                                         label(for='password') Password
-                                        input(type='text', name='password', placeholder=zone.zoneLogin[0].password, autofocus)
+                                        input(type='text', id="zonePassword", autofocus)
                                         br
                                         h5 Détails personne contact
                                         label(for='firstName') Prénom
