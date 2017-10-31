@@ -29,16 +29,17 @@ function deleteZone(id){
 }
 
 function updateZoneInfos(){
-    var idZone = $(document.getElementsById('id_zone')).value();
-    var zoneName = $(document.getElementsById('zoneName')).value();
-    var zoneUsername = $(document.getElementsById('zoneUsername')).value();
-    var zonePassword = $(document.getElementsById('zonePassword')).value();
-    var firstName = $(document.getElementsById('firstName')).value();
-    var lastName = $(document.getElementsById('lastName')).value();
-    var telephon = $(document.getElementsById('telephon')).value();
-    var email = $(document.getElementsById('email')).value();
-    var busdriverUsername = $(document.getElementsById('busdriverUsername')).value();
-    var busdriverPassword = $(document.getElementsById('busdriverPassword')).value();
+    alert($('#zoneName').val());
+    var idZone = $('#id_zone').val();
+    var zoneName = $('#zoneName').val();
+    var zoneUsername = $('#zoneUsername').val();
+    var zonePassword = $('#zonePassword').val();
+    var firstName = $('#firstName').val();
+    var lastName = $('#lastName').val();
+    var telephon = $('#telephon').val();
+    var email = $('#email').val();
+    var busdriverUsername = $('#busdriverUsername').val();
+    var busdriverPassword = $('#busdriverPassword').val();
 
 
     $.ajax({
@@ -46,7 +47,8 @@ function updateZoneInfos(){
         type: 'PUT',
         data: {idZone: idZone, zoneName: zoneName, zoneUsername: zoneUsername, zonePassword: zonePassword, firstName: firstName, lastName: lastName, telephon: telephon, email: email, busdriverUsername: busdriverUsername, busdriverPassword: busdriverPassword},
         success: function(data) {
-            console.log(data)
+            console.log(data);
+            alert("yeahdfjafaoifja");
             setTimeout(function(){
                 window.location.reload(true);
             },500);

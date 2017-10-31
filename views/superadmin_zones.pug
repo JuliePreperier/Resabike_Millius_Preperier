@@ -35,7 +35,7 @@ block content
                         td
                             button.right.btn.waves-effect.waves-light(onclick='deleteZone(' + zone.id_zone + ')') Delete
                             // Modal Trigger
-                            a.waves-effect.waves-light.right.btn.modal-trigger(href="#modaleditzone", data-zoneName=zone.zoneName, data-zoneUsername=zone.zoneLogin[0].username, data-zonePassword=zone.zoneLogin[0].password, data-firstname=zone.zonePersonContact.firstName, data-lastname=zone.zonePersonContact.lastName, data-telephon=zone.zonePersonContact.telephon, data-email=zone.zonePersonContact.email, data-busdriverUsername=zone.zoneLogin[1].username, data-busdriverPassword=zone.zoneLogin[1].password) Details/Modifier
+                            a(href="#modaleditzone", data-zonename=zone.zoneName, data-zoneusername=zone.zoneLogin[0].username, data-zonepassword=zone.zoneLogin[0].password, data-firstname=zone.zonePersonContact.firstName, data-lastname=zone.zonePersonContact.lastName, data-telephon=zone.zonePersonContact.telephon, data-email=zone.zonePersonContact.email, data-busdriverusername=zone.zoneLogin[1].username, data-busdriverpassword=zone.zoneLogin[1].password).waves-effect.waves-light.right.btn.modal-trigger Details/Modifier
                             // Modal Structure
                             #modaleditzone.modal.modal-fixed-footer
                                 .modal-content
