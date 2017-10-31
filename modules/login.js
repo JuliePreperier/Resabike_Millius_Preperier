@@ -62,11 +62,47 @@ module.exports= {
         })
     },
 
+    updateLoginZoneAdminFromModal(body){
+        return new Promise(function(resolve, reject){
+            models.Login.update({
+                    username: body.usernameZoneAdmin,
+                    password: body.passwordZoneAdmin},
+                {where:{id_login: body.id_login}}
+            ).then(function(login){
+                resolve(login)
+            })
+        })
+    },
+
+    updateLoginBusDriverFromModal(body){
+        return new Promise(function(resolve, reject){
+            models.Login.update({
+                    username: body.usernameBusDriver,
+                    password: body.passwordBusDriver},
+                {where:{id_login: body.id_login}}
+            ).then(function(login){
+                resolve(login)
+            })
+        })
+    },
+
     getOneLogin(body){
         return new Promise(function (resolve, reject){
             models.Login.findOne({
                 where: {
                     id_login: body.id_login
+                }
+            }).then(function(login){
+                resolve(login)
+            })
+        })
+    },
+
+    findLoginWithZone(idZone){
+        return new Promise(function (resolve, reject){
+            models.Login.findOne({
+                where: {
+                    id_zone: idZone
                 }
             }).then(function(login){
                 resolve(login)

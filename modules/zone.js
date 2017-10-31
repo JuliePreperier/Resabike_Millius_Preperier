@@ -23,13 +23,24 @@ module.exports= {
     },
 
 
-    updateZone(body){
+    updateZone(body, idZone){
         return new Promise(function(resolve, reject){
             models.Zone.update({
                     zoneName: body.zoneName,
                     id_personContact: body.personcontact.id_personContact},
-                {where:{id_zone: body.id_zone}}
+                {where:{id_zone: idZone}}
             ).then(function(zone){
+                resolve(zone)
+            })
+        })
+    },
+
+    updateZoneFromModal(idZone, zoneName){
+        return new Promise(function(resolve, reject){
+            models.Zone.update({
+                zoneName: zoneName},
+            {where: {id_zone: idZone}
+            }).then(function(zone){
                 resolve(zone)
             })
         })
@@ -40,6 +51,18 @@ module.exports= {
             models.Zone.findOne({
                 where: {
                     id_zone: body.id_zone
+                }
+            }).then(function(zone){
+                resolve(zone)
+            })
+        })
+    },
+
+    findZone(idZone){
+        return new Promise(function (resolve, reject){
+            models.Zone.findOne({
+                where: {
+                    id_zone: idZone
                 }
             }).then(function(zone){
                 resolve(zone)
@@ -63,7 +86,7 @@ module.exports= {
                     as: 'zoneLogin',
                     where: {
                         id_zone: {$col: 'Zone.id_zone'}
-                    },
+                    }
                 },{
                     model: models.PersonContact,
                     as: 'zonePersonContact',

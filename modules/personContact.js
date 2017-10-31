@@ -79,6 +79,7 @@ module.exports= {
         })
     },
 
+
     findPersonContactWithZone(idZone){
         return new Promise(function (resolve, reject){
             models.PersonContact.findOne({
