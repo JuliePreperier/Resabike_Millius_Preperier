@@ -7,6 +7,7 @@ var apiSearch = require('../modules/apiJourneyReturnAdmin');
 var stationModule = require('../modules/station');
 var lineStationModule = require('../modules/lineStation');
 var personContactModule = require('../modules/personContact');
+var reservationModule = require('../modules/reservation');
 
 /* GET superadmin page . */
 
@@ -24,6 +25,16 @@ router.get('/superadmin_zones', (req,res,next)=>{
         res.render('superadmin_zones',{zones: zones});
     })
 });
+
+//GET tout simple pour tester les réservations par zone et par ligne
+router.get('/superadmin_reservations', function(req, res, next) {
+    zoneModule.getAllZone().then((zones)=>{
+        lineModule.getAllLineWithZone().then((lines) => {
+            res.render('superadmin_reservations',{lines: lines, zones: zones});
+        })
+    })
+});
+
 
 /* POST new zone */
 router.post('/superadmin_zones', function(req, res, next){

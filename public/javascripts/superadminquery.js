@@ -29,8 +29,8 @@ function deleteZone(id){
 }
 
 function updateZoneInfos(){
-    alert($('#zoneName').val());
-    var idZone = $('#id_zone').val();
+    alert($('#idZone').val());
+    var idZone = $('#idZone').val();
     var zoneName = $('#zoneName').val();
     var zoneUsername = $('#zoneUsername').val();
     var zonePassword = $('#zonePassword').val();

@@ -1,5 +1,25 @@
 extends layout_superadmin
 
 block content
+    h3 Rechercher
+        form(action='/superadmin/superadmin_reservations', method='GET')
+            .input-field.col.s12
+                select(name='id_zone')
+                    option(value="", disabled="", selected="") Choisir zone concernée
+                    each zone in zones
+                        .zone
+                            option(value=zone.id_zone)
+                                label=zone.zoneName
+            .input-field.col.s12
+                select(name='id_line')
+                    option(value="", disabled="", selected="") Choisir ligne concernée
+                    each line in lines
+                        .line
+                            option(value=line.id_line)
+                                label=line.lineName
 
+            br
+            button.btn.waves-effect.waves-light(type="submit", name="action") Rechercher
+            br
+            br
 

@@ -44,35 +44,37 @@ block content
                                     h4 Modification de la zone
                                     p
                                         h5 Détails zone
-                                        label(id='idZone', value=zone.id_zone)
+                                        label(for='idZone') Id Zone
+                                        input.validate(disabled="", type='text', id="idZone", autofocus)
+                                        br
                                         label(for='zoneName') Nom zone
                                         input(type='text', id="zoneName", autofocus)
                                         br
-                                        label(for='username') Login
+                                        label(for='zoneUsername') Login
                                         input(type='text', id="zoneUsername", autofocus)
                                         br
-                                        label(for='password') Password
+                                        label(for='zonePassword') Password
                                         input(type='text', id="zonePassword", autofocus)
                                         br
                                         h5 Détails personne contact
-                                        label(for='firstName') Prénom
-                                        input(type='text', name='firstName', placeholder=zone.zonePersonContact.firstName, autofocus)
+                                        label(for='firstname') Prénom
+                                        input(type='text', id="firstname", autofocus)
                                         br
-                                        label(for='lastName') Nom de famille
-                                        input(type='text', name='lastName', placeholder=zone.zonePersonContact.lastName, autofocus)
+                                        label(for='lastname') Nom de famille
+                                        input(type='text', id="lastname", autofocus)
                                         br
                                         label(for='telephon') N° téléphone
-                                        input(type='text', name='telephon', placeholder=zone.zonePersonContact.telephon, autofocus)
+                                        input(type='text', id="telephon", autofocus)
                                         br
                                         label(for='email') Email
-                                        input(type='text', name='email', placeholder=zone.zonePersonContact.email, autofocus)
+                                        input(type='text', id="email", autofocus)
                                         br
                                         h5 Détails chauffeur de bus
-                                        label(for='username') Login
-                                        input(type='text', name='username', placeholder=zone.zoneLogin[1].username, autofocus)
+                                        label(for='busdriverUsername') Login
+                                        input(type='text', id="busdriverUsername", autofocus)
                                         br
-                                        label(for='password') Password
-                                        input(type='text', name='password', placeholder=zone.zoneLogin[1].password, autofocus)
+                                        label(for='busdriverPassword') Password
+                                        input(type='text', id="busdriverPassword", autofocus)
                                         br
                                 .modal-footer
                                     button.modal-action.modal-close.waves-effect.waves-green.btn-flat(onclick='updateZoneInfos()') Enregistrer

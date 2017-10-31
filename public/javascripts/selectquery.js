@@ -3,6 +3,7 @@ $(document).ready(function () {
     $('select').material_select();
     $(".button-collapse").sideNav();
     $('.modal#modaleditzone').modal({
+        dismissible:false,
         ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
             var idZone = trigger.data("idzone");
             var zoneName = trigger.data("zonename");
