@@ -1,0 +1,32 @@
+extends layout_zoneadmin
+
+block content
+    h3 Nouvelle ligne
+        form(action='/superadmin/superadmin_lignes', method='POST')
+            input(type='text', name='fromStation', placeholder='Entrez la station de départ', class="autocomplete recherche")
+            br
+            input(type='text', name='toStation', placeholder='Entrez la station arrivée', class="autocomplete recherche")
+            br
+            button.btn.waves-effect.waves-light(type="submit", name="action") Enregistrer
+            br
+            br
+    h3 Lignes existantes dans ma zone
+    table.highlight
+        thead
+            tr
+                th Ligne
+                th Station-départ
+                th Station-arrivée
+                th
+        tbody
+            each line in lines
+                tr
+                    .zone
+                        td
+                            value=line.lineName
+                        td
+                            value=line.fromStation
+                        td
+                            value=line.toStation
+                        td
+                            button.right.btn.waves-effect.waves-light(onclick='deleteLine(' + line.id_line + ')') Delete
