@@ -7,7 +7,7 @@ var apiSearch = require('../modules/apiJourneyReturnAdmin');
 var stationModule = require('../modules/station');
 var lineStationModule = require('../modules/lineStation');
 var personContactModule = require('../modules/personContact');
-var reservationModule = require('../modules/reservation');
+var journeyReservationModule = require('../modules/journeyReservation');
 
 /* GET superadmin page . */
 
@@ -28,10 +28,8 @@ router.get('/superadmin_zones', (req,res,next)=>{
 
 //GET tout simple pour tester les réservations par zone et par ligne
 router.get('/superadmin_reservations', function(req, res, next) {
-    zoneModule.getAllZone().then((zones)=>{
-        lineModule.getAllLineWithZone().then((lines) => {
-            res.render('superadmin_reservations',{lines: lines, zones: zones});
-        })
+    journeyReservationModule.getAllFromZoneToReservation().then((zoneToReservations) => {
+        res.render('superadmin_reservations',{zoneToReservations: zoneToReservations});
     })
 });
 
@@ -72,7 +70,7 @@ router.post('/superadmin_lignes', function(req,res, next){
                 })
             }
             else{
-                res.redirect('/superadmin/superadmin_zones')
+                alert('Les multi-lignes ne sont pas gérés. Veuillez entrer des stations se trouvant dans une seule ligne');
             }
         })
     })
@@ -111,7 +109,19 @@ router.delete('/superadmin_zones',(req, res)=>{
 /*Update infos*/
 router.put('/superadmin_zones',(req, res) =>{
     zoneModule.updateZoneFromModal(req.body.idZone, req.body.zoneName).then((zone) =>{
-        res.redirect('/superadmin/superadmin_zones')
+        loginModule.findLoginWithZoneNRole(req.body.idZone, 2).then((zoneAdminLogin) =>{
+            loginModule.updateLoginZoneAdminFromModal(zoneAdminLogin, req.body).then((zoneLogin) =>{
+                personContactModule.findPersonContactWithZone(req.body.idZone).then((personContact) =>{
+                    personContactModule.updatePersonContact(personContact, req.body).then((personContactChanged) =>{
+                        loginModule.findLoginWithZoneNRole(req.body.idZone, 3).then((busDriverLogin) =>{
+                            loginModule.updateLoginBusDriverFromModal(busDriverLogin, req.body).then((busLogin) =>{
+                                res.send(busLogin);
+                            })
+                        })
+                    })
+                })
+            })
+        })
     })
 });
 

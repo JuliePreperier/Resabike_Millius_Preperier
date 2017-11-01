@@ -29,7 +29,6 @@ function deleteZone(id){
 }
 
 function updateZoneInfos(){
-    alert($('#idZone').val());
     var idZone = $('#idZone').val();
     var zoneName = $('#zoneName').val();
     var zoneUsername = $('#zoneUsername').val();
@@ -48,7 +47,6 @@ function updateZoneInfos(){
         data: {idZone: idZone, zoneName: zoneName, zoneUsername: zoneUsername, zonePassword: zonePassword, firstName: firstName, lastName: lastName, telephon: telephon, email: email, busdriverUsername: busdriverUsername, busdriverPassword: busdriverPassword},
         success: function(data) {
             console.log(data);
-            alert("yeahdfjafaoifja");
             setTimeout(function(){
                 window.location.reload(true);
             },500);

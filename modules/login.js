@@ -62,24 +62,24 @@ module.exports= {
         })
     },
 
-    updateLoginZoneAdminFromModal(body){
+    updateLoginZoneAdminFromModal(loginToChanged, body){
         return new Promise(function(resolve, reject){
             models.Login.update({
-                    username: body.usernameZoneAdmin,
-                    password: body.passwordZoneAdmin},
-                {where:{id_login: body.id_login}}
+                    username: body.zoneUsername,
+                    password: body.zonePassword},
+                {where:{id_login: loginToChanged.id_login}}
             ).then(function(login){
                 resolve(login)
             })
         })
     },
 
-    updateLoginBusDriverFromModal(body){
+    updateLoginBusDriverFromModal(loginToChanged, body){
         return new Promise(function(resolve, reject){
             models.Login.update({
-                    username: body.usernameBusDriver,
-                    password: body.passwordBusDriver},
-                {where:{id_login: body.id_login}}
+                    username: body.busdriverUsername,
+                    password: body.busdriverPassword},
+                {where:{id_login: loginToChanged.id_login}}
             ).then(function(login){
                 resolve(login)
             })
@@ -98,11 +98,12 @@ module.exports= {
         })
     },
 
-    findLoginWithZone(idZone){
+    findLoginWithZoneNRole(idZone, idRole){
         return new Promise(function (resolve, reject){
             models.Login.findOne({
                 where: {
-                    id_zone: idZone
+                    id_zone: idZone,
+                    id_role: idRole
                 }
             }).then(function(login){
                 resolve(login)

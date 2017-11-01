@@ -52,7 +52,7 @@ module.exports= {
         })
     },
 
-    updatePersonContact(body) {
+    updatePersonContact(personContactToChanged, body) {
         return new Promise(function (resolve, reject) {
             models.PersonContact.update({
                     lastName: body.lastName,
@@ -60,7 +60,7 @@ module.exports= {
                     email: body.email,
                     telephon: body.telephon
                 },
-                {where: {id_personContact: body.id_personContact}}
+                {where: {id_personContact: personContactToChanged.id_personContact}}
             ).then(function(personContact){
                 resolve(personContact)
             })

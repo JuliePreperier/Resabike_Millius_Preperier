@@ -1,29 +1,9 @@
 extends layout_superadmin
 
 block content
-    h3 Rechercher
-        form(action='/superadmin/superadmin_reservations', method='GET')
-            .input-field.col.s12
-                select(name='id_zone')
-                    option(value="", disabled="", selected="") Choisir zone concernée
-                    each zone in zones
-                        .zone
-                            option(value=zone.id_zone)
-                                label=zone.zoneName
-            .input-field.col.s12
-                select(name='id_line')
-                    option(value="", disabled="", selected="") Choisir ligne concernée
-                    each line in lines
-                        .line
-                            option(value=line.id_line)
-                                label=line.lineName
-
-            br
-            button.btn.waves-effect.waves-light(type="submit", name="action") Rechercher
-            br
-            br
     h3 Réservations
-    table.highlight
+
+    table#tableReservation.highlight
         thead
             tr
                 th Date
@@ -33,26 +13,28 @@ block content
                 th Station-départ
                 th Station-arrivée
                 th Nombre vélos
-                th Confirmation?
+                th Confirmé?
 
         tbody
-            each line in lines
+            each zoneToReservation in zoneToReservations
                 tr
-                    .zone
+                    .zoneToReservation
                         td
-                            value="date"
+                            value=zoneToReservation.reservationJourneyReservation.dateReservation.day+'.'+zoneToReservation.reservationJourneyReservation.dateReservation.month+'.'+zoneToReservation.reservationJourneyReservation.dateReservation.year
                         td
-                            value=line.zoneLine.zoneName
+                            value=zoneToReservation.journeyJourneyReservation.journeyLine.zoneLine.zoneName
                         td
-                            value=line.lineName
+                            value=zoneToReservation.journeyJourneyReservation.journeyLine.lineName
                         td
-                            value="nom groupe"
+                            value=zoneToReservation.reservationJourneyReservation.groupName
                         td
-                            value=line.fromStation
+                            value=zoneToReservation.reservationJourneyReservation.from
                         td
-                            value=line.toStation
+                            value=zoneToReservation.reservationJourneyReservation.to
                         td
-                            value="nombre vélos"
+                            value=zoneToReservation.reservationJourneyReservation.numberBikes
                         td
-                            input.filled-in(type="checkbox", checked="checked", id="filled-in-box", disabled="disabled")
-
+                            if zoneToReservation.reservationJourneyReservation.isConfirmed
+                                value='Oui'
+                            else
+                                value='Non'

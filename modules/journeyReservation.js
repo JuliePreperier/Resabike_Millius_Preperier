@@ -5,6 +5,34 @@ module.exports= {
 
     /* -- JOURNEYRESERVATION --*/
 
+    getAllFromZoneToReservation(){
+      return new Promise(function(resolve, reject){
+          models.JourneyReservation.findAll({
+              include: [{
+                  model: models.Reservation,
+                  as: 'reservationJourneyReservation',
+                  include: [{
+                      model: models.Date,
+                      as: 'dateReservation'
+                  }]
+              },{
+                  model: models.Journey,
+                  as: 'journeyJourneyReservation',
+                  include: [{
+                      model: models.Line,
+                      as: 'journeyLine',
+                      include: [{
+                          model: models.Zone,
+                          as: 'zoneLine'
+                      }]
+                  }]
+              }]
+          }).then(function(zoneToReservations){
+              resolve(zoneToReservations)
+          })
+      })
+    },
+
     insertJourneyReservation(journey, reservation) {
         return new Promise(function (resolve, reject) {
             models.JourneyReservation.create({

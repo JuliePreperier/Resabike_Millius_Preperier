@@ -4,13 +4,12 @@ block content
 
     h3 Nouvelle ligne
         form(action='/superadmin/superadmin_lignes', method='POST')
-            input(type='text', name='fromStation', placeholder='Entrez la station de départ', class="autocomplete recherche")
+            input(type='text', name='fromStation', placeholder='Entrez la station de départ', class="autocomplete recherche", required)
             br
-            input(type='text', name='toStation', placeholder='Entrez la station arrivée', class="autocomplete recherche")
+            input(type='text', name='toStation', placeholder='Entrez la station arrivée', class="autocomplete recherche", required)
             br
-            //input(type='text', name='id_zone', placeholder='Entrez zone concernée')
             .input-field.col.s12
-                select(name='id_zone')
+                select(name='id_zone', required)
                     option(value="", disabled="", selected="") Choisir zone concernée
                     each zone in zones
                         .zone
