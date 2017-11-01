@@ -33,7 +33,7 @@ block content
                         td
                             value=zone.zoneLogin[1].username
                         td
-                            button.right.btn.waves-effect.waves-light(onclick='deleteZone(' + zone.id_zone + ')') Delete
+                            button.right.btn.waves-effect.waves-light(onclick='deleteZone(' + zone.id_zone + ')') Supprimer
                             // Modal Trigger
                             a(href="#modaleditzone", data-idzone=zone.id_zone, data-zonename=zone.zoneName, data-zoneusername=zone.zoneLogin[0].username, data-zonepassword=zone.zoneLogin[0].password, data-firstname=zone.zonePersonContact.firstName, data-lastname=zone.zonePersonContact.lastName, data-telephon=zone.zonePersonContact.telephon, data-email=zone.zonePersonContact.email, data-busdriverusername=zone.zoneLogin[1].username, data-busdriverpassword=zone.zoneLogin[1].password).waves-effect.waves-light.right.btn.modal-trigger Details/Modifier
                             // Modal Structure

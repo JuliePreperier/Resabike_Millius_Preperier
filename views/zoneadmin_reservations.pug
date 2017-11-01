@@ -1,1 +1,52 @@
 extends layout_zoneadmin
+
+block content
+    h3 Rechercher
+        form(action='/zoneadmin/zoneadmin_reservations', method='GET')
+            .input-field.col.s12
+                select(name='id_line')
+                    option(value="", disabled="", selected="") Choisir ligne concernée
+                    each line in lines
+                        .line
+                            option(value=line.id_line)
+                                label=line.lineName
+            br
+            button.btn.waves-effect.waves-light(type="submit", name="action") Rechercher
+            br
+            br
+    h3 Réservations
+    table.highlight
+        thead
+            tr
+                th Date
+                th Zone
+                th Ligne
+                th Nom groupe
+                th Station-départ
+                th Station-arrivée
+                th Nombre vélos
+                th Confirmation?
+                th
+
+        tbody
+            each line in lines
+                tr
+                    .zone
+                        td
+                            value="date"
+                        td
+                            value=line.zoneLine.zoneName
+                        td
+                            value=line.lineName
+                        td
+                            value="nom groupe"
+                        td
+                            value=line.fromStation
+                        td
+                            value=line.toStation
+                        td
+                            value="nombre vélos"
+                        td
+                            input.filled-in(type="checkbox", checked="checked", id="filled-in-box")
+                        td
+                            button.right.btn.waves-effect.waves-light(onclick='deleteZone(' + zone.id_zone + ')') Confirmer

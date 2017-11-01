@@ -1,1 +1,31 @@
 extends layout_zoneadmin
+
+block content
+    h3 Chauffeur de bus
+        form(action='/zoneadmin/zoneadmin_informations', method='POST')
+            label(for='busdriverUsername') Login
+            input(type='text', id="busdriverUsername", value="login bus driver", autofocus)
+            br
+            label(for='busdriverPassword') Password
+            input(type='text', id="busdriverPassword", value="password bus driver", autofocus)
+            br
+            button.btn.waves-effect.waves-light(type="submit", name="action") Enregistrer
+            br
+            br
+    h3 Personne de contact
+        form(action='/zoneadmin/zoneadmin_informations', method='POST')
+            label(for='firstname') Prénom
+            input(type='text', id="firstname", value="firstame personne contact", autofocus)
+            br
+            label(for='lastname') Nom de famille
+            input(type='text', id="lastname", value="lastname personne contact", autofocus)
+            br
+            label(for='telephon') N° téléphone
+            input(type='text', id="telephon", value="telephon personne contact", autofocus)
+            br
+            label(for='email') Email
+            input(type='text', id="email", value="email personne contact", autofocus)
+            br
+            button.btn.waves-effect.waves-light(type="submit", name="action") Enregistrer
+            br
+            br

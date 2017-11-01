@@ -11,7 +11,6 @@ router.get('/zoneadmin_lignes', (req,res,next)=>{
     lineModule.getAllLineWithZone(1).then((lines) => { // PRENDRE LA ZONE DU ZONE ADMIN DANS LE SESSION !!!
         res.render('zoneadmin_lignes',{lines: lines});
     })
-
 });
 
 router.post('/zoneadmin_lignes', function(req,res, next){
