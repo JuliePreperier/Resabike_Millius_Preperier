@@ -18,9 +18,9 @@ router.get('/zoneadmin_lignes', (req,res,next)=>{
 
 //GET informations
 router.get('/zoneadmin_informations', (req,res,next)=>{
-    personContactModule.findPersonContactWithZone(1).then((personContacts) => { // PRENDRE LA ZONE DU ZONE ADMIN DANS LE SESSION !!!
-        loginModule.findLoginWithZoneNRole(1,3).then((logins) => {
-            res.render('zoneadmin_informations',{personContacts : personContacts, logins: logins});
+    personContactModule.findPersonContactWithZone(1).then((personContact) => { // PRENDRE LA ZONE DU ZONE ADMIN DANS LE SESSION !!!
+        loginModule.findLoginWithZoneNRole(1,3).then((login) => {
+            res.render('zoneadmin_informations',{personContact : personContact, login: login});
         })
     })
 });

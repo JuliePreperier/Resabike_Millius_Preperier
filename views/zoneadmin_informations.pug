@@ -18,19 +18,19 @@ block content
     h3 Personne de contact
         br
         label(for='idPersonContact') Id Login
-        input.validate(disabled="", type='text', id="idPersonContact", autofocus)
+        input.validate(disabled="", type='text', id="idPersonContact", value=personContact.id_personContact, autofocus)
         br
         label(for='firstname') Prénom
-        input(type='text', id="firstname", autofocus)
+        input(type='text', id="firstname", value=personContact.firstName, autofocus)
         br
         label(for='lastname') Nom de famille
-        input(type='text', id="lastname", autofocus)
+        input(type='text', id="lastname", value=personContact.lastName, autofocus)
         br
         label(for='telephon') N° téléphone
-        input(type='text', id="telephon", autofocus)
+        input(type='text', id="telephon",value=personContact.telephon, autofocus)
         br
         label(for='email') Email
-        input(type='text', id="email", autofocus)
+        input(type='text', id="email", value=personContact.email, autofocus)
         br
         button.btn.waves-effect.waves-light(type="submit", name="action", onclick='updatePersonContact()') Enregistrer
         br
