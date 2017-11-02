@@ -23,11 +23,11 @@ module.exports= {
         })
     },
 
-    deleteReservation(body){
-        return new Promise(function(resolve, reject){
+    deleteReservation(idReservation) {
+        return new Promise(function (resolve, reject) {
             models.Reservation.destroy({
-                where:{id_reservation: body.id_reservation}
-            }).then(function(nbRow){
+                where: {id_reservation: idReservation}
+            }).then(function (nbRow) {
                 resolve(nbRow)
             })
         })
@@ -58,7 +58,7 @@ module.exports= {
         return new Promise(function(resolve, reject){
             models.Reservation.update({
                     isConfirmed: body.isConfirmed},
-                {where:{id_reservation: body.id_reservation}}
+                {where:{id_reservation: body.idReservation}}
             ).then(function(reservation){
                 resolve(reservation)
             })

@@ -69,3 +69,19 @@ function acceptReservation(){
         }
     })
 }
+
+function refuseReservation(){
+    var idReservation = $('#idReservation').val();
+
+    $.ajax({
+        url: "/zoneadmin/zoneadmin_reservations",
+        type: 'DELETE',
+        data: {id_reservation: idReservation},
+        success: function(data) {
+            console.log(data)
+            setTimeout(function(){
+                window.location.reload(true);
+            },500);
+        }
+    })
+}

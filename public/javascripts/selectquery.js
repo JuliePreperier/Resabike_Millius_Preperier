@@ -36,14 +36,12 @@ $(document).ready(function () {
             var telephonReservation = trigger.data("telephonreservation");
             var emailReservation = trigger.data("emailreservation");
             var remarksReservation = trigger.data("remarksreservation");
-            var isConfirmedReservation = trigger.data("isconfirmedreservation");
             modal.find('input[id="idReservation"]').val(idReservation);
             modal.find('input[id="firstnameReservation"]').val(firstnameReservation);
             modal.find('input[id="lastnameReservation"]').val(lastnameReservation);
             modal.find('input[id="telephonReservation"]').val(telephonReservation);
             modal.find('input[id="emailReservation"]').val(emailReservation);
             modal.find('input[id="remarksReservation"]').val(remarksReservation);
-            modal.find('input[id="isConfirmedReservation"]').val(isConfirmedReservation);
         }
     });
 

@@ -39,7 +39,7 @@ block content
                             else
                                 value='Non'
                         td
-                            a(href="#modalreservations", data-idreservation=reservation.reservationJourneyReservation.id_reservation, data-firstnamereservation=reservation.reservationJourneyReservation.firstName, data-lastnamereservation=reservation.reservationJourneyReservation.lastName, data-telephonreservation=reservation.reservationJourneyReservation.telephon, data-emailreservation=reservation.reservationJourneyReservation.email, data-remarksreservation=reservation.reservationJourneyReservation.remarks, data-isconfirmedreservation=reservation.reservationJourneyReservation.isConfirmed).waves-effect.waves-light.right.btn.modal-trigger Choisir
+                            a(href="#modalreservations", data-idreservation=reservation.reservationJourneyReservation.id_reservation, data-firstnamereservation=reservation.reservationJourneyReservation.firstName, data-lastnamereservation=reservation.reservationJourneyReservation.lastName, data-telephonreservation=reservation.reservationJourneyReservation.telephon, data-emailreservation=reservation.reservationJourneyReservation.email, data-remarksreservation=reservation.reservationJourneyReservation.remarks).waves-effect.waves-light.right.btn.modal-trigger Accepter/Refuser
                             // Modal Structure
                             #modalreservations.modal.modal-fixed-footer
                                 .modal-content
@@ -65,9 +65,6 @@ block content
                                         label(for='remarksReservation') Remarques
                                         input.validate(disabled="", type='text', id="remarksReservation", autofocus)
                                         br
-                                        label(for='isConfirmedReservation') Réservation confirmée?
-                                        input.validate(disabled="", type='text', id="isConfirmedReservation", autofocus)
-                                        br
                                 .modal-footer
                                     button.modal-action.modal-close.waves-effect.waves-green.btn-flat(onclick='acceptReservation()') Accepter
-                                    button.modal-action.modal-close.waves-effect.waves-green.btn-flat(onclick='acceptReservation()') Refuser
+                                    button.modal-action.modal-close.waves-effect.waves-green.btn-flat(onclick='refuseReservation()') Refuser

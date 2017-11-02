@@ -45,10 +45,12 @@ module.exports= {
         })
     },
 
-    deleteJourneyReservation(body) {
+
+
+    deleteJourneyResWithReservation(idReservation) {
         return new Promise(function (resolve, reject) {
             models.JourneyReservation.destroy({
-                where: {id_reservation: body.id_reservation, id_journey: body.id_journey}
+                where: {id_reservation: idReservation}
             }).then(function (nbRow) {
                 resolve(nbRow)
             })

@@ -28,10 +28,11 @@ router.get('/zoneadmin_informations', (req,res,next)=>{
 
 //GET Réservations
 router.get('/zoneadmin_reservations', function(req, res, next) {
+    var date = new Date();
     var reservations = new Array();
     journeyReservationModule.getAllFromZoneToReservation().then((zoneToReservations) => {
         zoneToReservations.forEach((zoneToReservation) =>{
-            if(zoneToReservation.journeyJourneyReservation.journeyLine.zoneLine.id_zone === 1){
+            if(zoneToReservation.journeyJourneyReservation.journeyLine.zoneLine.id_zone === 1 && zoneToReservation.reservationJourneyReservation.dateReservation.day >= date.getDay() && zoneToReservation.reservationJourneyReservation.dateReservation.month >= date.getMonth() && zoneToReservation.reservationJourneyReservation.dateReservation.year >= date.getFullYear()){
                 reservations.push(zoneToReservation);
             }
         })
@@ -95,18 +96,18 @@ router.delete('/zoneadmin_lignes',(req, res)=>{
 
 /*Update Reservation*/
 router.put('/zoneadmin_reservations',(req, res) =>{
-    reservationModule.acceptReservation(req.body).then(() =>{
+    reservationModule.acceptReservation(req.body).then((reservation) =>{
         res.send(reservation);
     })
 });
 
-/*DELETE reservation*/
-router.delete('/zoneadmin_reservation',(req, res)=>{
-    let idLine = req.body.id_line;
-    lineModule.deleteLine(idLine).then(() =>{
-        lineStationModule.deleteLineStationWithLine(idLine)
-    }).then(()=>{
-        res.send(idLine);
+/*DELETE Reservation*/
+router.delete('/zoneadmin_reservations',(req, res)=>{
+    let idReservation = req.body.id_reservation;
+    journeyReservationModule.deleteJourneyResWithReservation(idReservation).then((idReservation) =>{
+        reservationModule.deleteReservation(idReservation)
+    }).then((idReservation) =>{
+        res.send(idReservation);
     })
 });
 
