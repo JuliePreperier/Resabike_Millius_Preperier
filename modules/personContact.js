@@ -67,6 +67,21 @@ module.exports= {
         })
     },
 
+    updateContact(body) {
+        return new Promise(function (resolve, reject) {
+            models.PersonContact.update({
+                    lastName: body.lastname,
+                    firstName: body.firstname,
+                    email: body.email,
+                    telephon: body.telephon
+                },
+                {where: {id_personContact: body.idPersonContact}}
+            ).then(function(personContact){
+                resolve(personContact)
+            })
+        })
+    },
+
     getOnePersonContact(body){
         return new Promise(function (resolve, reject){
             models.PersonContact.findOne({

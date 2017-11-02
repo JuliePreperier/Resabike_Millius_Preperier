@@ -4,6 +4,8 @@ var lineModule = require('../modules/line');
 var apiSearch = require('../modules/apiJourneyReturnAdmin');
 var stationModule = require('../modules/station');
 var lineStationModule = require('../modules/lineStation');
+var loginModule = require('../modules/login');
+var personContactModule = require('../modules/personContact');
 
 /* GET zoneAdmin page . */
 
@@ -39,6 +41,20 @@ router.post('/zoneadmin_lignes', function(req,res, next){
                 res.redirect('/superadmin/superadmin_zones')
             }
         })
+    })
+});
+
+/*Update Bus driver login*/
+router.put('/zoneadmin_informations/login',(req, res) =>{
+    loginModule.updateLogin(req.body).then((busLogin) =>{
+        res.send(busLogin);
+    })
+});
+
+/*Update PersonContact*/
+router.put('/zoneadmin_informations/personContact',(req, res) =>{
+    personContactModule.updateContact(req.body).then((personContact) =>{
+        res.send(personContact);
     })
 });
 
