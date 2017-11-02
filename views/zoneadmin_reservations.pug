@@ -16,27 +16,27 @@ block content
                 th
 
         tbody
-            each zoneToReservation in zoneToReservations
+            each reservation in reservations
                 tr
                     .zoneToReservation
                         td
-                            value=zoneToReservation.reservationJourneyReservation.dateReservation.day + '.' + zoneToReservation.reservationJourneyReservation.dateReservation.month + '.' + zoneToReservation.reservationJourneyReservation.dateReservation.year
+                            value=reservation.reservationJourneyReservation.dateReservation.day + '.' + reservation.reservationJourneyReservation.dateReservation.month + '.' + reservation.reservationJourneyReservation.dateReservation.year
                         td
-                            value=zoneToReservation.journeyJourneyReservation.journeyLine.zoneLine.zoneName
+                            value=reservation.journeyJourneyReservation.journeyLine.zoneLine.zoneName
                         td
-                            value=zoneToReservation.journeyJourneyReservation.journeyLine.lineName
+                            value=reservation.journeyJourneyReservation.journeyLine.lineName
                         td
-                            value=zoneToReservation.reservationJourneyReservation.groupName
+                            value=reservation.reservationJourneyReservation.groupName
                         td
-                            value=zoneToReservation.reservationJourneyReservation.from
+                            value=reservation.reservationJourneyReservation.from
                         td
-                            value=zoneToReservation.reservationJourneyReservation.to
+                            value=reservation.reservationJourneyReservation.to
                         td
-                            value=zoneToReservation.reservationJourneyReservation.numberBikes
+                            value=reservation.reservationJourneyReservation.numberBikes
                         td
-                            if zoneToReservation.reservationJourneyReservation.isConfirmed
+                            if reservation.reservationJourneyReservation.isConfirmed
                                 value='Oui'
                             else
                                 value='Non'
                         td
-                            button.right.btn.waves-effect.waves-light(onclick='deleteZone(' + zone.id_zone + ')') Confirmer
+                            //button.right.btn.waves-effect.waves-light() Confirmer

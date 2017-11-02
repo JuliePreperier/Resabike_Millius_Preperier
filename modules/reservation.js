@@ -54,6 +54,17 @@ module.exports= {
         })
     },
 
+    acceptReservation(body){
+        return new Promise(function(resolve, reject){
+            models.Reservation.update({
+                    isConfirmed: body.isConfirmed},
+                {where:{id_reservation: body.id_reservation}}
+            ).then(function(reservation){
+                resolve(reservation)
+            })
+        })
+    },
+
     getOneReservation(body){
         return new Promise(function (resolve, reject){
             models.Reservation.findOne({

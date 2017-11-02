@@ -37,3 +37,35 @@ function updatePersonContact(){
         }
     })
 }
+
+function deleteLine(id){
+    console.log(id)
+    $.ajax({
+        url: "/zoneadmin/zoneadmin_lignes",
+        type: 'DELETE',
+        data: {id_line: id},
+        success: function(data) {
+            console.log(data)
+            setTimeout(function(){
+                window.location.reload(true);
+            },500);
+        }
+    })
+}
+
+function acceptReservation(){
+
+    var idReservation = $('#idReservation').val();
+
+    $.ajax({
+        url: "/zoneadmin/zoneadmin_reservations",
+        type: 'PUT',
+        data: {isConfirmed: 1, idReservation: idReservation},
+        success: function(data) {
+            console.log(data);
+            setTimeout(function(){
+                window.location.reload(true);
+            },500);
+        }
+    })
+}

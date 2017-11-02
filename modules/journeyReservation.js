@@ -33,6 +33,7 @@ module.exports= {
       })
     },
 
+
     insertJourneyReservation(journey, reservation) {
         return new Promise(function (resolve, reject) {
             models.JourneyReservation.create({

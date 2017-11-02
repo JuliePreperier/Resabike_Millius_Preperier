@@ -7,11 +7,12 @@ var lineStationModule = require('../modules/lineStation');
 var loginModule = require('../modules/login');
 var personContactModule = require('../modules/personContact');
 var journeyReservationModule = require('../modules/journeyReservation');
+var reservationModule = require('../modules/reservation');
 
 /* GET zoneAdmin page . */
 
 router.get('/zoneadmin_lignes', (req,res,next)=>{
-    lineModule.getAllLineWithZone(1).then((lines) => { // PRENDRE LA ZONE DU ZONE ADMIN DANS LE SESSION !!!
+    lineModule.findLineWithZone(1).then((lines) => { // PRENDRE LA ZONE DU ZONE ADMIN DANS LE SESSION !!!
         res.render('zoneadmin_lignes',{lines: lines});
     })
 });
@@ -27,8 +28,15 @@ router.get('/zoneadmin_informations', (req,res,next)=>{
 
 //GET Réservations
 router.get('/zoneadmin_reservations', function(req, res, next) {
+    var reservations = new Array();
     journeyReservationModule.getAllFromZoneToReservation().then((zoneToReservations) => {
-        res.render('zoneadmin_reservations',{zoneToReservations: zoneToReservations});
+        zoneToReservations.forEach((zoneToReservation) =>{
+            if(zoneToReservation.journeyJourneyReservation.journeyLine.zoneLine.id_zone === 1){
+                reservations.push(zoneToReservation);
+            }
+        })
+    }).then(() =>{
+        res.render('zoneadmin_reservations',{reservations: reservations});
     })
 });
 
@@ -47,7 +55,7 @@ router.post('/zoneadmin_lignes', function(req,res, next){
                         }).then(() =>{
                             stationModule.insertFindOrCreateStation(stations.connections[0].legs[1]).then((stationsArr) =>{
                                 lineStationModule.insertLineStation(stationsArr, line).then(() =>{
-                                    res.redirect('/superadmin/superadmin_lignes')
+                                    res.redirect('/zoneadmin/zoneadmin_lignes')
                                 })
                             })
                         })
@@ -55,7 +63,7 @@ router.post('/zoneadmin_lignes', function(req,res, next){
                 })
             }
             else{
-                res.redirect('/superadmin/superadmin_zones')
+                alert('Les multi-lignes ne sont pas gérés. Veuillez entrer des stations se trouvant dans une seule ligne');
             }
         })
     })
@@ -75,5 +83,31 @@ router.put('/zoneadmin_informations/personContact',(req, res) =>{
     })
 });
 
+/*DELETE line*/
+router.delete('/zoneadmin_lignes',(req, res)=>{
+    let idLine = req.body.id_line;
+    lineModule.deleteLine(idLine).then(() =>{
+        lineStationModule.deleteLineStationWithLine(idLine)
+    }).then(()=>{
+        res.send(idLine);
+    })
+});
+
+/*Update Reservation*/
+router.put('/zoneadmin_reservations',(req, res) =>{
+    reservationModule.acceptReservation(req.body).then(() =>{
+        res.send(reservation);
+    })
+});
+
+/*DELETE reservation*/
+router.delete('/zoneadmin_reservation',(req, res)=>{
+    let idLine = req.body.id_line;
+    lineModule.deleteLine(idLine).then(() =>{
+        lineStationModule.deleteLineStationWithLine(idLine)
+    }).then(()=>{
+        res.send(idLine);
+    })
+});
 
 module.exports = router;

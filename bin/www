@@ -23,8 +23,8 @@ app.set('port', port);
 var server = http.createServer(app);
 
 /* Sync DB ans start listening*/
-models.sequelize.sync({force:true}).then(function() {
-
+models.sequelize.sync().then(function() {
+    //{force:true}
     /**
      * Listen on provided port, on all network interfaces.
      */
@@ -33,7 +33,7 @@ models.sequelize.sync({force:true}).then(function() {
     server.on('listening', onListening);
 
 
-    models.Role.create({
+    /*models.Role.create({
         roleName: 'Super administrateur'
     }).then(() =>{
         models.Role.create({
@@ -43,7 +43,7 @@ models.sequelize.sync({force:true}).then(function() {
         models.Role.create({
             roleName: ' Chauffeur de bus'
         })
-    })
+    })*/
 
 });
 

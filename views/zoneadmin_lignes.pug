@@ -2,7 +2,7 @@ extends layout_zoneadmin
 
 block content
     h3 Nouvelle ligne
-        form(action='/superadmin/superadmin_lignes', method='POST')
+        form(action='/zoneadmin/zoneadmin_lignes', method='POST')
             input(type='text', name='fromStation', placeholder='Entrez la station de départ', class="autocomplete recherche")
             br
             input(type='text', name='toStation', placeholder='Entrez la station arrivée', class="autocomplete recherche")
