@@ -2,33 +2,35 @@ extends layout_zoneadmin
 
 block content
     h3 Chauffeur de bus
+        br
         label(for='idLogin') Id Login
-        input.validate(disabled="", type='text', id="idLogin", autofocus)
+        input.validate(disabled="", type='text', id="idLogin", value=login.id_login, autofocus)
         br
         label(for='busdriverUsername') Login
-        input(type='text', id="busdriverUsername", value="login bus driver", autofocus)
+        input(type='text', id="busdriverUsername", value=login.username, autofocus)
         br
         label(for='busdriverPassword') Password
-        input(type='text', id="busdriverPassword", value="password bus driver", autofocus)
+        input(type='text', id="busdriverPassword", value=login.password, autofocus)
         br
         button.btn.waves-effect.waves-light(type="submit", name="action", onclick='updateBusDriver()') Enregistrer
         br
         br
     h3 Personne de contact
+        br
         label(for='idPersonContact') Id Login
         input.validate(disabled="", type='text', id="idPersonContact", autofocus)
         br
         label(for='firstname') Prénom
-        input(type='text', id="firstname", value="firstame personne contact", autofocus)
+        input(type='text', id="firstname", autofocus)
         br
         label(for='lastname') Nom de famille
-        input(type='text', id="lastname", value="lastname personne contact", autofocus)
+        input(type='text', id="lastname", autofocus)
         br
         label(for='telephon') N° téléphone
-        input(type='text', id="telephon", value="telephon personne contact", autofocus)
+        input(type='text', id="telephon", autofocus)
         br
         label(for='email') Email
-        input(type='text', id="email", value="email personne contact", autofocus)
+        input(type='text', id="email", autofocus)
         br
         button.btn.waves-effect.waves-light(type="submit", name="action", onclick='updatePersonContact()') Enregistrer
         br

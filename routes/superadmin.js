@@ -17,7 +17,6 @@ router.get('/superadmin_lignes', (req,res,next)=>{
             res.render('superadmin_lignes',{lines: lines, zones: zones});
         })
     })
-
 });
 
 router.get('/superadmin_zones', (req,res,next)=>{
@@ -26,7 +25,7 @@ router.get('/superadmin_zones', (req,res,next)=>{
     })
 });
 
-//GET tout simple pour tester les réservations par zone et par ligne
+//GET Réservations
 router.get('/superadmin_reservations', function(req, res, next) {
     journeyReservationModule.getAllFromZoneToReservation().then((zoneToReservations) => {
         res.render('superadmin_reservations',{zoneToReservations: zoneToReservations});

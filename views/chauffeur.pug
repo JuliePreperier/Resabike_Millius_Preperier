@@ -2,32 +2,31 @@ extends layout_chauffeur
 
 block content
     h3 Réservations
-        table.highlight
-            thead
+    table#tableReservation.highlight
+        thead
+            tr
+                th Date
+                th Zone
+                th Ligne
+                th Nom groupe
+                th Station-départ
+                th Station-arrivée
+                th Nombre vélos
+        tbody
+            each zoneToReservation in zoneToReservations
                 tr
-                    th Date
-                    th Zone
-                    th Ligne
-                    th Nom groupe
-                    th Station-départ
-                    th Station-arrivée
-                    th Nombre vélos
-
-            tbody
-                each line in lines
-                    tr
-                        .zone
-                            td
-                                value="date"
-                            td
-                                value=line.zoneLine.zoneName
-                            td
-                                value=line.lineName
-                            td
-                                value="nom groupe"
-                            td
-                                value=line.fromStation
-                            td
-                                value=line.toStation
-                            td
-                                value="nombre vélos"
+                    .zoneToReservation
+                        td
+                            value=zoneToReservation.reservationJourneyReservation.dateReservation.day + '.' + zoneToReservation.reservationJourneyReservation.dateReservation.month + '.' + zoneToReservation.reservationJourneyReservation.dateReservation.year
+                        td
+                            value=zoneToReservation.journeyJourneyReservation.journeyLine.zoneLine.zoneName
+                        td
+                            value=zoneToReservation.journeyJourneyReservation.journeyLine.lineName
+                        td
+                            value=zoneToReservation.reservationJourneyReservation.groupName
+                        td
+                            value=zoneToReservation.reservationJourneyReservation.from
+                        td
+                            value=zoneToReservation.reservationJourneyReservation.to
+                        td
+                            value=zoneToReservation.reservationJourneyReservation.numberBikes

@@ -6,12 +6,29 @@ var stationModule = require('../modules/station');
 var lineStationModule = require('../modules/lineStation');
 var loginModule = require('../modules/login');
 var personContactModule = require('../modules/personContact');
+var journeyReservationModule = require('../modules/journeyReservation');
 
 /* GET zoneAdmin page . */
 
 router.get('/zoneadmin_lignes', (req,res,next)=>{
     lineModule.getAllLineWithZone(1).then((lines) => { // PRENDRE LA ZONE DU ZONE ADMIN DANS LE SESSION !!!
         res.render('zoneadmin_lignes',{lines: lines});
+    })
+});
+
+//GET informations
+router.get('/zoneadmin_informations', (req,res,next)=>{
+    personContactModule.findPersonContactWithZone(1).then((personContacts) => { // PRENDRE LA ZONE DU ZONE ADMIN DANS LE SESSION !!!
+        loginModule.findLoginWithZoneNRole(1,3).then((logins) => {
+            res.render('zoneadmin_informations',{personContacts : personContacts, logins: logins});
+        })
+    })
+});
+
+//GET Réservations
+router.get('/zoneadmin_reservations', function(req, res, next) {
+    journeyReservationModule.getAllFromZoneToReservation().then((zoneToReservations) => {
+        res.render('zoneadmin_reservations',{zoneToReservations: zoneToReservations});
     })
 });
 
