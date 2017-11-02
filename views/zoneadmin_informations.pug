@@ -12,7 +12,7 @@ block content
         label(for='busdriverPassword') Password
         input(type='text', id="busdriverPassword", value=login.password, autofocus)
         br
-        button.btn.waves-effect.waves-light(type="submit", name="action", onclick='updateBusDriver()') Enregistrer
+        button.btn.waves-effect.waves-light(onclick='updateBusDriver()') Enregistrer
         br
         br
     h3 Personne de contact
@@ -32,6 +32,6 @@ block content
         label(for='email') Email
         input(type='text', id="email", value=personContact.email, autofocus)
         br
-        button.btn.waves-effect.waves-light(type="submit", name="action", onclick='updatePersonContact()') Enregistrer
+        button.btn.waves-effect.waves-light(onclick='updatePersonContact()') Enregistrer
         br
         br
