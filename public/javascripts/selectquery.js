@@ -25,8 +25,25 @@ $(document).ready(function () {
             modal.find('input[id="email"]').val(email);
             modal.find('input[id="busdriverUsername"]').val(busdriverUsername);
             modal.find('input[id="busdriverPassword"]').val(busdriverPassword);
-
-            console.log(zoneName);
+        }
+    });
+    $('.modal#modalreservations').modal({
+        dismissible:true,
+        ready: function(modal, trigger) { // Callback for Modal open. Modal and trigger parameters available.
+            var idReservation = trigger.data("idreservation");
+            var firstnameReservation = trigger.data("firstnamereservation");
+            var lastnameReservation = trigger.data("lastnamereservation");
+            var telephonReservation = trigger.data("telephonreservation");
+            var emailReservation = trigger.data("emailreservation");
+            var remarksReservation = trigger.data("remarksreservation");
+            var isConfirmedReservation = trigger.data("isconfirmedreservation");
+            modal.find('input[id="idReservation"]').val(idReservation);
+            modal.find('input[id="firstnameReservation"]').val(firstnameReservation);
+            modal.find('input[id="lastnameReservation"]').val(lastnameReservation);
+            modal.find('input[id="telephonReservation"]').val(telephonReservation);
+            modal.find('input[id="emailReservation"]').val(emailReservation);
+            modal.find('input[id="remarksReservation"]').val(remarksReservation);
+            modal.find('input[id="isConfirmedReservation"]').val(isConfirmedReservation);
         }
     });
 
