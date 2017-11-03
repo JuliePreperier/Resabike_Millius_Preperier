@@ -53,4 +53,14 @@ $(document).ready(function () {
         '<label for="navbar-search"><i class="material-icons small">search</i> Search</label>' +
         '</div>'
     });
+
+    $('.datepicker').pickadate({
+        selectMonths: true, // Creates a dropdown to control month
+        selectYears: 15, // Creates a dropdown of 15 years to control year,
+        today: 'Today',
+        clear: 'Clear',
+        close: 'Ok',
+        closeOnSelect: false // Close upon selecting a date,
+    });
+
 });
