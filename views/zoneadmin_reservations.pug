@@ -10,7 +10,7 @@ block content
                 each journey in journeys
                     .journey
                         option(id="idJourney", value=journey.id_journey)
-                            label=journey.journeyLine.lineName+" - "+journey.journeyNumber
+                            label=journey.journeyLine.lineName+" - "+journey.horaire.substr(11,5)
             button.btn.waves-effect.waves-light(onclick='countBikesPerJourney()') Chercher
         .col.s6.center
             .p Nombre de vélos pour le voyage sélectionné :
