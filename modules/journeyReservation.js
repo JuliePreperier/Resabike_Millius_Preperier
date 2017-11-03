@@ -33,6 +33,20 @@ module.exports= {
       })
     },
 
+    getAllFromJourneyToReservation(idJourney){
+        return new Promise(function(resolve, reject){
+            models.JourneyReservation.findAll({
+                include: [{
+                    model: models.Reservation,
+                    as: 'reservationJourneyReservation'
+                }],
+            where: {id_journey: idJourney}
+            }).then(function(Reservations){
+                resolve(Reservations)
+            })
+        })
+    },
+
 
     insertJourneyReservation(journey, reservation) {
         return new Promise(function (resolve, reject) {

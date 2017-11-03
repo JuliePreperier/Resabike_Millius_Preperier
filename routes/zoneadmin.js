@@ -41,6 +41,18 @@ router.get('/zoneadmin_reservations', function(req, res, next) {
     })
 });
 
+/*Get NB of Bikes*/
+router.put('/zoneadmin_reservations/nbBikes', function(req, res, next){
+    var nbBikes = 0 ;
+    journeyReservationModule.getAllFromJourneyToReservation(1).then((reservations) =>{
+        reservations.forEach((reservation) =>{
+            nbBikes=nbBikes + reservation.reservationJourneyReservation.numberBikes;
+        })
+    }).then(() =>{
+        res.send(nbBikes);
+    })
+});
+
 router.post('/zoneadmin_lignes', function(req,res, next){
     zoneModule.getOneZoneWithId(1).then((zone) =>{ // PRENDRE LA ZONE DU ZONEADMIN DANS LE SESSION
         apiSearch.searchLine(req.body).then((stations) =>{

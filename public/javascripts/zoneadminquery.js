@@ -85,3 +85,17 @@ function refuseReservation(){
         }
     })
 }
+
+function countBikesPerJourney(){
+    var idJourney = $('#idJourney').val();
+
+    $.ajax({
+        url: "/zoneadmin/zoneadmin_reservations/nbBikes",
+        type: 'PUT',
+        data: {idJourney: idJourney},
+        success: function(nbBike) {
+            alert(nbBike);
+            console.log(nbBike);
+        }
+    })
+}
