@@ -4,6 +4,7 @@ block content
     h3 Réservations
     input.validate(disabled="", type='text', id="idJourney", autofocus, value=reservations[0].id_journey)
     button.btn.waves-effect.waves-light(onclick='countBikesPerJourney()') nbBike
+    label(id='response')
     table#tableReservation.highlight
         thead
             tr

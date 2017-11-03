@@ -90,12 +90,13 @@ function countBikesPerJourney(){
     var idJourney = $('#idJourney').val();
 
     $.ajax({
-        url: "/zoneadmin/zoneadmin_reservations/nbBikes",
-        type: 'PUT',
-        data: {idJourney: idJourney},
+        url: "/zoneadmin/zoneadmin_reservations/nbBikes="+idJourney,
+        type: 'GET',
         success: function(nbBike) {
-            alert(nbBike);
             console.log(nbBike);
+            $("#response").html(nbBike);
         }
     })
+
+
 }
