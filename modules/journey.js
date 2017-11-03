@@ -7,7 +7,7 @@ module.exports= {
         return new Promise(function(resolve, reject){
             models.Journey.create({
                 journeyNumber: body.journeyNumber,
-                bus: body.bus,
+                horaire: body.horaire,
                 id_line: line.id_line
             }).then(function(journey){
                 resolve(journey)
@@ -29,7 +29,7 @@ module.exports= {
         return new Promise(function(resolve, reject){
             models.Journey.update({
                     journeyNumber: body.journeyNumber,
-                    bus: body.bus},
+                    horaire: body.horaire},
                 {where:{id_journey: body.id_journey}}
             ).then(function(journey){
                 resolve(journey)

@@ -34,8 +34,20 @@ router.get('/zoneadmin_reservations', function(req, res, next) {
     var journeysList = new Array();
     journeyReservationModule.getAllFromZoneToReservation().then((zoneToReservations) => {
         zoneToReservations.forEach((zoneToReservation) =>{
-            if(zoneToReservation.journeyJourneyReservation.journeyLine.zoneLine.id_zone === 1 && zoneToReservation.reservationJourneyReservation.dateReservation.day >= date.getDay() && zoneToReservation.reservationJourneyReservation.dateReservation.month >= date.getMonth() && zoneToReservation.reservationJourneyReservation.dateReservation.year >= date.getFullYear()){
-                reservations.push(zoneToReservation);
+            if(zoneToReservation.journeyJourneyReservation.journeyLine.zoneLine.id_zone === 1){
+                if(zoneToReservation.reservationJourneyReservation.dateReservation.year > date.getFullYear()){
+                    reservations.push(zoneToReservation);
+                }
+                else if(zoneToReservation.reservationJourneyReservation.dateReservation.year = date.getFullYear()){
+                    if(zoneToReservation.reservationJourneyReservation.dateReservation.month > date.getMonth()){
+                        reservations.push(zoneToReservation);
+                    }
+                    else if(zoneToReservation.reservationJourneyReservation.dateReservation.month = date.getMonth()){
+                        if(zoneToReservation.reservationJourneyReservation.dateReservation.day >= date.getDay()){
+                            reservations.push(zoneToReservation);
+                        }
+                    }
+                }
             }
         })
     }).then(() =>{
@@ -55,9 +67,23 @@ router.get('/zoneadmin_reservations', function(req, res, next) {
 router.get('/zoneadmin_reservations/nbBikes=:idJourney', function(req, res, next){
     var idJourney = req.params.idJourney;
     var nbBikes = 0 ;
-    journeyReservationModule.getAllFromJourneyToReservation(idJourney).then((reservations) =>{
+    var date = new Date();
+    console.log(idJourney);
+    journeyReservationModule.findJourneyWithZoneInclude(idJourney).then((reservations) =>{
         reservations.forEach((reservation) =>{
-            nbBikes=nbBikes + reservation.reservationJourneyReservation.numberBikes;
+            if(reservation.reservationJourneyReservation.dateReservation.year > date.getFullYear()){
+                nbBikes=nbBikes + reservation.reservationJourneyReservation.numberBikes;
+            }
+            else if(reservation.reservationJourneyReservation.dateReservation.year = date.getFullYear()){
+                if(reservation.reservationJourneyReservation.dateReservation.month > date.getMonth()){
+                    nbBikes=nbBikes + reservation.reservationJourneyReservation.numberBikes;
+                }
+                else if(reservation.reservationJourneyReservation.dateReservation.month = date.getMonth()){
+                    if(reservation.reservationJourneyReservation.dateReservation.day >= date.getDay()){
+                        nbBikes=nbBikes + reservation.reservationJourneyReservation.numberBikes;
+                    }
+                }
+            }
         })
     }).then(() =>{
         res.json(nbBikes);

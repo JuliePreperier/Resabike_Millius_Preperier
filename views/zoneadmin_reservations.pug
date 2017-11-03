@@ -9,6 +9,7 @@ block content
                 .journey
                     option(id="idJourney", value=journey.id_journey)
                         label=journey.journeyLine.lineName+" - "+journey.journeyNumber
+
     button.btn.waves-effect.waves-light(onclick='countBikesPerJourney()') nbBike
     label(id='response')
 

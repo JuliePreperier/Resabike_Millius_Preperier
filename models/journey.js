@@ -9,7 +9,7 @@ module.exports = (sequelize, DataTypes) => {
             type: DataTypes.STRING,
             allowNull: false
         },
-        bus: {
+        horaire: {
             type: DataTypes.STRING,
             allowNull: false
         }

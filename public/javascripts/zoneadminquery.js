@@ -87,7 +87,7 @@ function refuseReservation(){
 }
 
 function countBikesPerJourney(){
-    var idJourney = $('#idJourney').val();
+    var idJourney = $('select[name=id_journey]').val();
 
     $.ajax({
         url: "/zoneadmin/zoneadmin_reservations/nbBikes="+idJourney,

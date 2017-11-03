@@ -33,14 +33,21 @@ module.exports= {
       })
     },
 
-    getAllFromJourneyToReservation(idJourney){
-        return new Promise(function(resolve, reject){
+
+    findJourneyWithZoneInclude(idJourney){
+        return new Promise(function (resolve, reject){
             models.JourneyReservation.findAll({
+                where: {
+                    id_journey: idJourney
+                },
                 include: [{
                     model: models.Reservation,
-                    as: 'reservationJourneyReservation'
-                }],
-            where: {id_journey: idJourney}
+                    as: 'reservationJourneyReservation',
+                    include: [{
+                        model: models.Date,
+                        as: 'dateReservation'
+                    }]
+                }]
             }).then(function(Reservations){
                 resolve(Reservations)
             })
