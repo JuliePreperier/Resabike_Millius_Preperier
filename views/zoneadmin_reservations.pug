@@ -2,17 +2,21 @@ extends layout_zoneadmin
 
 block content
     h3 Réservations
-    .input-field.col.s12
-        select(name='id_journey', required)
-            option(value="", disabled="", selected="") Choisir un voyage
-            each journey in journeys
-                .journey
-                    option(id="idJourney", value=journey.id_journey)
-                        label=journey.journeyLine.lineName+" - "+journey.journeyNumber
-
-    button.btn.waves-effect.waves-light(onclick='countBikesPerJourney()') nbBike
-    label(id='response')
-
+    h5 Rechercher nombre de vélos
+    .row
+        .input-field.col.s4
+            select(name='id_journey', required)
+                option(value="", disabled="", selected="") Choisir un voyage
+                each journey in journeys
+                    .journey
+                        option(id="idJourney", value=journey.id_journey)
+                            label=journey.journeyLine.lineName+" - "+journey.journeyNumber
+            button.btn.waves-effect.waves-light(onclick='countBikesPerJourney()') Chercher
+        .col.s6.center
+            .p Nombre de vélos pour le voyage sélectionné :
+            label(id='response')
+    br
+    h5 Rechercher réservations
     table#tableReservation.highlight
         thead
             tr
