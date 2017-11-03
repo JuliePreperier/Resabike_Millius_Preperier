@@ -6,6 +6,7 @@ block content
         thead
             tr
                 th Date
+                th Heure de départ
                 th Zone
                 th Ligne
                 th Nom groupe
@@ -18,6 +19,8 @@ block content
                     .zoneToReservation
                         td
                             value=zoneToReservation.reservationJourneyReservation.dateReservation.day + '.' + zoneToReservation.reservationJourneyReservation.dateReservation.month + '.' + zoneToReservation.reservationJourneyReservation.dateReservation.year
+                        td
+                            value=zoneToReservation.journeyJourneyReservation.horaire.substr(11, 5)
                         td
                             value=zoneToReservation.journeyJourneyReservation.journeyLine.zoneLine.zoneName
                         td

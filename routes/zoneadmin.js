@@ -71,16 +71,23 @@ router.get('/zoneadmin_reservations/nbBikes=:idJourney', function(req, res, next
     console.log(idJourney);
     journeyReservationModule.findJourneyWithZoneInclude(idJourney).then((reservations) =>{
         reservations.forEach((reservation) =>{
+            console.log(reservation.reservationJourneyReservation.isConfirmed);
             if(reservation.reservationJourneyReservation.dateReservation.year > date.getFullYear()){
-                nbBikes=nbBikes + reservation.reservationJourneyReservation.numberBikes;
+                if(reservation.reservationJourneyReservation.isConfirmed === true){
+                    nbBikes=nbBikes + reservation.reservationJourneyReservation.numberBikes;
+                }
             }
             else if(reservation.reservationJourneyReservation.dateReservation.year = date.getFullYear()){
                 if(reservation.reservationJourneyReservation.dateReservation.month > date.getMonth()){
-                    nbBikes=nbBikes + reservation.reservationJourneyReservation.numberBikes;
+                    if(reservation.reservationJourneyReservation.isConfirmed === true){
+                        nbBikes=nbBikes + reservation.reservationJourneyReservation.numberBikes;
+                    }
                 }
                 else if(reservation.reservationJourneyReservation.dateReservation.month = date.getMonth()){
                     if(reservation.reservationJourneyReservation.dateReservation.day >= date.getDay()){
-                        nbBikes=nbBikes + reservation.reservationJourneyReservation.numberBikes;
+                        if(reservation.reservationJourneyReservation.isConfirmed === true){
+                            nbBikes=nbBikes + reservation.reservationJourneyReservation.numberBikes;
+                        }
                     }
                 }
             }
