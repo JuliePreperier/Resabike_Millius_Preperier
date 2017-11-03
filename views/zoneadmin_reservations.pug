@@ -2,9 +2,16 @@ extends layout_zoneadmin
 
 block content
     h3 Réservations
-    input.validate(disabled="", type='text', id="idJourney", autofocus, value=reservations[0].id_journey)
+    .input-field.col.s12
+        select(name='id_journey', required)
+            option(value="", disabled="", selected="") Choisir un voyage
+            each journey in journeys
+                .journey
+                    option(id="idJourney", value=journey.id_journey)
+                        label=journey.journeyLine.lineName+" - "+journey.journeyNumber
     button.btn.waves-effect.waves-light(onclick='countBikesPerJourney()') nbBike
     label(id='response')
+
     table#tableReservation.highlight
         thead
             tr
