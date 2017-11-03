@@ -8,6 +8,7 @@ var loginModule = require('../modules/login');
 var personContactModule = require('../modules/personContact');
 var journeyReservationModule = require('../modules/journeyReservation');
 var reservationModule = require('../modules/reservation');
+var journeyModule = require('../modules/journey');
 
 /* GET zoneAdmin page . */
 
@@ -30,6 +31,7 @@ router.get('/zoneadmin_informations', (req,res,next)=>{
 router.get('/zoneadmin_reservations', function(req, res, next) {
     var date = new Date();
     var reservations = new Array();
+    var journeysList = new Array();
     journeyReservationModule.getAllFromZoneToReservation().then((zoneToReservations) => {
         zoneToReservations.forEach((zoneToReservation) =>{
             if(zoneToReservation.journeyJourneyReservation.journeyLine.zoneLine.id_zone === 1 && zoneToReservation.reservationJourneyReservation.dateReservation.day >= date.getDay() && zoneToReservation.reservationJourneyReservation.dateReservation.month >= date.getMonth() && zoneToReservation.reservationJourneyReservation.dateReservation.year >= date.getFullYear()){
@@ -37,7 +39,15 @@ router.get('/zoneadmin_reservations', function(req, res, next) {
             }
         })
     }).then(() =>{
-        res.render('zoneadmin_reservations',{reservations: reservations});
+        journeyModule.getAllJourneyWithLine().then((journeys) =>{
+            journeys.forEach((journey) =>{
+                if(journey.journeyLine.id_zone === 1){
+                    journeysList.push(journey);
+                }
+            })
+        }).then(() =>{
+            res.render('zoneadmin_reservations',{reservations: reservations, journeys: journeysList});
+        })
     })
 });
 

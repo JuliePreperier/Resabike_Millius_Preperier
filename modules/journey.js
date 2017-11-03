@@ -55,5 +55,18 @@ module.exports= {
                 resolve(journeys)
             })
         })
+    },
+
+    getAllJourneyWithLine(){
+        return new Promise(function(resolve, reject){
+            models.Journey.findAll({
+                include: [{
+                    model: models.Line,
+                    as: 'journeyLine'
+                }]
+            }).then(function(journeys){
+                resolve(journeys)
+            })
+        })
     }
 }
