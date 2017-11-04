@@ -4,8 +4,8 @@ block content
     h3 Connexion
         form(action='/login', method='POST')
             br
-            input(type='text', id="loginUsername", placeholder='Login', autofocus)
+            input(type='text', name="loginUsername", placeholder='Login', autofocus, required)
             br
-            input(type='text', id="loginPassword", placeholder='Mot de passe', autofocus)
+            input(type='text', name="loginPassword", placeholder='Mot de passe', autofocus, required)
             br
             button.btn.waves-effect.waves-light(type="submit", name="action") se connecter

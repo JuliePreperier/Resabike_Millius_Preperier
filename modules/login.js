@@ -9,7 +9,7 @@ module.exports= {
                 username: body.username,
                 password: body.password,
                 id_zone: zone.id_zone,
-                id_role: '2' // ICI IL FAUDRA METTRE LE BON ID: ROLE = ZONE ADMIN
+                id_role: '2'
             }).then(function(login){
                 resolve(login)
             })
@@ -22,7 +22,7 @@ module.exports= {
                 username: 'chauffeur'+zone.id_zone,
                 password: '1234',
                 id_zone: zone.id_zone,
-                id_role: '3' // ICI IL FAUDRA METTRE LE BON ID: ROLE = BUS DRIVER
+                id_role: '3'
             }).then(function(login){
                 resolve(login)
             })
@@ -114,6 +114,18 @@ module.exports= {
         return new Promise(function (resolve, reject){
             models.Login.findAll().then(function(logins){
                 resolve(logins)
+            })
+        })
+    },
+
+    findLoginWithUsername(username){
+        return new Promise(function (resolve, reject){
+            models.Login.findOne({
+                where: {
+                    username: username
+                }
+            }).then(function(login){
+                resolve(login)
             })
         })
     }

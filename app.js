@@ -5,11 +5,15 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 
-var index = require('./routes/index');
+var session = require('express-session');
+
+//var index = require('./routes/index');
 var superadmin = require('./routes/superadmin');
 var zoneadmin = require('./routes/zoneadmin');
 var chauffeur = require('./routes/chauffeur');
 var login = require('./routes/login');
+
+
 
 var app = express();
 
@@ -25,11 +29,35 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', index);
-app.use('/superadmin', superadmin);
-app.use('/zoneadmin', zoneadmin);
-app.use('/', chauffeur);
+// use session
+app.use(session({
+    secret:'badger badger badger mushroom',
+    resave: false,
+    saveUninitialized: false,
+    cookie: { secure: false }
+}));
+
+// Authenticated middleware
+var isAuthenticated = (req, res, next) => {
+
+    // If we have a session and authenticated is true, continue,
+    // else redirect to the index page
+    if(req.session && req.session.authenticated === true)
+        next();
+    else
+        res.redirect('/login');
+
+};
+
+
+//app.use('/', index);
 app.use('/', login);
+app.use('/superadmin', isAuthenticated, superadmin);
+app.use('/zoneadmin', isAuthenticated, zoneadmin);
+app.use('/', isAuthenticated, chauffeur);
+
+
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

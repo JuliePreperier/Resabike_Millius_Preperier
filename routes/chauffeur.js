@@ -8,29 +8,36 @@ router.get('/chauffeur', function(req, res, next) {
     var reservationList = new Array();
     journeyReservationModule.getAllFromZoneToReservation().then((zoneToReservations) => {
         zoneToReservations.forEach((zoneToReservation) =>{
-            if(zoneToReservation.reservationJourneyReservation.dateReservation.year > date.getFullYear()){
-                if(zoneToReservation.reservationJourneyReservation.isConfirmed === true){
-                    reservationList.push(zoneToReservation)
-                }
-            }
-            else if(zoneToReservation.reservationJourneyReservation.dateReservation.year = date.getFullYear()){
-                if(zoneToReservation.reservationJourneyReservation.dateReservation.month > date.getMonth()){
-                    if(zoneToReservation.reservationJourneyReservation.isConfirmed === true){
+            if(zoneToReservation.journeyJourneyReservation.journeyLine.zoneLine.id_zone === req.session.user.id_zone) {
+                if (zoneToReservation.reservationJourneyReservation.dateReservation.year > date.getFullYear()) {
+                    if (zoneToReservation.reservationJourneyReservation.isConfirmed === true) {
                         reservationList.push(zoneToReservation)
                     }
                 }
-                else if(zoneToReservation.reservationJourneyReservation.dateReservation.month = date.getMonth()){
-                    if(zoneToReservation.reservationJourneyReservation.dateReservation.day >= date.getDay()){
-                        if(zoneToReservation.reservationJourneyReservation.isConfirmed === true){
+                else if (zoneToReservation.reservationJourneyReservation.dateReservation.year = date.getFullYear()) {
+                    if (zoneToReservation.reservationJourneyReservation.dateReservation.month > date.getMonth()) {
+                        if (zoneToReservation.reservationJourneyReservation.isConfirmed === true) {
                             reservationList.push(zoneToReservation)
+                        }
+                    }
+                    else if (zoneToReservation.reservationJourneyReservation.dateReservation.month = date.getMonth()) {
+                        if (zoneToReservation.reservationJourneyReservation.dateReservation.day >= date.getDay()) {
+                            if (zoneToReservation.reservationJourneyReservation.isConfirmed === true) {
+                                reservationList.push(zoneToReservation)
+                            }
                         }
                     }
                 }
             }
         })
     }).then(() =>{
-        res.render('chauffeur',{zoneToReservations: reservationList});
-        //reservationList.push(zoneToReservation)
+        if(req.session.user.id_role === 3){
+            res.render('chauffeur',{zoneToReservations: reservationList});
+        }
+        else{
+            req.session.authenticated = false;
+            res.redirect('/login');
+        }
     })
 });
 

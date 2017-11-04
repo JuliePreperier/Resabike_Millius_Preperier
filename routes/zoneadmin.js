@@ -13,16 +13,29 @@ var journeyModule = require('../modules/journey');
 /* GET zoneAdmin page . */
 
 router.get('/zoneadmin_lignes', (req,res,next)=>{
-    lineModule.findLineWithZone(1).then((lines) => { // PRENDRE LA ZONE DU ZONE ADMIN DANS LE SESSION !!!
-        res.render('zoneadmin_lignes',{lines: lines});
+    lineModule.findLineWithZone(req.session.user.id_zone).then((lines) => {
+        if(req.session.user.id_role === 2){
+            res.render('zoneadmin_lignes',{lines: lines});
+        }
+        else{
+            req.session.authenticated = false;
+            res.redirect('/login');
+        }
     })
 });
 
 //GET informations
 router.get('/zoneadmin_informations', (req,res,next)=>{
-    personContactModule.findPersonContactWithZone(1).then((personContact) => { // PRENDRE LA ZONE DU ZONE ADMIN DANS LE SESSION !!!
-        loginModule.findLoginWithZoneNRole(1,3).then((login) => {
-            res.render('zoneadmin_informations',{personContact : personContact, login: login});
+    personContactModule.findPersonContactWithZone(req.session.user.id_zone).then((personContact) => {
+        loginModule.findLoginWithZoneNRole(req.session.user.id_zone,3).then((login) => {
+            if(req.session.user.id_role === 2){
+                res.render('zoneadmin_informations',{personContact : personContact, login: login});
+            }
+            else{
+                req.session.authenticated = false;
+                res.redirect('/login');
+            }
+
         })
     })
 });
@@ -34,7 +47,7 @@ router.get('/zoneadmin_reservations', function(req, res, next) {
     var journeysList = new Array();
     journeyReservationModule.getAllFromZoneToReservation().then((zoneToReservations) => {
         zoneToReservations.forEach((zoneToReservation) =>{
-            if(zoneToReservation.journeyJourneyReservation.journeyLine.zoneLine.id_zone === 1){
+            if(zoneToReservation.journeyJourneyReservation.journeyLine.zoneLine.id_zone === req.session.user.id_zone){
                 if(zoneToReservation.reservationJourneyReservation.dateReservation.year > date.getFullYear()){
                     reservations.push(zoneToReservation);
                 }
@@ -53,12 +66,18 @@ router.get('/zoneadmin_reservations', function(req, res, next) {
     }).then(() =>{
         journeyModule.getAllJourneyWithLine().then((journeys) =>{
             journeys.forEach((journey) =>{
-                if(journey.journeyLine.id_zone === 1){
+                if(journey.journeyLine.id_zone === req.session.user.id_zone){
                     journeysList.push(journey);
                 }
             })
         }).then(() =>{
-            res.render('zoneadmin_reservations',{reservations: reservations, journeys: journeysList});
+            if(req.session.user.id_role === 2){
+                res.render('zoneadmin_reservations',{reservations: reservations, journeys: journeysList});
+            }
+            else{
+                req.session.authenticated = false;
+                res.redirect('/login');
+            }
         })
     })
 });
@@ -98,7 +117,7 @@ router.get('/zoneadmin_reservations/nbBikes=:idJourney', function(req, res, next
 });
 
 router.post('/zoneadmin_lignes', function(req,res, next){
-    zoneModule.getOneZoneWithId(1).then((zone) =>{ // PRENDRE LA ZONE DU ZONEADMIN DANS LE SESSION
+    zoneModule.getOneZoneWithId(req.session.user.id_zone).then((zone) =>{
         apiSearch.searchLine(req.body).then((stations) =>{
             if(stations.connections[0].legs.length<=2){
                 lineModule.insertFindOrCreateLine(stations.connections[0], zone).then((line) =>{

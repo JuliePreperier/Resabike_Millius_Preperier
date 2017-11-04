@@ -9,26 +9,45 @@ var lineStationModule = require('../modules/lineStation');
 var personContactModule = require('../modules/personContact');
 var journeyReservationModule = require('../modules/journeyReservation');
 
-/* GET superadmin page . */
+/* GET superadmin_lignes page . */
 
 router.get('/superadmin_lignes', (req,res,next)=>{
     zoneModule.getAllZone().then((zones)=>{
         lineModule.getAllLineWithZone().then((lines) => {
-            res.render('superadmin_lignes',{lines: lines, zones: zones});
+            if(req.session.user.id_role === 1){
+                res.render('superadmin_lignes',{lines: lines, zones: zones});
+            }
+            else{
+                req.session.authenticated = false;
+                res.redirect('/login');
+            }
         })
     })
 });
 
+/* GET superadmin_zones page*/
 router.get('/superadmin_zones', (req,res,next)=>{
     zoneModule.getAllZoneWithInfos().then((zones) => {
-        res.render('superadmin_zones',{zones: zones});
+        if(req.session.user.id_role === 1) {
+            res.render('superadmin_zones', {zones: zones});
+        }
+        else{
+            req.session.authenticated = false;
+            res.redirect('/login');
+        }
     })
 });
 
-//GET Réservations
+/* GET superadmin_reservations page*/
 router.get('/superadmin_reservations', function(req, res, next) {
     journeyReservationModule.getAllFromZoneToReservation().then((zoneToReservations) => {
-        res.render('superadmin_reservations',{zoneToReservations: zoneToReservations});
+        if(req.session.user.id_role === 1) {
+            res.render('superadmin_reservations',{zoneToReservations: zoneToReservations});
+        }
+        else{
+            req.session.authenticated = false;
+            res.redirect('/login');
+        }
     })
 });
 
