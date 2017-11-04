@@ -12,8 +12,7 @@ var superadmin = require('./routes/superadmin');
 var zoneadmin = require('./routes/zoneadmin');
 var chauffeur = require('./routes/chauffeur');
 var login = require('./routes/login');
-
-
+var client = require('./routes/client');
 
 var app = express();
 
@@ -52,6 +51,7 @@ var isAuthenticated = (req, res, next) => {
 
 //app.use('/', index);
 app.use('/', login);
+app.use('/client', client);
 app.use('/superadmin', isAuthenticated, superadmin);
 app.use('/zoneadmin', isAuthenticated, zoneadmin);
 app.use('/', isAuthenticated, chauffeur);

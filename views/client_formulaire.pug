@@ -1,0 +1,58 @@
+extends layout_client
+
+block content
+    h3 Réservez votre place!
+
+    .p Station départ :
+    label(id='responseStationFrom')
+    .p Station arrivée :
+    label(id='responseStationTo')
+    .p Date :
+    label(id='responseDate')
+    .p Horaire :
+    label(id='responseTime')
+    .p Nombre de places assurée pour ce trajet :
+    label(id='responsePlaces')
+    br
+    form(action='/client/client_horaire', method='POST')
+        label(for='clientLastname') Nom
+        input.validate(type='text', id='clientLastname', required)
+        br
+        label(for='clientFirstname') Prénom
+        input.validate(type='text', id='clientFirstname', required)
+        br
+        label(for='clientGroupName') Nom de groupe
+        input.validate(type='text', id='clientGroupName', required)
+        br
+        label(for='clientTelephon') Téléphone
+        input.validate(type='text', id='clientTelephon', required)
+        br
+        label(for='clientEmail') Email
+        input.validate(type='text', id='clientEmail', required)
+        br
+        label(for='clientNumberBikes') Nombre de vélos :
+        select.browser-default(id='clientNumberBikes')
+            option(value="1", selected="") 1
+            option(value="2") 2
+            option(value="3") 3
+            option(value="4") 4
+            option(value="5") 5
+            option(value="6") 6
+            option(value="7") 7
+            option(value="8") 8
+            option(value="9") 9
+            option(value="10") 10
+            option(value="11") 11
+            option(value="12") 12
+            option(value="13") 13
+            option(value="14") 14
+            option(value="15") 15
+            option(value="16") 16
+            option(value="17") 17
+            option(value="18") 18
+            option(value="19") 19
+            option(value="20") 20
+        br
+        button.btn.waves-effect.waves-light(type="submit", name="action") Réserver
+        br
+        br
