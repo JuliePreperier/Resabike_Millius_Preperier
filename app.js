@@ -44,7 +44,7 @@ var isAuthenticated = (req, res, next) => {
     if(req.session && req.session.authenticated === true)
         next();
     else
-        res.redirect('/login');
+        res.redirect('/client/client_horaire');
 
 };
 

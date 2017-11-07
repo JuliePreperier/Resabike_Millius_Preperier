@@ -1,5 +1,6 @@
 var express = require('express');
-var router = express.Router();var zoneModule = require('../modules/zone');
+var router = express.Router();
+var zoneModule = require('../modules/zone');
 var lineModule = require('../modules/line');
 var apiSearch = require('../modules/apiJourneyReturnAdmin');
 var stationModule = require('../modules/station');

@@ -6,11 +6,12 @@ function search() {
 
     var num = 8; // nombre de return
     var pre = -1; // c'est le nombre de station précédent l'horaire donnée qui sont affiché. On a mis -1 parce que l'api retourne une station précédent par défaut
-
+    var entete = '<td> Stations départ </td><td> Station arrivée </td><td> Heure départ </td><td> Heure arrivée </td><td> Durée </td>'
 
     if (from && to) { // si la station "from" et la station "to" ne sont pas vide
         $.get('https://timetable.search.ch/api/route.en.json', {from: from, to: to, date: date, time: time, num: num, pre: pre}, function(data) {
             $('#stationboard tbody').empty();
+            $('#stationboard tbody').append(entete);
             $(data.connections).each(function () {
                 var departure,arrival, line = '<tr><td>';
                 departure = moment(this.departure);

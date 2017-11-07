@@ -2,19 +2,19 @@ extends layout_client
 
 block content
     h3 Réservez votre place!
-    form(action='/client/client_horaire', method='POST')
-        label(for='from') Station départ
-        input.validate(type='text', id='from', name='fromStation', class="autocomplete recherche", required)
-        br
-        label(for='to') Station arrivée
-        input.validate(type='text', id='to', name='toStation', class="autocomplete recherche", required)
-        br
-        label(for='date') Date
-        input.validate(type='text', id='date' class='datepicker', required)
-        br
-        label(for='time') Horaire
-        input.validate(type='text', id='time' class='timepicker', required)
-        br
-        button.btn.waves-effect.waves-light(type="submit", name="action") Chercher correspondances
-        br
-        br
+    label(for='from') Station départ
+    input.validate(type='text', id='from', name='station', class="autocomplete recherche", required)
+    br
+    label(for='to') Station arrivée
+    input.validate(type='text', id='to', name='station', class="autocomplete recherche", required)
+    br
+    label(for='date') Date
+    input.validate(type='text', id='date', name='dateRes', class='datepicker', required)
+    br
+    label(for='time') Horaire
+    input.validate(type='text', id='time', name='timeRes', class='timepicker', required)
+    br
+    button.btn.waves-effect.waves-light(onclick='search()') Chercher correspondances
+    br
+    br
+    table(align="center", id='stationboard')

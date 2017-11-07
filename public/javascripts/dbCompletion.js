@@ -1,12 +1,33 @@
-function autocompdb(id){
-    $('#'+id).autocomplete({
-        source: function (request, response) {
-            $.get('https://timetable.search.ch/api/completion.en.json', {term: request.term}, function(data) { // aller chercher dans la DB !!!
-                response($.map(data, function(station) {
-                    return station.label
+$(document).ready(function() {
+    $('.recherche').on("input",function (error) {
+        var list = {};
+        var input = $(this).val();
+        getData(input, list);
+    })
+    Materialize.updateTextFields();
+})
 
-                }));
-            }, 'json');
+function getData(input, list) {
+    $.ajax({
+        url: "/client/completion/input="+input,
+        type: 'GET',
+        success: function(stations){
+            $.each(stations, function( id, val ) {
+                list[val.stationName] = null;
+            });
+
+            $('input.recherche').autocomplete({
+                data: list,
+                limit: 10, // The max amount of results that can be shown at once. Default: Infinity.
+                onAutocomplete: function(val) {
+                    // Callback function when value is autocompleted.
+                },
+                minLength: 2, // The minimum length of the input for the autocomplete to start. Default: 1.
+            });
+            console.log(stations);
         },
-    });
+        error: function(){
+            alert('fail');
+        }
+    })
 }

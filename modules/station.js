@@ -70,5 +70,17 @@ module.exports= {
                 resolve(stations)
             })
         })
+    },
+
+    findStations(input){
+        return new Promise(function(resolve, reject){
+            models.Station.findAll({
+                where: {
+                    stationName: {$like: input+'%'}
+                }
+            }).then(function(stations){
+                resolve(stations)
+            })
+        })
     }
 }
