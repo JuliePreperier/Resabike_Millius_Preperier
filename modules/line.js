@@ -100,6 +100,18 @@ module.exports= {
         })
     },
 
+    getOneLineWithName(name){
+        return new Promise(function (resolve, reject){
+            models.Line.findOne({
+                where: {
+                    lineName: name
+                }
+            }).then(function(line){
+                resolve(line)
+            })
+        })
+    },
+
 
     getAllLineWithZone(){
         return new Promise(function(resolve, reject){

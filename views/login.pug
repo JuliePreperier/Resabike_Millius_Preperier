@@ -2,6 +2,8 @@ extends layout_login
 
 block content
     h3 Connexion
+        br
+        font(size="3", color='red') #{messageErreur}
         form(action='/login', method='POST')
             br
             input(type='text', name="loginUsername", placeholder='Login', autofocus, required)

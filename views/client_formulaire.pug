@@ -3,35 +3,37 @@ extends layout_client
 block content
     h3 Réservez votre place!
 
-    .p Station départ :
-    label(id='responseStationFrom')
-    .p Station arrivée :
-    label(id='responseStationTo')
-    .p Date :
-    label(id='responseDate')
-    .p Horaire :
-    label(id='responseTime')
-    .p Nombre de places assurée pour ce trajet :
-    label(id='responsePlaces')
+    font(size="3") Station départ:  #{from}
     br
-    form(action='/client/client_horaire', method='POST')
+    font(size="3") Station arrivée : #{to}
+    br
+    font(size="3") Date : #{departure.substr(5,2)+'.'+departure.substr(8,2)+'.'+departure.substr(0,4)}
+    br
+    font(size="3") Horaire : #{departure.substr(11,5)}
+
+    br
+    br
+    form(action='/client/client_confirmation', method='POST')
         label(for='clientLastname') Nom
-        input.validate(type='text', id='clientLastname', required)
+        input.validate(type='text',name='lastName', id='clientLastname', required)
         br
         label(for='clientFirstname') Prénom
-        input.validate(type='text', id='clientFirstname', required)
+        input.validate(type='text',name='firstName', id='clientFirstname', required)
         br
         label(for='clientGroupName') Nom de groupe
-        input.validate(type='text', id='clientGroupName', required)
+        input.validate(type='text', name='groupName', id='clientGroupName', required)
         br
         label(for='clientTelephon') Téléphone
-        input.validate(type='text', id='clientTelephon', required)
+        input.validate(type='text', name='telephon', id='clientTelephon', required)
         br
         label(for='clientEmail') Email
-        input.validate(type='text', id='clientEmail', required)
+        input.validate(type='text', name='email' id='clientEmail', required)
+        br
+        label(for='clientRemarks') Remarque
+        input.validate(type='text', name='remarks' id='clientRemarks')
         br
         label(for='clientNumberBikes') Nombre de vélos :
-        select.browser-default(id='clientNumberBikes')
+        select.browser-default(id='clientNumberBikes', name='nbBikes')
             option(value="1", selected="") 1
             option(value="2") 2
             option(value="3") 3
@@ -53,6 +55,9 @@ block content
             option(value="19") 19
             option(value="20") 20
         br
+        input(hidden=true, value=from, name='from')
+        input(hidden=true, value=to, name='to')
+        input(hidden=true, value=departure, name='departure')
         button.btn.waves-effect.waves-light(type="submit", name="action") Réserver
         br
         br

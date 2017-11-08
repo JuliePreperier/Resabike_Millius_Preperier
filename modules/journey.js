@@ -15,6 +15,25 @@ module.exports= {
         })
     },
 
+    findOrCreateJourney(number, time, idLine){
+        return new Promise(function(resolve, reject){
+            models.Journey.findOrCreate({
+                where: {
+                    journeyNumber: number,
+                    horaire: time,
+                    id_line: idLine
+                },
+                defaults: {
+                    journeyNumber: number,
+                    horaire: time,
+                    id_line: idLine
+                }
+            }).then(function(journey){
+                resolve(journey)
+            })
+        })
+    },
+
     deleteJourney(body){
         return new Promise(function(resolve, reject){
             models.Journey.destroy({

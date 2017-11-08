@@ -4,7 +4,7 @@ var loginModule = require('../modules/login');
 
 //GET Réservations
 router.get('/login', function(req, res, next) {
-    res.render('login');
+    res.render('login', {messageErreur:''});
     req.session.authenticated = false;
 });
 
@@ -28,11 +28,11 @@ router.post('/login', function(req, res, next){
                 }
             }
             else{
-                res.redirect('/login');
+                res.render('login', {messageErreur:"Le mot de passe est erroné"});
             }
         }
         else{
-            res.redirect('/login');
+            res.render('login', {messageErreur:"L'utilisateur n'existe pas "});
         }
     })
 });

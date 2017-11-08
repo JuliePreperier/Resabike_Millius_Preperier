@@ -3,6 +3,8 @@ extends layout_superadmin
 block content
 
     h3 Nouvelle ligne
+        br
+        font(size="3", color='red') #{messageErreur}
         form(action='/superadmin/superadmin_lignes', method='POST')
             input(type='text', name='fromStation', placeholder='Entrez la station de départ', class="autocomplete recherche", required)
             br

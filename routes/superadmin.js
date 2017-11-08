@@ -15,7 +15,7 @@ router.get('/superadmin_lignes', (req,res,next)=>{
     zoneModule.getAllZone().then((zones)=>{
         lineModule.getAllLineWithZone().then((lines) => {
             if(req.session.user.id_role === 1){
-                res.render('superadmin_lignes',{lines: lines, zones: zones});
+                res.render('superadmin_lignes',{lines: lines, zones: zones, messageErreur: ''});
             }
             else{
                 req.session.authenticated = false;
@@ -88,7 +88,17 @@ router.post('/superadmin_lignes', function(req,res, next){
                 })
             }
             else{
-                alert('Les multi-lignes ne sont pas gérés. Veuillez entrer des stations se trouvant dans une seule ligne');
+                zoneModule.getAllZone().then((zones)=>{
+                    lineModule.getAllLineWithZone().then((lines) => {
+                        if(req.session.user.id_role === 1){
+                            res.render('superadmin_lignes',{lines: lines, zones: zones, messageErreur: 'Les multi-ligne ne sont pas autorisés. Veuillez entrer des stations présentes dans une seule ligne'});
+                        }
+                        else{
+                            req.session.authenticated = false;
+                            res.redirect('/login');
+                        }
+                    })
+                })
             }
         })
     })

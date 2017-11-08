@@ -14,6 +14,22 @@ module.exports= {
         })
     },
 
+    findAllLineStationWithStation(idStation){
+      return new Promise(function(resolve, reject){
+          models.LineStation.findAll({
+              where: {
+                  id_station: idStation
+              },
+              include: {
+                  model: models.Line,
+                  as: 'lineLinestation',
+              }
+          }).then(function(stationLines){
+              resolve(stationLines)
+          })
+      })
+    },
+
     deleteLineStationWithLine(idLine){
         return new Promise(function(resolve, reject){
             models.LineStation.destroy({

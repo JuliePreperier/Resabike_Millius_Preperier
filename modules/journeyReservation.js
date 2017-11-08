@@ -55,11 +55,11 @@ module.exports= {
     },
 
 
-    insertJourneyReservation(journey, reservation) {
+    insertJourneyReservation(idJourney, IdReservation) {
         return new Promise(function (resolve, reject) {
             models.JourneyReservation.create({
-                id_reservation: reservation.id_reservation,
-                id_journey: journey.id_journey
+                id_reservation: idJourney,
+                id_journey: IdReservation
             }).then(function (journeyreservation) {
                 resolve(journeyreservation)
             })

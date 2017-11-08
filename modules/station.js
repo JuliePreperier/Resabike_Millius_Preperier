@@ -64,6 +64,26 @@ module.exports= {
         })
     },
 
+    getOneStationByName(name){
+        return new Promise(function (resolve, reject){
+            models.Station.findOne({
+                where: {
+                    stationName: name
+                },
+                include: {
+                    model: models.LineStation,
+                    as: 'stationLineStation',
+                    include: {
+                        model: models.Line,
+                        as: 'lineLinestation'
+                    }
+                }
+            }).then(function(station){
+                resolve(station)
+            })
+        })
+    },
+
     getAllStation(){
         return new Promise(function (resolve, reject){
             models.Station.findAll().then(function(stations){
@@ -81,6 +101,21 @@ module.exports= {
             }).then(function(stations){
                 resolve(stations)
             })
+        })
+    },
+
+    checkZoneOfStation(fromStationLineStations, toStationLineStations){
+        return new Promise(function(resolve, reject){
+            var okZone =false;
+
+            fromStationLineStations.forEach((fromStationLineStation) =>{
+                toStationLineStations.forEach((toStationLineStation) =>{
+                    if(fromStationLineStation.lineLinestation.dataValues.id_zone === toStationLineStation.lineLinestation.dataValues.id_zone){
+                        okZone=true;
+                    }
+                })
+            })
+            resolve(okZone);
         })
     }
 }

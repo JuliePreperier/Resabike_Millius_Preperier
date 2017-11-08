@@ -1,4 +1,11 @@
 $(document).ready(function () {
+    var date = new Date();
+    var delay =1;
+
+    if(date.getHours()>=17){
+        delay = 2;
+    }
+
     console.log("ok");
     $('select').material_select();
     $(".button-collapse").sideNav();
@@ -55,12 +62,14 @@ $(document).ready(function () {
     });
 
     $('.datepicker').pickadate({
+        min: delay,
         selectMonths: true, // Creates a dropdown to control month
         selectYears: 15, // Creates a dropdown of 15 years to control year,
         today: 'Today',
         clear: 'Clear',
         close: 'Ok',
-        closeOnSelect: false // Close upon selecting a date,
+        closeOnSelect: false, // Close upon selecting a date,
+        format: 'dd.mm.yyyy'
     });
 
     $('.timepicker').pickatime({

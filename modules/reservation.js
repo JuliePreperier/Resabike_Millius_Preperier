@@ -23,6 +23,26 @@ module.exports= {
         })
     },
 
+    createReservation(firstName, lastName, telephon, email, numberBikes, groupName, from, remarks,  to,  idDate){
+        return new Promise(function(resolve, reject){
+            models.Reservation.create({
+                firstName: firstName,
+                lastName: lastName,
+                telephon: telephon,
+                email: email,
+                numberBikes: numberBikes,
+                groupName: groupName,
+                from: from,
+                to: to,
+                remarks: remarks,
+                isConfirmed: 0,
+                id_date: idDate
+            }).then(function(reservation){
+                resolve(reservation)
+            })
+        })
+    },
+
     deleteReservation(idReservation) {
         return new Promise(function (resolve, reject) {
             models.Reservation.destroy({
