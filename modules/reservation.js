@@ -79,7 +79,47 @@ module.exports= {
             models.Reservation.update({
                     isConfirmed: body.isConfirmed},
                 {where:{id_reservation: body.idReservation}}
-            ).then(function(reservation){
+            ).then((id_res) =>{
+                models.Reservation.findOne({
+                    where: {
+                        id_reservation: body.idReservation
+                    },
+                    include:[{
+                        model: models.Date,
+                        as: "dateReservation"
+                    },
+                        {model: models.JourneyReservation,
+                        as: "reservationJourneyReservation",
+                        include: [{
+                            model: models.Journey,
+                            as: "journeyJourneyReservation"
+                        }]}]
+
+                }).then((reservation) =>{
+                    resolve(reservation)
+                })
+            })
+        })
+    },
+
+    getOneReservationWithInclude(body){
+        return new Promise(function(resolve, reject){
+            models.Reservation.findOne({
+                where: {
+                    id_reservation: body.idReservation
+                },
+                include:[{
+                    model: models.Date,
+                    as: "dateReservation"
+                },
+                    {model: models.JourneyReservation,
+                        as: "reservationJourneyReservation",
+                        include: [{
+                            model: models.Journey,
+                            as: "journeyJourneyReservation"
+                        }]}]
+
+            }).then((reservation) =>{
                 resolve(reservation)
             })
         })

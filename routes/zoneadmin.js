@@ -10,6 +10,7 @@ var personContactModule = require('../modules/personContact');
 var journeyReservationModule = require('../modules/journeyReservation');
 var reservationModule = require('../modules/reservation');
 var journeyModule = require('../modules/journey');
+var email = require('../modules/email');
 
 /* GET zoneAdmin page . */
 
@@ -178,18 +179,35 @@ router.delete('/zoneadmin_lignes',(req, res)=>{
 
 /*Update Reservation*/
 router.put('/zoneadmin_reservations',(req, res) =>{
-    reservationModule.acceptReservation(req.body).then((reservation) =>{
-        res.send(reservation);
+    personContactModule.findPersonContactWithZone(req.session.user.id_zone).then((personContact)=>{
+        reservationModule.acceptReservation(req.body).then((reservation) =>{
+            email.createTextAccepter(reservation.dataValues, personContact.dataValues).then((text) =>{
+                email.sendEmail(reservation.email, 'Réservation acceptée / Booking accepted / Reservierung akzeptiert', text).then(()=>{
+                    console.log("email envoyé");
+                    res.send(reservation);
+                });
+            })
+        })
     })
 });
+
 
 /*DELETE Reservation*/
 router.delete('/zoneadmin_reservations',(req, res)=>{
     let idReservation = req.body.id_reservation;
-    journeyReservationModule.deleteJourneyResWithReservation(idReservation).then((idReservation) =>{
-        reservationModule.deleteReservation(idReservation)
-    }).then((idReservation) =>{
-        res.send(idReservation);
+    personContactModule.findPersonContactWithZone(req.session.user.id_zone).then((personContact)=>{
+        reservationModule.getOneReservationWithInclude(req.body).then((reservation) =>{
+            email.createTextRefuser(reservation.dataValues, personContact.dataValues).then((text) =>{
+                email.sendEmail(reservation.email, 'Réservation refusée / Booking denied / Reservierung abgelehnt', text).then(()=>{
+                    journeyReservationModule.deleteJourneyResWithReservation(idReservation).then((idReservation) =>{
+                        reservationModule.deleteReservation(idReservation)
+                    }).then((idReservation) =>{
+                        res.send(idReservation);
+                    })
+                });
+            })
+
+        })
     })
 });
 

@@ -30,7 +30,7 @@ router.get('/client_confirmation', function(req, res, next) {
 //Method to send an automatic email when the client has made a reservation.
 router.post('/email', function(req, res, next){
     email.createTextConfirmer().then((text) =>{
-        email.sendEmail(req.body.to, 'Confirmation provisoire de réservation', text);
+        email.sendEmail(req.body.to, 'Confirmation provisoire / Provisional confirmation / Vorläufige Bestätigung', text);
         console.log('Email envoyé');
     })
 });
