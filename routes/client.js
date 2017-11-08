@@ -1,5 +1,6 @@
 var express = require('express');
 var router = express.Router();
+var email = require('../modules/email');
 var stationModule = require('../modules/station');
 
 //GET Page horaires
@@ -15,6 +16,14 @@ router.get('/client_formulaire', function(req, res, next) {
 //GET Page confirmation
 router.get('/client_confirmation', function(req, res, next) {
     res.render('client_confirmation');
+});
+
+//Method to send an automatic email when the client has made a reservation.
+router.post('/email', function(req, res, next){
+    email.createTextConfirmer().then((text) =>{
+        email.sendEmail(req.body.to, 'Confirmation provisoire de réservation', text);
+        console.log('Email envoyé');
+    })
 });
 
 
