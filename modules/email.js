@@ -40,7 +40,20 @@ module.exports= {
             var text = "Merci pour votre réservation!\n" +
                 " \n"+
                 "Un email vous sera envoyé dans les plus brefs délais afin de vous confirmer si votre réservation peut être effective ou si elle ne peut malheureusement pas l'être car le nombre maximum de places est dépassé.\n" +
-                "Si vous souhaitez annuler votre réservation, merci de vous adresser à la personne de contact suivante : \n"+
+                "En récapitulatif de votre réservation : \n"+" \n"+
+                "Station-départ : "+reservation.from+"\n"+
+                "Station-arrivée : "+reservation.to+"\n"+
+                "Date : "+reservation.dateReservation.dataValues.day + "." + reservation.dateReservation.dataValues.month + "." + reservation.dateReservation.dataValues.year+"\n"+
+                "Heure de départ : "+reservation.reservationJourneyReservation[0].journeyJourneyReservation.dataValues.horaire.substr(11, 5)+"\n"+
+                "N° de réservation : "+reservation.id_reservation+"\n"+
+                "Prénom : "+reservation.firstName+"\n"+
+                "Nom de famille : "+reservation.lastName+"\n"+
+                "Nom de groupe : "+reservation.groupName+"\n"+
+                "Nombre de vélos : "+reservation.numberBikes+"\n"+" \n"+
+                "Si vous souhaitez annuler votre réservation, merci de vous adresser à la personne de contact suivante : \n"+" \n"+
+                "Nom : "+personContact.firstName+" "+personContact.lastName+" \n"+
+                "Tel : "+personContact.telephon+" \n"+
+                "Email : "+personContact.email+" \n"+" \n"+
                 "Nous vous remercions de votre compréhension et d'avoir choisi de voyager avec Car Postal.\n"+
                 " \n"+
                 "Votre équipe ResaBike"+" \n"+
@@ -48,7 +61,20 @@ module.exports= {
                 "Thank you for your booking!\n" +
                 " \n"+
                 "An email will be sent to you as soon as possible to confirm if your reservation can be effective or if it cannot be done because the maximum number of places is exceeded.\n" +
-                "If you wish to cancel your reservation, please contact the following contact person : \n"+
+                "In summary of your reservation : \n"+" \n"+
+                "Departure-station : "+reservation.from+"\n"+
+                "Arrival-station : "+reservation.to+"\n"+
+                "Date : "+reservation.dateReservation.dataValues.day + "." + reservation.dateReservation.dataValues.month + "." + reservation.dateReservation.dataValues.year+"\n"+
+                "Departure Time : "+reservation.reservationJourneyReservation[0].journeyJourneyReservation.dataValues.horaire.substr(11, 5)+"\n"+
+                "N° of reservation : "+reservation.id_reservation+"\n"+
+                "First name : "+reservation.firstName+"\n"+
+                "Last name : "+reservation.lastName+"\n"+
+                "Group name : "+reservation.groupName+"\n"+
+                "Number of bikes : "+reservation.numberBikes+"\n"+" \n"+
+                "If you wish to cancel your reservation, please contact the following contact person : \n"+" \n"+
+                "Name : "+personContact.firstName+" "+personContact.lastName+" \n"+
+                "Tel : "+personContact.telephon+" \n"+
+                "Email : "+personContact.email+" \n"+" \n"+
                 "Thank you for your understanding and for choosing to travel with CarPostal.\n"+
                 " \n"+
                 "Your ResaBike team"+" \n"+
@@ -56,7 +82,20 @@ module.exports= {
                 "Danke für Ihre Reservierung!\n" +
                 " \n"+
                 "Eine E-Mail wird Ihnen so schnell wie möglich zugesandt, um zu bestätigen, ob Ihre Reservierung wirksam sein kann oder nicht, da die maximale Anzahl an Plätzen überschritten wird.\n" +
-                "Wenn Sie Ihre Reservierung stornieren möchten, wenden Sie sich bitte an die folgende Kontaktperson : \n"+
+                "Zusammenfassung Ihrer Reservierung : \n"+" \n"+
+                "Abfahrtsstation : "+reservation.from+"\n"+
+                "Ankunftsstation : "+reservation.to+"\n"+
+                "Datum : "+reservation.dateReservation.dataValues.day + "." + reservation.dateReservation.dataValues.month + "." + reservation.dateReservation.dataValues.year+"\n"+
+                "Abfahrtszeit : "+reservation.reservationJourneyReservation[0].journeyJourneyReservation.dataValues.horaire.substr(11, 5)+"\n"+
+                "Reservierungsnummer : "+reservation.id_reservation+"\n"+
+                "Vorname : "+reservation.firstName+"\n"+
+                "Nachname : "+reservation.lastName+"\n"+
+                "Gruppenname : "+reservation.groupName+"\n"+
+                "Anzahl der Fahrräder: "+reservation.numberBikes+"\n"+" \n"+
+                "Wenn Sie Ihre Reservierung stornieren möchten, wenden Sie sich bitte an die folgende Kontaktperson : \n"+" \n"+
+                "Name : "+personContact.firstName+" "+personContact.lastName+" \n"+
+                "Tel : "+personContact.telephon+" \n"+
+                "Email : "+personContact.email+" \n"+" \n"+
                 "Wir danken Ihnen für Ihr Verständnis und für die Entscheidung, mit CarPostal zu reisen.\n"+
                 " \n"+
                 "Ihr ResaBike-Team";

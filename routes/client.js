@@ -9,6 +9,8 @@ var journeyModule = require('../modules/journey');
 var dateModule = require('../modules/date');
 var reservationModule = require('../modules/reservation');
 var journeyReservationModule = require('../modules/journeyReservation');
+var personContactModule = require('../modules/personContact');
+
 
 
 var stations ={};
@@ -90,10 +92,16 @@ router.post('/client_confirmation', function(req, res, next){
             if(leg.stops !== null){
                 lineModule.getOneLineWithName(leg.line).then((line) =>{
                     journeyModule.findOrCreateJourney(leg.number, time, line.id_line).then((journey) =>{
-                        dateModule.findOrCreateDate(day,month,year).then((date) =>{ // ATTENTION C'EST UNE ARRAY !!!!
+                        dateModule.findOrCreateDate(day,month,year).then((date) =>{
                             reservationModule.createReservation(firstName,lastname,telephon,email,nbBike,groupName,from,remarks,to,date[0].id_date).then((reservation) =>{
                                 journeyReservationModule.insertJourneyReservation(journey[0].id_journey, reservation.id_reservation).then((journeyReservation) =>{
-                                    res.render('client_confirmation');
+                                    personContactModule.findPersonContactWithZone(line.id_zone).then((personContact)=>{
+                                        email.createTextConfirmer(reservation.dataValues,personContact.dataValues).then((text)=>{
+                                            email.sendEmail(reservation.email, 'Confirmation réservation / Booking confirmation / Buchung Bestätigung', text).then(()=>{
+                                                res.render('client_confirmation');
+                                            });
+                                        })
+                                    })
                                 })
                             })
                         })
