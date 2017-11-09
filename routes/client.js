@@ -28,6 +28,16 @@ router.get('/client_confirmation', function(req, res, next) {
     res.render('client_confirmation');
 });
 
+//GET Page about
+router.get('/client_about', function(req, res, next) {
+    res.render('client_about');
+});
+
+//GET Page contact
+router.get('/client_contact', function(req, res, next) {
+    res.render('client_contact');
+});
+
 router.get('/completion/input=:input', function(req, res, next){
     var nomStation = req.params.input;
     stationModule.findStations(nomStation).then((stations) =>{
