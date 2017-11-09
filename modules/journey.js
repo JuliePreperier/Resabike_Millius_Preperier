@@ -33,5 +33,15 @@ module.exports= {
                 resolve(journeys)
             })
         })
-    }
+    },
+
+    deleteJourneyWithLine(idLine) {
+        return new Promise(function (resolve, reject) {
+            models.Journey.destroy({
+                where: {id_line: idLine}
+            }).then(function (nbRow) {
+                resolve(nbRow)
+            })
+        })
+    },
 }

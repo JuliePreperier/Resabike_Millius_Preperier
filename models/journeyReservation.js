@@ -3,7 +3,7 @@ module.exports = (sequelize, DataTypes) => {
 
     JourneyReservation.associate = (models) => {
         JourneyReservation.belongsTo(models.Reservation, {foreignKey: {name:'id_reservation', allowNull: false}, as:'reservationJourneyReservation'});
-        JourneyReservation.belongsTo(models.Journey, {foreignKey: {name:'id_journey', allowNull: false}, as:'journeyJourneyReservation'});
+        JourneyReservation.belongsTo(models.Journey, {foreignKey: {name:'id_journey', allowNull: true}, as:'journeyJourneyReservation'});
     }
 
     return JourneyReservation

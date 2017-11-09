@@ -8,6 +8,7 @@ var stationModule = require('../modules/station');
 var lineStationModule = require('../modules/lineStation');
 var personContactModule = require('../modules/personContact');
 var journeyReservationModule = require('../modules/journeyReservation');
+var journeyModule = require('../modules/journey');
 
 /* GET superadmin_lignes page . */
 
@@ -107,10 +108,12 @@ router.post('/superadmin_lignes', function(req,res, next){
 /*DELETE line*/
 router.delete('/superadmin_lignes',(req, res)=>{
     let idLine = req.body.id_line;
-    lineModule.deleteLine(idLine).then(() =>{
-        lineStationModule.deleteLineStationWithLine(idLine)
-    }).then(()=>{
-        res.send(idLine);
+    journeyModule.deleteJourneyWithLine(idLine).then((nbrow) =>{
+        lineModule.deleteLine(idLine).then(() =>{
+            lineStationModule.deleteLineStationWithLine(idLine)
+        }).then(()=>{
+            res.send(idLine);
+        })
     })
 });
 

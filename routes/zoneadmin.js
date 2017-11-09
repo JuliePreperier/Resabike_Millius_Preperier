@@ -170,10 +170,12 @@ router.put('/zoneadmin_informations/personContact',(req, res) =>{
 /*DELETE line*/
 router.delete('/zoneadmin_lignes',(req, res)=>{
     let idLine = req.body.id_line;
-    lineModule.deleteLine(idLine).then(() =>{
-        lineStationModule.deleteLineStationWithLine(idLine)
-    }).then(()=>{
-        res.send(idLine);
+    journeyModule.deleteJourneyWithLine(idLine).then((nbrow) =>{
+        lineModule.deleteLine(idLine).then(() =>{
+            lineStationModule.deleteLineStationWithLine(idLine)
+        }).then(()=>{
+            res.send(idLine);
+        })
     })
 });
 
