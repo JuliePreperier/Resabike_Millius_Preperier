@@ -40,32 +40,6 @@ module.exports= {
         })
     },
 
-    updateLine(body) {
-        return new Promise(function (resolve, reject) {
-            models.Line.update({
-                    lineName: body.lineName,
-                    fromStation: body.fromStation,
-                    toStation: body.toStation
-                },
-                {where: {id_line: body.id_line}}
-            ).then(function (line) {
-                resolve(line)
-            })
-        })
-    },
-
-    getOneLine(body){
-        return new Promise(function (resolve, reject){
-            models.Line.findOne({
-                where: {
-                    id_line: body.id_line
-                }
-            }).then(function(line){
-                resolve(line)
-            })
-        })
-    },
-
     findLineWithZone(idZone){
         return new Promise(function (resolve, reject){
             models.Line.findAll({
@@ -73,14 +47,6 @@ module.exports= {
                     id_zone: idZone
                 }
             }).then(function(lines){
-                resolve(lines)
-            })
-        })
-    },
-
-    getAllLine(){
-        return new Promise(function (resolve, reject){
-            models.Line.findAll().then(function(lines){
                 resolve(lines)
             })
         })

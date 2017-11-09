@@ -14,22 +14,6 @@ module.exports= {
         })
     },
 
-    findAllLineStationWithStation(idStation){
-      return new Promise(function(resolve, reject){
-          models.LineStation.findAll({
-              where: {
-                  id_station: idStation
-              },
-              include: {
-                  model: models.Line,
-                  as: 'lineLinestation',
-              }
-          }).then(function(stationLines){
-              resolve(stationLines)
-          })
-      })
-    },
-
     deleteLineStationWithLine(idLine){
         return new Promise(function(resolve, reject){
             models.LineStation.destroy({
@@ -38,15 +22,6 @@ module.exports= {
                 resolve(nbRow)
             })
         })
-    },
-
-    deleteLineStationWithStation(idStation){
-        return new Promise(function(resolve, reject){
-            models.LineStation.destroy({
-                where:{id_station: idStation}
-            }).then(function(nbRow){
-                resolve(nbRow)
-            })
-        })
     }
+
 }

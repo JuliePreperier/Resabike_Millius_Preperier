@@ -29,16 +29,6 @@ module.exports= {
         })
     },
 
-    deleteLogin(body){
-        return new Promise(function(resolve, reject){
-            models.Login.destroy({
-                where:{id_login: body.id_login}
-            }).then(function(nbRow){
-                resolve(nbRow)
-            })
-        })
-    },
-
     deleteLoginWithZone(idZone){
         return new Promise(function(resolve, reject){
             models.Login.destroy({
@@ -85,18 +75,6 @@ module.exports= {
         })
     },
 
-    getOneLogin(body){
-        return new Promise(function (resolve, reject){
-            models.Login.findOne({
-                where: {
-                    id_login: body.id_login
-                }
-            }).then(function(login){
-                resolve(login)
-            })
-        })
-    },
-
     findLoginWithZoneNRole(idZone, idRole){
         return new Promise(function (resolve, reject){
             models.Login.findOne({
@@ -106,14 +84,6 @@ module.exports= {
                 }
             }).then(function(login){
                 resolve(login)
-            })
-        })
-    },
-
-    getAllLogin(){
-        return new Promise(function (resolve, reject){
-            models.Login.findAll().then(function(logins){
-                resolve(logins)
             })
         })
     },
