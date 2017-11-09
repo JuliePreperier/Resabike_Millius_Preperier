@@ -2,16 +2,17 @@ var express = require('express');
 var router = express.Router();
 var loginModule = require('../modules/login');
 
-//GET Réservations
+//GET login page
 router.get('/login', function(req, res, next) {
     res.render('login', {messageErreur:''});
     req.session.authenticated = false;
 });
 
-//A faire POST pour login avec méthode findLogin()
+// Login check
 router.post('/login', function(req, res, next){
     let userName = req.body.loginUsername;
 
+    /* find the login with the username entered and if the login and password are true, the id_role is check and the user is redirect to the correct view.*/
     loginModule.findLoginWithUsername(userName).then((user) =>{
         if(user !== null){
             if(user.password === req.body.loginPassword){

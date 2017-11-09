@@ -1,3 +1,7 @@
+
+/* This document is used to pass from the client side to the server side with AJAX methods.*/
+
+/* Is used to update a bus driver login from zoneadmin client side --> point to a .put method in the zoneadmin route*/
 function updateBusDriver(){
     var idLogin = $('#idLogin').val();
     var username = $('#busdriverUsername').val();
@@ -17,6 +21,7 @@ function updateBusDriver(){
     })
 }
 
+/* Is used to update a PersonContact from zoneadmin client side --> point to a .put method in the zoneadmin route*/
 function updatePersonContact(){
     var idPersonContact = $('#idPersonContact').val();
     var firstname = $('#firstname').val();
@@ -38,6 +43,7 @@ function updatePersonContact(){
     })
 }
 
+/* Is used to delete a line from zoneadmin client side --> point to a .delete method in the zoneadmin route*/
 function deleteLine(id){
     console.log(id)
     $.ajax({
@@ -53,6 +59,7 @@ function deleteLine(id){
     })
 }
 
+/* Is used to update the "isConfirmed" column in reservation from zoneadmin client side --> point to a .put method in the zoneadmin route*/
 function acceptReservation(){
 
     var idReservation = $('#idReservation').val();
@@ -70,6 +77,7 @@ function acceptReservation(){
     })
 }
 
+/* Is used to delete a reservation from zoneadmin client side --> point to a .delete method in the zoneadmin route*/
 function refuseReservation(){
     var idReservation = $('#idReservation').val();
 
@@ -86,6 +94,7 @@ function refuseReservation(){
     })
 }
 
+/* Is used to count the number of bike per journey (only confirmed reservation) from zoneadmin client side --> point to a .get method in the zoneadmin route*/
 function countBikesPerJourney(){
     var idJourney = $('select[name=id_journey]').val();
 

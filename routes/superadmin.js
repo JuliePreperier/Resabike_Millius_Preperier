@@ -11,7 +11,6 @@ var journeyReservationModule = require('../modules/journeyReservation');
 var journeyModule = require('../modules/journey');
 
 /* GET superadmin_lignes page . */
-
 router.get('/superadmin_lignes', (req,res,next)=>{
     zoneModule.getAllZone().then((zones)=>{
         lineModule.getAllLineWithZone().then((lines) => {
@@ -55,10 +54,13 @@ router.get('/superadmin_reservations', function(req, res, next) {
 
 /* POST new zone */
 router.post('/superadmin_zones', function(req, res, next){
-    zoneModule.insertZone(req.body).then((zone) =>{ //insertion d'une nouvelle zone dans DB
-        loginModule.insertLoginFromSuperAdmin(req.body,zone).then(() =>{ // insertion d'un zone admin login dans DB pour la zone créée
-            personContactModule.insertEmptyPersonContact(zone).then(() =>{ // insertion d'une personContact vide dans DB pour la zone créée
-                loginModule.insertdefaultLoginDriver(zone).then(() =>{ // insertion d'un login bus driver par defaut dans la DB pour la zone créée
+    zoneModule.insertZone(req.body).then((zone) =>{ //Insert new zone in db
+        loginModule.insertLoginFromSuperAdmin(req.body,zone).then(() =>{
+            // insert a zone admin login in db for the just created zone
+            personContactModule.insertEmptyPersonContact(zone).then(() =>{
+                // insert a empty personContact in db for the just created zone
+                loginModule.insertdefaultLoginDriver(zone).then(() =>{
+                    // Insert a default bus drive login in the DB
                     res.redirect('/superadmin/superadmin_zones');
                 })
             })
@@ -66,8 +68,10 @@ router.post('/superadmin_zones', function(req, res, next){
     })
 });
 
+/* POST new line*/
 router.post('/superadmin_lignes', function(req,res, next){
     zoneModule.getOneZone(req.body).then((zone) =>{
+        // search the line in the API and create a new line, all stations and lineStation.
         apiSearch.searchLine(req.body).then((stations) =>{
             if(stations.connections[0].legs.length<=2){
                 lineModule.insertFindOrCreateLine(stations.connections[1], zone).then((line) =>{
@@ -89,6 +93,7 @@ router.post('/superadmin_lignes', function(req,res, next){
                 })
             }
             else{
+                // redirection if the asked line is a multi line
                 zoneModule.getAllZone().then((zones)=>{
                     lineModule.getAllLineWithZone().then((lines) => {
                         if(req.session.user.id_role === 1){
@@ -105,7 +110,7 @@ router.post('/superadmin_lignes', function(req,res, next){
     })
 });
 
-/*DELETE line*/
+/*DELETE line, all journey and lineStation*/
 router.delete('/superadmin_lignes',(req, res)=>{
     let idLine = req.body.id_line;
     journeyModule.deleteJourneyWithLine(idLine).then((nbrow) =>{
@@ -117,7 +122,7 @@ router.delete('/superadmin_lignes',(req, res)=>{
     })
 });
 
-/*DELETE zone*/
+/*DELETE zone, login, line, station and lineStation and the personContact*/
 router.delete('/superadmin_zones',(req, res)=>{
     let idZone = req.body.id_zone;
     loginModule.deleteLoginWithZone(idZone).then(() =>{

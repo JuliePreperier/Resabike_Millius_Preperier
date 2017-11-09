@@ -1,12 +1,13 @@
 $(document).ready(function() {
     $('.recherche').on("input",function (error) {
         var list = {};
-        var input = $(this).val();
-        getData(input, list);
+        var input = $(this).val();// take the value of the input with the class recherche
+        getData(input, list);// execute the method getData
     })
     Materialize.updateTextFields();
 })
 
+/* This is the same method than in apiCompletion.js but the url change. It points to a method in the route client to search in DB*/
 function getData(input, list) {
     $.ajax({
         url: "/client/completion/input="+input,
