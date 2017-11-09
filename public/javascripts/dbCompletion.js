@@ -16,6 +16,7 @@ function getData(input, list) {
                 list[val.stationName] = null;
             });
 
+
             $('input.recherche').autocomplete({
                 data: list,
                 limit: 10, // The max amount of results that can be shown at once. Default: Infinity.
