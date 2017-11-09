@@ -1,8 +1,9 @@
 var models = require('../models');
 
 module.exports= {
-    /* -- LOGIN --*/
+    /* -- LOGIN METHOD--*/
 
+    /* Create an admin login from the superadmin platform (id_role --> 2)*/
     insertLoginFromSuperAdmin(body, zone){
         return new Promise(function(resolve, reject){
             models.Login.create({
@@ -16,19 +17,21 @@ module.exports= {
         })
     },
 
-    insertdefaultLoginDriver(zone){ // insere un login de bus driver par défaut lors de la création de la zone par le super admin
+    /*Create a default login for the bus driver when a zone is created by the super admin */
+    insertdefaultLoginDriver(zone){
         return new Promise(function(resolve, reject){
             models.Login.create({
                 username: 'chauffeur'+zone.id_zone,
                 password: '1234',
                 id_zone: zone.id_zone,
-                id_role: '3'
+                id_role: '3' // role --> bus driver
             }).then(function(login){
                 resolve(login)
             })
         })
     },
 
+    /* delete the login with an idZone*/
     deleteLoginWithZone(idZone){
         return new Promise(function(resolve, reject){
             models.Login.destroy({
@@ -39,6 +42,7 @@ module.exports= {
         })
     },
 
+    /* update the entry in the DB from a zone admin plateform --> can change the login and the password. Not the id_role and id_zone*/
     updateLogin(body){
         return new Promise(function(resolve, reject){
             models.Login.update({
@@ -51,6 +55,7 @@ module.exports= {
         })
     },
 
+    /* update the entry of the zone admin login from the superadmin plateform --> can change the login and the password. Not the id_role and id_zone*/
     updateLoginZoneAdminFromModal(loginToChanged, body){
         return new Promise(function(resolve, reject){
             models.Login.update({
@@ -62,7 +67,7 @@ module.exports= {
             })
         })
     },
-
+    /* update the entry of the bus driver login from the superadmin plateform --> can change the login and the password. Not the id_role and id_zone*/
     updateLoginBusDriverFromModal(loginToChanged, body){
         return new Promise(function(resolve, reject){
             models.Login.update({
@@ -75,6 +80,7 @@ module.exports= {
         })
     },
 
+    /* Get from the database a login with a idZone and idRole*/
     findLoginWithZoneNRole(idZone, idRole){
         return new Promise(function (resolve, reject){
             models.Login.findOne({
@@ -88,6 +94,7 @@ module.exports= {
         })
     },
 
+    /* Get a login with the username --> login method*/
     findLoginWithUsername(username){
         return new Promise(function (resolve, reject){
             models.Login.findOne({

@@ -3,8 +3,9 @@ var models = require('../models');
 module.exports= {
 
 
-    /* -- JOURNEYRESERVATION --*/
+    /* -- JOURNEYRESERVATION METHOD --*/
 
+    /* Get all information with includes. Take info from the table zone, line, journey, journeyReservation, reservation, date*/
     getAllFromZoneToReservation(){
       return new Promise(function(resolve, reject){
           models.JourneyReservation.findAll({
@@ -33,7 +34,7 @@ module.exports= {
       })
     },
 
-
+    /* Get all information with includes. Take info from the table journeyReservation, reservation, date*/
     findJourneyWithZoneInclude(idJourney){
         return new Promise(function (resolve, reject){
             models.JourneyReservation.findAll({
@@ -54,7 +55,7 @@ module.exports= {
         })
     },
 
-
+    /* Insert a new entry in DB*/
     insertJourneyReservation(idJourney, IdReservation) {
         return new Promise(function(resolve, reject){
             models.JourneyReservation.create({
@@ -66,8 +67,7 @@ module.exports= {
         })
     },
 
-
-
+    /* Delete an entry that response to the id put in parameters.*/
     deleteJourneyResWithReservation(idReservation) {
         return new Promise(function (resolve, reject) {
             models.JourneyReservation.destroy({

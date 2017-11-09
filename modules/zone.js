@@ -1,7 +1,9 @@
 var models = require('../models');
 
 module.exports= {
-    /* -- ZONE --*/
+    /* -- ZONE METHOD--*/
+
+    /* Insert a new entry in the DB*/
     insertZone(body){
         return new Promise(function (resolve, reject) {
             models.Zone.create({
@@ -12,6 +14,7 @@ module.exports= {
         })
     },
 
+    /*Delete the entry with the id in parameter*/
     deleteZone(idZone){
         return new Promise(function(resolve, reject){
             models.Zone.destroy({
@@ -22,6 +25,7 @@ module.exports= {
         })
     },
 
+    /* Update the entry from the superadmin plateform*/
     updateZoneFromModal(idZone, zoneName){
         return new Promise(function(resolve, reject){
             models.Zone.update({
@@ -33,6 +37,7 @@ module.exports= {
         })
     },
 
+    /* Get a zone with its id (complete body in parameter)*/
     getOneZone(body){
         return new Promise(function (resolve, reject){
             models.Zone.findOne({
@@ -45,6 +50,7 @@ module.exports= {
         })
     },
 
+    /* Get a zone with its id (idZone in parameter)*/
     getOneZoneWithId(idZone){
         return new Promise(function (resolve, reject){
             models.Zone.findOne({
@@ -57,6 +63,7 @@ module.exports= {
         })
     },
 
+    /*Get all the zone that are in the DB*/
     getAllZone(){
         return new Promise(function (resolve, reject){
             models.Zone.findAll().then(function(zones){
@@ -65,6 +72,7 @@ module.exports= {
         })
     },
 
+    /* Get all reservation with login include and personContact*/
     getAllZoneWithInfos(){
         return new Promise(function (resolve, reject){
             models.Zone.findAll({

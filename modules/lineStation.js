@@ -1,8 +1,9 @@
 var models = require('../models');
 
 module.exports= {
-    /* -- LINESTATION --*/
+    /* -- LINESTATION METHOD--*/
 
+    /* Create a new entry in the DB*/
     insertLineStation(station, line){
         return new Promise(function(resolve, reject){
             models.LineStation.create({
@@ -14,6 +15,7 @@ module.exports= {
         })
     },
 
+    /* Delete entry in the DB that response to the id put in parameters*/
     deleteLineStationWithLine(idLine){
         return new Promise(function(resolve, reject){
             models.LineStation.destroy({

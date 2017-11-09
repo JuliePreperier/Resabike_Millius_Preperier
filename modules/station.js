@@ -2,8 +2,10 @@ var models = require('../models');
 var lineStationModule = require('../modules/lineStation');
 
 module.exports= {
-    /* -- STATION --*/
 
+    /* -- STATION METHOD--*/
+
+    /* To search in the DB if the station already exist. If not, create a new entry*/
     insertFindOrCreateStation(body){
         return new Promise(function(resolve, reject){
             models.Station.findOrCreate({
@@ -19,6 +21,7 @@ module.exports= {
         })
     },
 
+    /* Return a station that corresponds to the name in paramete*/
     getOneStationByName(name){
         return new Promise(function (resolve, reject){
             models.Station.findOne({
@@ -39,6 +42,7 @@ module.exports= {
         })
     },
 
+    /* Find entries in DB that have a name like the input in parameter --> used for autoCompletion*/
     findStations(input){
         return new Promise(function(resolve, reject){
             models.Station.findAll({
@@ -51,6 +55,7 @@ module.exports= {
         })
     },
 
+    /* Check if the station are in the same zone or not. Return a boolean --> used in research of connection when a client do a reservation*/
     checkZoneOfStation(fromStationLineStations, toStationLineStations){
         return new Promise(function(resolve, reject){
             var okZone =false;

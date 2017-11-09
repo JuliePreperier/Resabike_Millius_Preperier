@@ -1,10 +1,12 @@
 var axios = require('axios')
 
+/*This method search in the API with 4 arguments. It is used when a client search connection for reservation.*/
+
 module.exports= {
     searchLine(body) {
         return new Promise(function (resolve, reject) {
-            var num = 10; // nombre de return
-            var pre = -1;
+            var num = 10; // nb of return
+            var pre = -1; // show the next connection. When it's 0 the API will show the previous connection than the time the client enter.
             //dd mmmm, yyyy
             //hh:mm
             // Make a request for a user with a given ID'

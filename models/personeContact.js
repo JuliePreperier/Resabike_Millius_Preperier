@@ -1,4 +1,7 @@
 module.exports = (sequelize, DataTypes) =>{
+
+    /* --  PERSONCONTACT JOIN TABLE IN DB --*/
+
     var PersonContact = sequelize.define('PersonContact', {
         id_personContact: {
             type: DataTypes.INTEGER,
@@ -23,7 +26,7 @@ module.exports = (sequelize, DataTypes) =>{
         }
     });
     PersonContact.associate = (models) => {
-        PersonContact.belongsTo(models.Zone, {foreignKey: {name:'id_zone', allowNull: false}, as:'zonePersonContact'});
+        PersonContact.belongsTo(models.Zone, {foreignKey: {name:'id_zone', allowNull: false}, as:'zonePersonContact'}); // personContact has a FK id_zone
     }
 
 

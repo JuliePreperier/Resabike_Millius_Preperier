@@ -1,4 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
+
+    /* --  RESERVATION JOIN TABLE IN DB --*/
+
     var Reservation = sequelize.define('Reservation', {
         id_reservation: {
             type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true
@@ -45,8 +48,8 @@ module.exports = (sequelize, DataTypes) => {
         }
     });
     Reservation.associate = (models) => {
-        Reservation.belongsTo(models.Date, {foreignKey: {name:'id_date', allowNull: false}, as:'dateReservation'});
-        Reservation.hasMany(models.JourneyReservation, {foreignKey: {name:'id_reservation', allowNull: false}, as:'reservationJourneyReservation'});
+        Reservation.belongsTo(models.Date, {foreignKey: {name:'id_date', allowNull: false}, as:'dateReservation'}); // reservation has a FK id_date
+        Reservation.hasMany(models.JourneyReservation, {foreignKey: {name:'id_reservation', allowNull: false}, as:'reservationJourneyReservation'}); // journeyResrvation has a FK id_reservation
     }
 
 

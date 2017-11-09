@@ -1,4 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
+
+    /* --  LOGIN JOIN TABLE IN DB --*/
+
     var Login = sequelize.define('Login', {
         id_login: {
             type: DataTypes.INTEGER,
@@ -16,8 +19,8 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     Login.associate = (models) => {
-        Login.belongsTo(models.Zone, {foreignKey: {name: 'id_zone', allowNull: true}, as:'zoneLogin'});
-        Login.belongsTo(models.Role, {foreignKey: {name:'id_role', allowNull: false}, as:'roleLogin'});
+        Login.belongsTo(models.Zone, {foreignKey: {name: 'id_zone', allowNull: true}, as:'zoneLogin'}); // login has a FK id_zone
+        Login.belongsTo(models.Role, {foreignKey: {name:'id_role', allowNull: false}, as:'roleLogin'}); // login has a FK id_role
     }
 
     return Login

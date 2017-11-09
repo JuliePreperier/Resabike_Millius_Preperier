@@ -1,5 +1,7 @@
 module.exports = (sequelize, DataTypes) => {
 
+    /* --  DATE TABLE IN DB --*/
+
     var Date = sequelize.define('Date', {
         id_date: {
             type: DataTypes.INTEGER,
@@ -20,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
         }
     });
     Date.associate = (models) => {
-        Date.hasMany(models.Reservation, {foreignKey: {name:'id_date', allowNull: false}, as: 'dateReservation'});
+        Date.hasMany(models.Reservation, {foreignKey: {name:'id_date', allowNull: false}, as: 'dateReservation'}); // The table reservation has a FK id_date
     }
 
     return Date

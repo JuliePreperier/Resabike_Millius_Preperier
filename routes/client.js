@@ -57,16 +57,26 @@ router.post('/client_formulaire', function(req, res, next){
     var departure = req.body.departure;
 
     stationModule.getOneStationByName(from).then((fromStation) =>{
-        stationModule.getOneStationByName(to).then((toStation) =>{
-            stationModule.checkZoneOfStation(fromStation.stationLineStation, toStation.stationLineStation).then((okZone)=>{
-                if(okZone === true){
-                    res.render('client_formulaire', {from:from, to:to, departure:departure});
+        if(fromStation !== null){
+            stationModule.getOneStationByName(to).then((toStation) =>{
+                if(toStation !== null){
+                    stationModule.checkZoneOfStation(fromStation.stationLineStation, toStation.stationLineStation).then((okZone)=>{
+                        if(okZone === true){
+                            res.render('client_formulaire', {from:from, to:to, departure:departure});
+                        }
+                        else{
+                            res.render('client_horaire', {stations: stations, messageErreur: "Il n'est pas possible de réserver dans plusieurs zones"});
+                        }
+                    })
                 }
                 else{
-                    res.render('client_horaire', {stations: stations, messageErreur: "Il n'est pas possible de réserver dans plusieurs zones"});
+                    res.render('client_horaire', {stations: stations, messageErreur: "La station d'arrivée entrée ne fait pas partie du projet Resabike"});
                 }
             })
-        })
+        }
+        else{
+            res.render('client_horaire', {stations: stations, messageErreur: "La station de départ entrée ne fait pas partie du projet Resabike"});
+        }
     })
 
 });

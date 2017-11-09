@@ -1,6 +1,9 @@
 var nodemailer = require('nodemailer');
 
 module.exports= {
+
+    /* -- EMAIL METHODS --*/
+
     sendEmail(to, subject, text) {
         return new Promise(function (resolve, reject) {
             let transporter = nodemailer.createTransport({
