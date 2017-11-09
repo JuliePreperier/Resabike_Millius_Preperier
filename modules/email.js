@@ -44,7 +44,7 @@ module.exports= {
                 "Station-départ : "+reservation.from+"\n"+
                 "Station-arrivée : "+reservation.to+"\n"+
                 "Date : "+reservation.dateReservation.dataValues.day + "." + reservation.dateReservation.dataValues.month + "." + reservation.dateReservation.dataValues.year+"\n"+
-                "Heure de départ : "+reservation.reservationJourneyReservation[0].journeyJourneyReservation.dataValues.horaire.substr(11, 5)+"\n"+
+                "Heure de départ : "+reservation.reservationJourneyReservation[0].journeyJourneyReservation.dataValues.horaire+"\n"+
                 "N° de réservation : "+reservation.id_reservation+"\n"+
                 "Prénom : "+reservation.firstName+"\n"+
                 "Nom de famille : "+reservation.lastName+"\n"+
@@ -86,7 +86,7 @@ module.exports= {
                 "Abfahrtsstation : "+reservation.from+"\n"+
                 "Ankunftsstation : "+reservation.to+"\n"+
                 "Datum : "+reservation.dateReservation.dataValues.day + "." + reservation.dateReservation.dataValues.month + "." + reservation.dateReservation.dataValues.year+"\n"+
-                "Abfahrtszeit : "+reservation.reservationJourneyReservation[0].journeyJourneyReservation.dataValues.horaire.substr(11, 5)+"\n"+
+                "Abfahrtszeit : "+reservation.reservationJourneyReservation[0].journeyJourneyReservation.dataValues.horaire+"\n"+
                 "Reservierungsnummer : "+reservation.id_reservation+"\n"+
                 "Vorname : "+reservation.firstName+"\n"+
                 "Nachname : "+reservation.lastName+"\n"+
@@ -113,7 +113,7 @@ module.exports= {
                 "Station-départ : "+reservation.from+"\n"+
                 "Station-arrivée : "+reservation.to+"\n"+
                 "Date : "+reservation.dateReservation.dataValues.day + "." + reservation.dateReservation.dataValues.month + "." + reservation.dateReservation.dataValues.year+"\n"+
-                "Heure de départ : "+reservation.reservationJourneyReservation[0].journeyJourneyReservation.dataValues.horaire.substr(11, 5)+"\n"+
+                "Heure de départ : "+reservation.reservationJourneyReservation[0].journeyJourneyReservation.dataValues.horaire+"\n"+
                 "N° de réservation : "+reservation.id_reservation+"\n"+
                 "Prénom : "+reservation.firstName+"\n"+
                 "Nom de famille : "+reservation.lastName+"\n"+
@@ -134,7 +134,7 @@ module.exports= {
                 "Departure-station : "+reservation.from+"\n"+
                 "Arrival-station : "+reservation.to+"\n"+
                 "Date : "+reservation.dateReservation.dataValues.day + "." + reservation.dateReservation.dataValues.month + "." + reservation.dateReservation.dataValues.year+"\n"+
-                "Departure Time : "+reservation.reservationJourneyReservation[0].journeyJourneyReservation.dataValues.horaire.substr(11, 5)+"\n"+
+                "Departure Time : "+reservation.reservationJourneyReservation[0].journeyJourneyReservation.dataValues.horaire+"\n"+
                 "N° of reservation : "+reservation.id_reservation+"\n"+
                 "First name : "+reservation.firstName+"\n"+
                 "Last name : "+reservation.lastName+"\n"+
@@ -155,7 +155,7 @@ module.exports= {
                 "Abfahrtsstation : "+reservation.from+"\n"+
                 "Ankunftsstation : "+reservation.to+"\n"+
                 "Datum : "+reservation.dateReservation.dataValues.day + "." + reservation.dateReservation.dataValues.month + "." + reservation.dateReservation.dataValues.year+"\n"+
-                "Abfahrtszeit : "+reservation.reservationJourneyReservation[0].journeyJourneyReservation.dataValues.horaire.substr(11, 5)+"\n"+
+                "Abfahrtszeit : "+reservation.reservationJourneyReservation[0].journeyJourneyReservation.dataValues.horaire+"\n"+
                 "Reservierungsnummer : "+reservation.id_reservation+"\n"+
                 "Vorname : "+reservation.firstName+"\n"+
                 "Nachname : "+reservation.lastName+"\n"+
@@ -181,7 +181,7 @@ module.exports= {
                 "Station-départ : "+reservation.from+"\n"+
                 "Station-arrivée : "+reservation.to+"\n"+
                 "Date : "+reservation.dateReservation.dataValues.day + "." + reservation.dateReservation.dataValues.month + "." + reservation.dateReservation.dataValues.year+"\n"+
-                "Heure de départ : "+reservation.reservationJourneyReservation[0].journeyJourneyReservation.dataValues.horaire.substr(11, 5)+"\n"+
+                "Heure de départ : "+reservation.reservationJourneyReservation[0].journeyJourneyReservation.dataValues.horaire+"\n"+
                 "N° de réservation : "+reservation.id_reservation+"\n"+
                 "Prénom : "+reservation.firstName+"\n"+
                 "Nom de famille : "+reservation.lastName+"\n"+
@@ -199,7 +199,7 @@ module.exports= {
                 "Departure-station : "+reservation.from+"\n"+
                 "Arrival-station : "+reservation.to+"\n"+
                 "Date : "+reservation.dateReservation.dataValues.day + "." + reservation.dateReservation.dataValues.month + "." + reservation.dateReservation.dataValues.year+"\n"+
-                "Departure Time : "+reservation.reservationJourneyReservation[0].journeyJourneyReservation.dataValues.horaire.substr(11, 5)+"\n"+
+                "Departure Time : "+reservation.reservationJourneyReservation[0].journeyJourneyReservation.dataValues.horaire+"\n"+
                 "N° of reservation : "+reservation.id_reservation+"\n"+
                 "First name : "+reservation.firstName+"\n"+
                 "Last name : "+reservation.lastName+"\n"+
@@ -217,7 +217,7 @@ module.exports= {
                 "Abfahrtsstation : "+reservation.from+"\n"+
                 "Ankunftsstation : "+reservation.to+"\n"+
                 "Datum : "+reservation.dateReservation.dataValues.day + "." + reservation.dateReservation.dataValues.month + "." + reservation.dateReservation.dataValues.year+"\n"+
-                "Abfahrtszeit : "+reservation.reservationJourneyReservation[0].journeyJourneyReservation.dataValues.horaire.substr(11, 5)+"\n"+
+                "Abfahrtszeit : "+reservation.reservationJourneyReservation[0].journeyJourneyReservation.dataValues.horaire+"\n"+
                 "Reservierungsnummer : "+reservation.id_reservation+"\n"+
                 "Vorname : "+reservation.firstName+"\n"+
                 "Nachname : "+reservation.lastName+"\n"+

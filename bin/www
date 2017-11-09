@@ -43,6 +43,12 @@ models.sequelize.sync().then(function() {
         models.Role.create({
             roleName: ' Chauffeur de bus'
         })
+    }).then(() =>{
+      models.Login.create({
+          username: 'sysadmin',
+          password: 'password',
+          id_role: 1
+      })
     })*/
 
 });

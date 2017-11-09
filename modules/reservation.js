@@ -106,7 +106,30 @@ module.exports= {
         return new Promise(function(resolve, reject){
             models.Reservation.findOne({
                 where: {
-                    id_reservation: body.idReservation
+                    id_reservation: body.id_reservation
+                },
+                include:[{
+                    model: models.Date,
+                    as: "dateReservation"
+                },
+                    {model: models.JourneyReservation,
+                        as: "reservationJourneyReservation",
+                        include: [{
+                            model: models.Journey,
+                            as: "journeyJourneyReservation"
+                        }]}]
+
+            }).then((reservation) =>{
+                resolve(reservation)
+            })
+        })
+    },
+
+    getOneReservationWithIncludeForConf(idReservation){
+        return new Promise(function(resolve, reject){
+            models.Reservation.findOne({
+                where: {
+                    id_reservation: idReservation
                 },
                 include:[{
                     model: models.Date,

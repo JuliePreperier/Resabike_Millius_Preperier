@@ -56,12 +56,12 @@ module.exports= {
 
 
     insertJourneyReservation(idJourney, IdReservation) {
-        return new Promise(function (resolve, reject) {
+        return new Promise(function(resolve, reject){
             models.JourneyReservation.create({
-                id_reservation: idJourney,
-                id_journey: IdReservation
-            }).then(function (journeyreservation) {
-                resolve(journeyreservation)
+                id_reservation: IdReservation,
+                id_journey: idJourney
+            }).then(function(journeyReservation){
+                resolve(journeyReservation)
             })
         })
     },

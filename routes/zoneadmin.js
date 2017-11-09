@@ -122,17 +122,17 @@ router.get('/zoneadmin_reservations/nbBikes=:idJourney', function(req, res, next
 router.post('/zoneadmin_lignes', function(req,res, next){
     zoneModule.getOneZoneWithId(req.session.user.id_zone).then((zone) =>{
         apiSearch.searchLine(req.body).then((stations) =>{
-            if(stations.connections[0].legs.length<=2){
-                lineModule.insertFindOrCreateLine(stations.connections[0], zone).then((line) =>{
-                    stationModule.insertFindOrCreateStation(stations.connections[0].legs[0]).then((stationDep) =>{
+            if(stations.connections[1].legs.length<=2){
+                lineModule.insertFindOrCreateLine(stations.connections[1], zone).then((line) =>{
+                    stationModule.insertFindOrCreateStation(stations.connections[1].legs[0]).then((stationDep) =>{
                         lineStationModule.insertLineStation(stationDep,line).then(() =>{
-                            stations.connections[0].legs[0].stops.forEach((stop) =>{
+                            stations.connections[1].legs[0].stops.forEach((stop) =>{
                                 stationModule.insertFindOrCreateStation(stop).then((station) =>{
                                     lineStationModule.insertLineStation(station, line)
                                 })
                             })
                         }).then(() =>{
-                            stationModule.insertFindOrCreateStation(stations.connections[0].legs[1]).then((stationsArr) =>{
+                            stationModule.insertFindOrCreateStation(stations.connections[1].legs[1]).then((stationsArr) =>{
                                 lineStationModule.insertLineStation(stationsArr, line).then(() =>{
                                     res.redirect('/zoneadmin/zoneadmin_lignes')
                                 })
@@ -199,7 +199,7 @@ router.delete('/zoneadmin_reservations',(req, res)=>{
         reservationModule.getOneReservationWithInclude(req.body).then((reservation) =>{
             email.createTextRefuser(reservation.dataValues, personContact.dataValues).then((text) =>{
                 email.sendEmail(reservation.email, 'Réservation refusée / Booking denied / Reservierung abgelehnt', text).then(()=>{
-                    journeyReservationModule.deleteJourneyResWithReservation(idReservation).then((idReservation) =>{
+                    journeyReservationModule.deleteJourneyResWithReservation(idReservation).then((nbLigne) =>{
                         reservationModule.deleteReservation(idReservation)
                     }).then((idReservation) =>{
                         res.send(idReservation);

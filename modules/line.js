@@ -3,20 +3,6 @@ var models = require('../models');
 module.exports= {
 
     /* -- LINE --*/
-
-    insertLine(body, zone) {
-        return new Promise(function (resolve, reject) {
-            models.Line.create({
-                lineName: body.legs[1].line,
-                fromStation: body.from,
-                toStation: body.to,
-                id_zone: zone.id_zone
-            }).then(function (line) {
-                resolve(line)
-            })
-        })
-    },
-
     insertFindOrCreateLine(body, zone){
         return new Promise(function (resolve, reject) {
             models.Line.findOrCreate({

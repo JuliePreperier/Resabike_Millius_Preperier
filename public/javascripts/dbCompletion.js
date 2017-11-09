@@ -27,7 +27,7 @@ function getData(input, list) {
             console.log(stations);
         },
         error: function(){
-            alert('fail');
+
         }
     })
 }

@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var email = require('../modules/email');
+var emailModule = require('../modules/email');
 var stationModule = require('../modules/station');
 var apiModule = require('../modules/apiJourneyReturnClient');
 var stationLineModule = require('../modules/lineStation');
@@ -72,7 +72,7 @@ router.post('/client_formulaire', function(req, res, next){
 });
 
 router.post('/client_confirmation', function(req, res, next){
-    var date = req.body.departure.substr(5,2)+'.'+req.body.departure.substr(8,2)+'.'+req.body.departure.substr(0,4);
+    var date = req.body.departure.substr(8,2)+'.'+req.body.departure.substr(5,2)+'.'+req.body.departure.substr(0,4);
     var time = req.body.departure.substr(11,5);
     var from = req.body.from;
     var to = req.body.to;
@@ -81,8 +81,8 @@ router.post('/client_confirmation', function(req, res, next){
     var telephon = req.body.telephon;
     var email = req.body.email;
     var nbBike = req.body.nbBikes;
-    var day = req.body.departure.substr(5,2);
-    var month = req.body.departure.substr(8,2);
+    var day = req.body.departure.substr(8,2);
+    var month = req.body.departure.substr(5,2);
     var year = req.body.departure.substr(0,4);
     var remarks = req.body.remarks;
     var groupName = req.body.groupName;
@@ -93,13 +93,15 @@ router.post('/client_confirmation', function(req, res, next){
                 lineModule.getOneLineWithName(leg.line).then((line) =>{
                     journeyModule.findOrCreateJourney(leg.number, time, line.id_line).then((journey) =>{
                         dateModule.findOrCreateDate(day,month,year).then((date) =>{
-                            reservationModule.createReservation(firstName,lastname,telephon,email,nbBike,groupName,from,remarks,to,date[0].id_date).then((reservation) =>{
-                                journeyReservationModule.insertJourneyReservation(journey[0].id_journey, reservation.id_reservation).then((journeyReservation) =>{
+                            reservationModule.createReservation(firstName,lastname,telephon,email,nbBike,groupName,leg.name,remarks,leg.terminal,date[0].id_date).then((reservation) =>{
+                                journeyReservationModule.insertJourneyReservation(journey[0].dataValues.id_journey, reservation.id_reservation).then((journeyReservation) =>{
                                     personContactModule.findPersonContactWithZone(line.id_zone).then((personContact)=>{
-                                        email.createTextConfirmer(reservation.dataValues,personContact.dataValues).then((text)=>{
-                                            email.sendEmail(reservation.email, 'Confirmation réservation / Booking confirmation / Buchung Bestätigung', text).then(()=>{
-                                                res.render('client_confirmation');
-                                            });
+                                        reservationModule.getOneReservationWithIncludeForConf(reservation.id_reservation).then((reservationInclude) =>{
+                                            emailModule.createTextConfirmer(reservationInclude.dataValues,personContact.dataValues).then((text)=>{
+                                                emailModule.sendEmail(reservation.email, 'Confirmation réservation / Booking confirmation / Buchung Bestätigung', text).then(()=>{
+                                                    res.render('client_confirmation');
+                                                });
+                                            })
                                         })
                                     })
                                 })
