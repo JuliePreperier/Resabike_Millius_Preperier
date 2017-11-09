@@ -3,27 +3,29 @@ var nodemailer = require('nodemailer');
 module.exports= {
 
     /* -- EMAIL METHODS --*/
-
     sendEmail(to, subject, text) {
         return new Promise(function (resolve, reject) {
             let transporter = nodemailer.createTransport({
-                service: 'gmail',
+                service: 'gmail', //we choose the service we want to use
                 secure: false,
                 port: 25,
                 auth: {
-                    user: 'resabiketesting@gmail.com',
-                    pass: 'Resabike1234'
+                    user: 'resabiketesting@gmail.com', //We created a gmail address for resabike and need to specify the login
+                    pass: 'Resabike1234' //and the password to be able to send emails to clients
                 },
                 tls: {
                     rejectUnauthorized: false
                 }
             });
+            //Here we choose our emails options. The to, subject and text must be defined as they can change but we choose to
+            //take a from that is always the same
             let mailOptions = {
                 from: '"Resabike" <resabiketesting@gmail.com',
                 to: to,
                 subject: subject,
                 text: text
             };
+            //In case of error while sending a mail
             transporter.sendMail(mailOptions, (error, info) => {
                 if (error) {
                     return console.log(error);
@@ -38,8 +40,8 @@ module.exports= {
 
     createTextConfirmer(reservation, personContact){
         return new Promise(function (resolve, reject){
-            //Texte personnalisé lors de la réervation
-            //A ajouter données de réservation et personne contact
+            //Personalized text for the confirmation email when the client has done a reservation (3 languages)
+            //Data taken to show the reservation and the person of contact
             var text = "Merci pour votre réservation!\n" +
                 " \n"+
                 "Un email vous sera envoyé dans les plus brefs délais afin de vous confirmer si votre réservation peut être effective ou si elle ne peut malheureusement pas l'être car le nombre maximum de places est dépassé.\n" +
@@ -108,7 +110,8 @@ module.exports= {
     },
     createTextAccepter(reservation, personContact){
         return new Promise(function (resolve, reject){
-            //Texte personnalisé lors de l'acceptation avec affichage de réservation + personne de contact
+            //Personalized text for the email that is send when the reservation has been accepted (3 languages)
+            //Data taken to show the reservation and the person of contact
             var text = "Cher client/e,\n" +
                 " \n"+
                 "Nous avons le plaisir de vous annoncer que votre réservation est bien effective et que le nombre de places pour vos vélos a été réservé.\n" +
@@ -174,9 +177,10 @@ module.exports= {
             resolve(text)
         })
     },
-    createTextRefuser(reservation, personContact){
+    createTextRefuser(reservation){
         return new Promise(function (resolve, reject){
-            //Texte personnalisé lors du refus avec affichage de réservation
+            //Personalized text for the email that is send when the reservation has been denied (3 languages)
+            //Data taken to show the reservation details
             var text = "Cher client/e,\n" +
                 " \n"+
                 "Nous avons le regret de vous annoncer que votre réservation ne peut malheureusement pas être effective car le nombre de places disponibles n'est pas suffisant pour votre nombre de vélos.\n" +
