@@ -45,6 +45,15 @@ router.get('/completion/input=:input', function(req, res, next){
     });
 });
 
+/*POST to send email via contact form content */
+router.post('/client_contact', function(req,res,next){
+    emailModule.createEmailContact(req.body.name, req.body.email, req.body.textClient).then((text)=>{
+        emailModule.sendEmail('resabiketesting@gmail.com', 'Contact / Kontakt', text).then(()=>{
+            res.render('client_horaire', {stations: stations, messageErreur:'Email envoyé'});
+        });
+    })
+});
+
 /* Request the API to find all the connections possible the client ask with a from, to, date and time*/
 router.post('/client_horaire', function(req,res,next){
     apiModule.searchLine(req.body).then((stations) =>{

@@ -3,16 +3,13 @@ extends layout_client
 block content
     h3 Formulaire de contact
     form(action='/client/client_contact', method='POST')
-        label(for='clientLastname') Nom
-        input.validate(type='text',name='lastName', id='clientLastname', required)
-        br
-        label(for='clientFirstname') Prénom
-        input.validate(type='text',name='firstName', id='clientFirstname', required)
+        label(for='clientName') Nom
+        input.validate(type='text',name='name', id='clientName', required)
         br
         label(for='clientEmail') Email
         input.validate(type='text', name='email', id='clientEmail', required)
         br
         label(for='clientText') Texte
-        textarea.materialize-textarea(name='text', id='clientText', required)
+        textarea.materialize-textarea(name='textClient', id='clientText', required)
         br
         button.btn.waves-effect.waves-light(type="submit", name="action") Envoyer email
