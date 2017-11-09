@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var i18n = require('i18n-express');
 
 var session = require('express-session');
 
@@ -47,6 +48,12 @@ var isAuthenticated = (req, res, next) => {
         res.redirect('/client/client_horaire');
 
 };
+
+app.use(i18n({
+    translationsPath: path.join(__dirname, 'i18n'), // <--- use here. Specify translations files path.
+    siteLangs: ["fr","en", "de"],
+    textsVarName: 'translation',
+}));
 
 
 //app.use('/', index);

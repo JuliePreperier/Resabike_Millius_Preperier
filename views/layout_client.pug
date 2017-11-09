@@ -17,12 +17,24 @@ html
                     i.material-icons menu
                 ul#nav-mobile.right.hide-on-med-and-down
                     li
-                        a(href="/client/client_about") À propos
+                        a.font-bold(href="?clang=fr").lang-fr.lang-button FR
+                    li
+                        a.font-bold(href="?clang=en").lang-en.lang-button EN
+                    li
+                        a.font-bold(href="?clang=de").lang-de.lang-button DE
+                    li
+                        a(href="/client/client_about") #{translation.LAYOUTAPROPOS}
                     li
                         a(href="/login") Login
                 ul#mobile-demo.side-nav
                     li
-                        a(href="/client/client_about") À propos
+                        a.font-bold(href="?clang=fr").lang-fr.lang-button FR
+                    li
+                        a.font-bold(href="?clang=en").lang-en.lang-button EN
+                    li
+                        a.font-bold(href="?clang=de").lang-de.lang-button DE
+                    li
+                        a(href="/client/client_about") #{translation.LAYOUTAPROPOS}
                     li
                         a(href="/login") Login
         block content
@@ -38,3 +50,4 @@ html
         script(src='/javascripts/selectquery.js')
         //Module line
         script(src='/javascripts/search-it.js')
+

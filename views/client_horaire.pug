@@ -1,32 +1,41 @@
 extends layout_client
 
 block content
-    h3 Réservez votre place!
-    font(size="3", color='red') #{messageErreur}
+    h3 #{translation.RESERVATIONTITRE}
+    if(messageErreur===1)
+        font(size="3", color='red') #{translation.ERREUREMAILENVOYE}
+    else if(messageErreur===2)
+        font(size="3", color='red') #{translation.ERREURPLUSIEURSZONES}
+    else if(messageErreur === 3)
+        font(size="3", color='red') #{translation.ERREURSTATIONARRIVEEPASPROJET}
+    else if(messageErreur === 4)
+        font(size="3", color='red') #{translation.ERREURSTATIONDEPARTPASPROJET}
+    else
+        font(size="3", color='red')
     form(action='/client/client_horaire', method='POST')
-        label(for='from') Station départ
+        label(for='from') #{translation.STATIONDEPART}
         input.validate(type='text', id='from', name='station', class="autocomplete recherche", required)
         br
-        label(for='to') Station arrivée
+        label(for='to') #{translation.STATIONARRIVEE}
         input.validate(type='text', id='to', name='station', class="autocomplete recherche", required)
         br
-        label(for='date') Date
+        label(for='date') #{translation.DATE1}
         input.validate(type='text', id='date', name='dateRes', class='datepicker', required)
         br
-        label(for='time') Horaire
+        label(for='time') #{translation.HORAIRE}
         input.validate(type='text', id='time', name='timeRes', class='timepicker', required)
         br
-        button.btn.waves-effect.waves-light(type="submit", name="action") Chercher correspondances
+        button.btn.waves-effect.waves-light(type="submit", name="action") #{translation.BOUTONCHERCHER}
         br
         br
-    h3 Correspondances
+    h3 #{translation.CORRESPONDANCESTITRE}
     table#tableReservation.highlight
         thead
             tr
-                th Station-départ
-                th Station-arrivée
-                th Heure départ
-                th Heure arrivée
+                th #{translation.STATIONDEPART}
+                th #{translation.STATIONARRIVEE}
+                th #{translation.HEUREDEPART}
+                th #{translation.HEUREARRIVEE}
                 th
         tbody
             each station in stations
@@ -37,13 +46,13 @@ block content
                         td
                             value=station.to
                         td
-                            value=station.departure
+                            value=station.departure.substr(11,5)
                         td
-                            value=station.arrival
+                            value=station.arrival.substr(11,5)
                         td
                             form(action='/client/client_formulaire', method='POST')
                                 input(hidden=true, value=station.from, name='from')
                                 input(hidden=true, value=station.to, name='to')
                                 input(hidden=true, value=station.departure, name='departure')
                                 input(hidden=true, value=station.arrival, name='arrival')
-                                button.right.btn.waves-effect.waves-light(type="submit", name="action") Réserver
+                                button.right.btn.waves-effect.waves-light(type="submit", name="action") #{translation.BOUTONRESERVER}

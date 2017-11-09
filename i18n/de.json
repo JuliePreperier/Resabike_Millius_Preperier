@@ -1,0 +1,42 @@
+{
+  "LAYOUTAPROPOS" : "Über",
+
+  "RESERVATIONTITRE" : "Buchen Sie Ihren Platz!",
+  "STATIONDEPART" : "Abfahrtsstation",
+  "STATIONARRIVEE" : "Ankunftsstation",
+  "DATE1" : "Datum",
+  "HORAIRE" : "Zeitplan",
+  "BOUTONCHERCHER" : "Streichhölzer suchen",
+  "CORRESPONDANCESTITRE" : "Korrespondenzen",
+  "HEUREDEPART" : "Abfahrtszeit",
+  "HEUREARRIVEE" : "Ankunftszeit",
+  "BOUTONRESERVER" : "Buchen",
+
+  "NOM" : "Name",
+  "PRENOM" : "Vorname",
+  "NOMGROUPE" : "Gruppenname",
+  "TELEPHONE" : "Telefon",
+  "EMAIL" : "E-Mail",
+  "REMARQUE" : "Hinweis",
+  "NOMBREVELOS" : "Anzahl der Fahrräder",
+
+  "CONFIRMATIONMERCI" : "Danke für Ihre Reservierung!",
+  "CONFIRMATIONP1" : "Eine E-Mail wird so bald wie möglich an Sie gesendet, um zu bestätigen, ob Ihre Buchung wirksam ist oder nicht, da die maximale Anzahl an Plätzen überschritten wurde.",
+  "CONFIRMATIONP2" : "Wir danken Ihnen für Ihr Verständnis und haben entschieden, mit Car Postal zu reisen.",
+
+  "ABOUTTITRE" : "Was ist ResaBike?",
+  "ABOUTP1" : "ResaBike ist ein PostAuto-Projekt, das nach einem Problem in St-Luc während des Sommers 2004-2005 entstanden ist. Dieses Problem war, dass es keine Möglichkeit gab, Fahrräder zu transportieren. Im Sommer 2005 wurden die ersten 6-Sitzer-Fahrradständer hinten in den Reisebussen installiert, und als die Nachfrage weiter zunahm, befanden sich die Reisebusse in der gleichen Position. Unfähigkeit, mehr Fahrräder zu tragen. ",
+  "ABOUTP2" : "Im Herbst 2013 wurde eine Lösung gefunden und Skizzen der ersten 20-sitzigen Fahrradanhänger gezeichnet, diese Trailer wurden im Juli 2014 erstmals im Val d'Anniviers eingesetzt. Leider war es für die Benutzer nicht möglich, einen Platz für ihr Fahrrad zu reservieren und somit den Transport ihrer Ausrüstung zu gewährleisten. ",
+  "ABOUTP3" : "Um dieses Problem zu lösen, wurde diese Anwendung von zwei Studenten im Informatikmanagement am HEVS erstellt.",
+  "ABOUTTITRE2" : "Wie kann ich mit ResaBike Kontakt aufnehmen?",
+  "ABOUTP4" : "Um uns zu kontaktieren, senden Sie uns einfach eine E-Mail, indem Sie auf den folgenden Link klicken : ",
+
+  "CONTACTTITRE" : "Kontaktformular",
+  "TEXTE" : "Text",
+  "BOUTONENVOIMAIL" : "E-Mail senden",
+
+  "ERREUREMAILENVOYE" : "E-Mail gesendet",
+  "ERREURPLUSIEURSZONES" : "Es ist nicht möglich, in mehreren Bereichen zu buchen",
+  "ERREURSTATIONARRIVEEPASPROJET" : "Die Ankunftsstation ist nicht Teil des Resabike-Projekts",
+  "ERREURSTATIONDEPARTPASPROJET" : "Die eingegebene Abfahrtsstation ist nicht Teil des Resabike-Projekts"
+}

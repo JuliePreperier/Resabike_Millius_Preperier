@@ -1,0 +1,44 @@
+{
+  "LAYOUTAPROPOS": "About",
+
+  "RESERVATIONTITRE" : "Book your place!",
+  "STATIONDEPART" : "Departure station",
+  "STATIONARRIVEE" : "Arrival station",
+  "DATE1" : "Date",
+  "HORAIRE" : "Schedule",
+  "BOUTONCHERCHER" : "Search matches",
+  "CORRESPONDANCESTITRE" : "Connections",
+  "HEUREDEPART" : "Departure time",
+  "HEUREARRIVEE" : "Arrival time",
+  "BOUTONRESERVER" : "Book",
+
+  "NOM" : "Last Name",
+  "PRENOM" : "First Name",
+  "NOMGROUPE" : "Group name",
+  "TELEPHONE" : "Telephone",
+  "EMAIL" : "Email",
+  "REMARQUE" : "Note",
+  "NOMBREVELOS" : "Number of bicycles",
+
+  "CONFIRMATIONMERCI" : "Thank you for your reservation!",
+  "CONFIRMATIONP1" : "An email will be sent to you as soon as possible to confirm if your booking can be effective or if it can not be done because the maximum number of places is exceeded.",
+  "CONFIRMATIONP2" : "We thank you for your understanding and have chosen to travel with Car Postal.",
+
+  "ABOUTTITRE" : "What is ResaBike?",
+  "ABOUTP1" : "ResaBike is a PostBus-related project that was created following a problem encountered in St-Luc during the summer of 2004-2005 .This problem was that there was no way to transport bicycles. In the summer of 2005, the first 6-seater bike racks were installed in the back of the coaches, and as the demand continued to increase, the coaches found themselves in the same position, inability to carry more bicycles. ",
+  "ABOUTP2" : "In Autumn 2013, a solution was made and sketches of the first 20-seater bicycle trailers were drawn, these trailers were used for the first time in July 2014 in the Val d'Anniviers. Unfortunately, there was no way for users to be able to reserve a seat for their bike and therefore to be able to secure transportation of their equipment. ",
+  "ABOUTP3" : "To overcome this problem, this application was created by two students in Computer Science Management at the HEVS.",
+  "ABOUTTITRE2" : "How can I contact ResaBike?",
+  "ABOUTP4" : "To contact us, simply send us an email by clicking on the following link : ",
+
+  "CONTACTTITRE" : "Contact form",
+  "TEXTE" : "Text",
+  "BOUTONENVOIMAIL" : "Send email",
+
+  "ERREUREMAILENVOYE" : "Email sent",
+  "ERREURPLUSIEURSZONES" : "It is not possible to book in several areas",
+  "ERREURSTATIONARRIVEEPASPROJET" : "The arrival station is not part of the Resabike project",
+  "ERREURSTATIONDEPARTPASPROJET" : "The departure station entered is not part of the Resabike project"
+
+
+}

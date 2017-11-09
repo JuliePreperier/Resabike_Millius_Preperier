@@ -1,38 +1,38 @@
 extends layout_client
 
 block content
-    h3 Réservez votre place!
+    h3 #{translation.RESERVATIONTITRE}
 
-    font(size="3") Station départ:  #{from}
+    font(size="3") #{translation.STATIONDEPART} : #{from}
     br
-    font(size="3") Station arrivée : #{to}
+    font(size="3") #{translation.STATIONARRIVEE} : #{to}
     br
-    font(size="3") Date : #{departure.substr(5,2)+'.'+departure.substr(8,2)+'.'+departure.substr(0,4)}
+    font(size="3") #{translation.DATE1} : #{departure.substr(5,2)+'.'+departure.substr(8,2)+'.'+departure.substr(0,4)}
     br
-    font(size="3") Horaire : #{departure.substr(11,5)}
+    font(size="3") #{translation.HORAIRE} : #{departure.substr(11,5)}
 
     br
     br
     form(action='/client/client_confirmation', method='POST')
-        label(for='clientLastname') Nom
+        label(for='clientLastname') #{translation.NOM}
         input.validate(type='text',name='lastName', id='clientLastname', required)
         br
-        label(for='clientFirstname') Prénom
+        label(for='clientFirstname') #{translation.PRENOM}
         input.validate(type='text',name='firstName', id='clientFirstname', required)
         br
-        label(for='clientGroupName') Nom de groupe
+        label(for='clientGroupName') #{translation.NOMGROUPE}
         input.validate(type='text', name='groupName', id='clientGroupName', required)
         br
-        label(for='clientTelephon') Téléphone
+        label(for='clientTelephon') #{translation.TELEPHONE}
         input.validate(type='text', name='telephon', id='clientTelephon', required)
         br
-        label(for='clientEmail') Email
+        label(for='clientEmail') #{translation.EMAIL}
         input.validate(type='text', name='email' id='clientEmail', required)
         br
-        label(for='clientRemarks') Remarque
+        label(for='clientRemarks') #{translation.REMARQUE}
         input.validate(type='text', name='remarks' id='clientRemarks')
         br
-        label(for='clientNumberBikes') Nombre de vélos :
+        label(for='clientNumberBikes') #{translation.NOMBREVELOS} :
         select.browser-default(id='clientNumberBikes', name='nbBikes')
             option(value="1", selected="") 1
             option(value="2") 2
@@ -58,6 +58,6 @@ block content
         input(hidden=true, value=from, name='from')
         input(hidden=true, value=to, name='to')
         input(hidden=true, value=departure, name='departure')
-        button.btn.waves-effect.waves-light(type="submit", name="action") Réserver
+        button.btn.waves-effect.waves-light(type="submit", name="action") #{translation.BOUTONRESERVER}
         br
         br

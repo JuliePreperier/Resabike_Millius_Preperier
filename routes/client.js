@@ -49,7 +49,7 @@ router.get('/completion/input=:input', function(req, res, next){
 router.post('/client_contact', function(req,res,next){
     emailModule.createEmailContact(req.body.name, req.body.email, req.body.textClient).then((text)=>{
         emailModule.sendEmail('resabiketesting@gmail.com', 'Contact / Kontakt', text).then(()=>{
-            res.render('client_horaire', {stations: stations, messageErreur:'Email envoyé'});
+            res.render('client_horaire', {stations: stations, messageErreur: 1});
         });
     })
 });
@@ -79,17 +79,17 @@ router.post('/client_formulaire', function(req, res, next){
                             res.render('client_formulaire', {from:from, to:to, departure:departure});
                         }
                         else{
-                            res.render('client_horaire', {stations: stations, messageErreur: "Il n'est pas possible de réserver dans plusieurs zones"});
+                            res.render('client_horaire', {stations: stations, messageErreur: 2});
                         }
                     })
                 }
                 else{
-                    res.render('client_horaire', {stations: stations, messageErreur: "La station d'arrivée entrée ne fait pas partie du projet Resabike"});
+                    res.render('client_horaire', {stations: stations, messageErreur: 3});
                 }
             })
         }
         else{
-            res.render('client_horaire', {stations: stations, messageErreur: "La station de départ entrée ne fait pas partie du projet Resabike"});
+            res.render('client_horaire', {stations: stations, messageErreur: 4});
         }
     })
 
