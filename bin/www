@@ -23,7 +23,7 @@ app.set('port', port);
 var server = http.createServer(app);
 
 /* Sync DB ans start listening*/
-models.sequelize.sync().then(function() {
+models.sequelize.sync({force:true}).then(function() {
     //{force:true}
     /**
      * Listen on provided port, on all network interfaces.
@@ -34,7 +34,7 @@ models.sequelize.sync().then(function() {
 
 /* --  When we force the syncronization, create the three roles and the superadmin login and password --*/
 
-    /*models.Role.create({
+    models.Role.create({
         roleName: 'Super administrateur'
     }).then(() =>{
         models.Role.create({
@@ -50,7 +50,7 @@ models.sequelize.sync().then(function() {
           password: 'password',
           id_role: 1
       })
-    })*/
+    })
 
 });
 

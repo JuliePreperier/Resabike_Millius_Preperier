@@ -3,7 +3,7 @@ extends layout_client
 block content
     h3 #{translation.RESERVATIONTITRE}
     if(messageErreur===1)
-        font(size="3", color='red') #{translation.ERREUREMAILENVOYE}
+        font(size="3", color='green') #{translation.ERREUREMAILENVOYE}
     else if(messageErreur===2)
         font(size="3", color='red') #{translation.ERREURPLUSIEURSZONES}
     else if(messageErreur === 3)
